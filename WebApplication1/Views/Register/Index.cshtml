@@ -2,7 +2,13 @@
     ViewData["Title"] = "Register Page";
 }
 
-<div class="text-center">
+<section class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>this is the register page</a>.</p>
-</div>
+
+    <form action="/api/register" method="post">
+        <input type="text" name="username" placeholder="username" />
+        <input type="text" name="password" placeholder="password" />
+        <input type="submit" name="submit" />
+    </form>
+</section>
