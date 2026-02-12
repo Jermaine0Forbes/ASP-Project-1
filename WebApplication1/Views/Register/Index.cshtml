@@ -2,13 +2,15 @@
     ViewData["Title"] = "Register Page";
 }
 
+@model UserModel
+
 <section class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>this is the register page</a>.</p>
 
-    <form action="/api/register" method="post">
-        <input type="text" name="username" placeholder="username" />
-        <input type="text" name="password" placeholder="password" />
+    <form asp-controller="Login" asp-action="RegisterUser" method="post">
+        <input type="text"  asp-for="Username" name="username" placeholder="username" />
+        <input type="text" asp-for="Password"  name="password" placeholder="password" />
         <input type="submit" name="submit" />
     </form>
 </section>

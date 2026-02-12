@@ -6,9 +6,9 @@ namespace WebApplication1.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index()
+    public IActionResult Index(UserModel userData)
     {
-        return View();
+        return View(userData);
     }
 
     public IActionResult Privacy()
