@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 // using WebApplication1.Areas.Identity.Data;
 using Microsoft.Extensions.DependencyInjection;
 using WebApplication1.Data;
+using WebApplication1.Models;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDBContext") ?? throw new InvalidOperationException("Connection string 'AppDBContext' not found.");
 builder.Services.AddDbContext<AppDBContext>(options =>
@@ -23,6 +24,15 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+else
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var services = scope.ServiceProvider;
+
+        SeedData.Initialize(services);
+    }
 }
 
 app.UseHttpsRedirection();

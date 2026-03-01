@@ -52,11 +52,44 @@ dotnet ef migrations remove --context [YourDbContextName]
 
 ```
 
+#### What does 'ef migrations add' do?
+
+It creates a migration file for any of the models you included in the db context class, it also creates a designer file (don't know what that does), and a snapshot of the db context model( don't know why that is)
+
+#### What is the Designer.cs when creating a migration
+
+[From google](https://www.google.com/search?q=asp.net+core+what+is+the+designer+file+do+when+generating+a+migration&sca_esv=1ef01aa32e62b85d&sxsrf=ANbL-n4TRkpcDssngI1lQ6DYi3-Jk2mflQ%3A1772391103634&ei=v4qkaZq-Jrbgp84P-ajjyA8&biw=1523&bih=921&ved=0ahUKEwjamYqxr_-SAxU28MkDHXnUGPkQ4dUDCBE&uact=5&oq=asp.net+core+what+is+the+designer+file+do+when+generating+a+migration&gs_lp=Egxnd3Mtd2l6LXNlcnAiRWFzcC5uZXQgY29yZSB3aGF0IGlzIHRoZSBkZXNpZ25lciBmaWxlIGRvIHdoZW4gZ2VuZXJhdGluZyBhIG1pZ3JhdGlvbkiDhAFQ6xZY4ndwCngBkAEAmAHIAaABpDqqAQcxOC40Ni4xuAEDyAEA-AEBmAJCoALMNcICChAAGLADGNYEGEfCAgsQABiABBiRAhiKBcICBRAAGIAEwgIGEAAYFhgewgILEAAYgAQYhgMYigXCAgUQABjvBcICCBAAGKIEGIkFwgIIEAAYgAQYogTCAggQABgWGAoYHsICBRAhGKABwgIFECEYqwKYAwCIBgGQBgiSBwcxNi40OS4xoAfH2QKyBwY2LjQ5LjG4B7E1wgcJMTAuNDguNy4xyAeFAYAIAA&sclient=gws-wiz-serp):
+
+In ASP.NET Core Entity Framework (EF) migrations, the auto-generated .Designer.cs file serves as a metadata file and an immutable snapshot of the model at the time the migration was created. It acts as a historical record of the expected database schema following that specific migration's application.
+
+#### What is the ContextModelSnaphot when creating a migration
+
+[From google:](https://www.google.com/search?q=asp.net+core+what+does+the+db+context+snapshot+do++when+generating+a+migration&sca_esv=1ef01aa32e62b85d&biw=1523&bih=921&sxsrf=ANbL-n7_ow-gSWsqMMAxtlFZSrqnyjwDmA%3A1772391620078&ei=xIykaba1BITjwN4P-cbsyAw&ved=0ahUKEwi2p6unsf-SAxWEMdAFHXkjG8kQ4dUDCBE&uact=5&oq=asp.net+core+what+does+the+db+context+snapshot+do++when+generating+a+migration&gs_lp=Egxnd3Mtd2l6LXNlcnAiTmFzcC5uZXQgY29yZSB3aGF0IGRvZXMgdGhlIGRiIGNvbnRleHQgc25hcHNob3QgZG8gIHdoZW4gZ2VuZXJhdGluZyBhIG1pZ3JhdGlvbkin0gFQvAhY3sQBcAp4AZABAJgBrwGgAecfqgEFMjQuMTe4AQPIAQD4AQGYAhSgAtIMwgIKEAAYsAMY1gQYR8ICBRAAGO8FwgIIEAAYogQYiQXCAggQABiABBiiBMICBBAhGAqYAwCIBgGQBgiSBwQxMS45oAfUjQGyBwM2Ljm4B8MMwgcGMi4xNi4yyAcjgAgA&sclient=gws-wiz-serp)
+
+The DbContext snapshot file in ASP.NET Core Entity Framework (EF) Core migrations serves as a representation of the entire database schema as it existed after the last migration was applied
+
+#### updating the database to current migration
+
+`dotnet ef database update --context WebApplication1.Data.AppDBContext`
+
+#### in order to create fake data
+
+- In the models page create SeedData.cs
+- download [Bogus](https://github.com/bchavez/Bogus?tab=readme-ov-file)
+- Use bogus to generate fake data, here are [all the methods](https://github.com/bchavez/Bogus?tab=readme-ov-file#bogus-api-support) 
+
+#### Error: Cannot insert explicit value for identity column in table 'UserModel' when IDENTITY_INSERT is set to OFF
+
+[From google:](https://www.google.com/search?q=Cannot+insert+explicit+value+for+identity+column+in+table+%27UserModel%27+when+IDENTITY_INSERT+is+set+to+OFF&oq=Cannot+insert+explicit+value+for+identity+column+in+table+%27UserModel%27+when+IDENTITY_INSERT+is+set+to+OFF&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDEyNDFqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
+The error "Cannot insert explicit value for identity column in table 'UserModel' when IDENTITY_INSERT is set to OFF" occurs because you are attempting to provide a value for a column that SQL Server is configured to manage automatically. The column (likely the primary key, e.g., UserId) is an identity column, meaning the database is responsible for generating its value upon insertion
+
  #### helpful commands
 
  `dotnet aspnet-codegenerator controller -h`
 
  `dotnet ef migrations add InitialCreate`
+
+ `dotnet add package Bogus`
 
  #### helpful links
 

@@ -15,7 +15,7 @@ public class UserModel
     public DateTime CreatedAt { get; set; }
 
     [DataType(DataType.Date)]
-    public DateTime UpdatedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
 
 
 

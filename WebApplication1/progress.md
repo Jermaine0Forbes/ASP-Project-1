@@ -10,7 +10,8 @@ Trying to keep track of the little things that I need to do
 - ~~create a form in the register page~~
 - ~~pass values of form into login controller~~
 - ~~create a user model~~
-- connect to a database 
+- ~~connect to a database~~ 
+- ~~seeding data into sqlserver~~
 - encrypt password
 - save form data
 - set up NuGet packages on vscode
