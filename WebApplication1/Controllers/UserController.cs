@@ -12,9 +12,9 @@ namespace WebApplication1.Controllers
 {
     public class UserController : Controller
     {
-        private readonly MvcUserContext _context;
+        private readonly AppDBContext _context;
 
-        public UserController(MvcUserContext context)
+        public UserController(AppDBContext context)
         {
             _context = context;
         }

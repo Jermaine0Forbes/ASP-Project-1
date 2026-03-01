@@ -30,6 +30,39 @@ So the final codegenerator command looked like this. This finally made it run
  Since I randomly am running different commands without knowing what I'm doing. I realized that I created two different DBContext's that I don't actually want to use. I have WebApplicationContext and UserContext,  the names are actually longer but the point is that I think I fucked it up. In any case, I'm going to proceed to remove them from Program.cs and then create a new db context called ApplicationDBContext
 
 
+#### More than one DbContext was found. Specify which one to use. Use the '-Context' parameter for PowerShell commands and the '--context' parameter for dotnet commands.
+
+In order to specify the specific context put this in the command
+```
+dotnet ef migrations add <MigrationName> --context <YourDbContextName>
+
+```
+
+You can also check the list of db contexts by running this command
+
+```
+dotnet ef dbcontext list
+
+```
+
+And if you want to remove a specific db context, then run this
+
+```
+dotnet ef migrations remove --context [YourDbContextName]
+
+```
+
+ #### helpful commands
+
+ `dotnet aspnet-codegenerator controller -h`
+
+ `dotnet ef migrations add InitialCreate`
+
+ #### helpful links
+
+
+
+
 ### 2-22-26
 
 how to run identity scaffolding 
