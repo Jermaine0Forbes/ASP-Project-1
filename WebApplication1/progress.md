@@ -12,7 +12,7 @@ Trying to keep track of the little things that I need to do
 - ~~create a user model~~
 - ~~connect to a database~~ 
 - ~~seeding data into sqlserver~~
-- create view models for register, login, change password, and verify email
+- ~~create view models for register, login, change password, and verify email~~
 - create an account controller that will handle the view models
 - possibly create a migration that will assign the UserModel to be an IdentityUser
 - update the login and register views to encorporate the properties in the RegisterViewModel and LoginViewModel

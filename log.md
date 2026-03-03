@@ -3,6 +3,26 @@
 
 ### 3-3-26
 
+#### how to create a controller with an entity model in cli
+
+`dotnet aspnet-codegenerator controller -name [Entity]Controller -m [Entity] -dc [YourDbContext] --outDir Controllers`
+
+#### how to create an empty controller in cli
+
+`dotnet aspnet-codegenerator controller -name [CustomName]Controller -actions -api -outDir Controllers`
+dotnet aspnet-codegenerator controller -name ExampleController -actions -api -outDir Controllers
+
+#### how to create an mvc app in the console
+
+`dotnet  new mvc -o insertNameOfFolder`
+
+#### how to create a .net project in visual studio code
+- go into visual studio code and type (ctrl+shift+p)
+- If .net options don't show up, then type .net
+- Choose the option  `.Net: New Project...` > then choose whatever app
+- Choose the location where you want the app to be
+- Then name the app whatever
+
 #### How change the display name of a model property
 
 Add this annotation on top of the property like so
@@ -16,6 +36,14 @@ Add this annotation on top of the property like so
 [From google:](https://www.google.com/search?q=what+is+asp-validation-summary%3D%22ModelOnly%22&oq=what+is+asp-validation-summary%3D%22ModelOnly%22&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRiPAjIHCAIQIRiPAjIHCAMQIRiPAtIBCDI3MzlqMGoxqAIAsAIA&sourceid=chrome&ie=UTF-8)
 
 The asp-validation-summary="ModelOnly" attribute in ASP.NET Core is a Tag Helper used to display only model-level validation errors in a designated area (typically a <div> element), while excluding errors specific to individual properties.
+
+#### Error : 'UserModel.Id' hides inherited member 'IdentityUser<string>.Id'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.
+
+[From google:](https://www.google.com/search?q=%27UserModel.Id%27+hides+inherited+member+%27IdentityUser%3Cstring%3E.Id%27.+To+make+the+current+member+override+that+implementation%2C+add+the+override+keyword.+Otherwise+add+the+new+keyword.&oq=%27UserModel.Id%27+hides+inherited+member+%27IdentityUser%3Cstring%3E.Id%27.+To+make+the+current+member+override+that+implementation%2C+add+the+override+keyword.+Otherwise+add+the+new+keyword.&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBBzczNWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
+
+The message "'UserModel.Id' hides inherited member 'IdentityUser.Id'" is a compiler warning in C# that occurs when a member in a derived class has the same name as a member in the base class, and the base member is not marked as virtual
+
+My understanding: Basically I'm extending a class that are already has an Id as a property and in order to keep the Id. I need to change the data type of it and add the keyword override in front of it. Personally, I'm just going to remove all the properties that already exist
 
 
 ### 3-1-26
