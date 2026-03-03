@@ -1,5 +1,23 @@
 # Logs
 
+
+### 3-3-26
+
+#### How change the display name of a model property
+
+Add this annotation on top of the property like so
+```cs
+    [Display(Name="Created At")]
+    [DataType(DataType.Date)]
+    public DateTime CreatedAt { get; set; }
+```
+
+#### what is asp-validation-summary="ModelOnly"
+[From google:](https://www.google.com/search?q=what+is+asp-validation-summary%3D%22ModelOnly%22&oq=what+is+asp-validation-summary%3D%22ModelOnly%22&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRiPAjIHCAIQIRiPAjIHCAMQIRiPAtIBCDI3MzlqMGoxqAIAsAIA&sourceid=chrome&ie=UTF-8)
+
+The asp-validation-summary="ModelOnly" attribute in ASP.NET Core is a Tag Helper used to display only model-level validation errors in a designated area (typically a <div> element), while excluding errors specific to individual properties.
+
+
 ### 3-1-26
 
 #### what are areas?

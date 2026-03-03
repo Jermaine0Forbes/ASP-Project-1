@@ -11,7 +11,8 @@ builder.Services.AddDbContext<AppDBContext>(options =>
 
 builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDBContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+.AddEntityFrameworkStores<AppDBContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

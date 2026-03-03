@@ -11,9 +11,10 @@ public class UserModel
 
     public string Password { get; set; } = "";
 
+    [Display(Name="Created At")]
     [DataType(DataType.Date)]
     public DateTime CreatedAt { get; set; }
-
+    [Display(Name ="Updated At")]
     [DataType(DataType.Date)]
     public DateTime? UpdatedAt { get; set; }
 
