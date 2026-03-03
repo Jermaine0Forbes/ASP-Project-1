@@ -3,6 +3,24 @@
 
 ### 3-3-26
 
+#### what is the difference between razor pages and mvc
+
+[From google:](https://www.google.com/search?q=what+is+the+difference+between+razor+pages+and+mvc&sca_esv=73000156de4ea350&biw=1523&bih=921&sxsrf=ANbL-n6zqXC34PusahYVuJDy0Y-p_XuYAg%3A1772561347814&ei=wyOnaZSCMYjcwN4PjoqVwAs&oq=what+is+the+difference+between+razor+pages+and+&gs_lp=Egxnd3Mtd2l6LXNlcnAiL3doYXQgaXMgdGhlIGRpZmZlcmVuY2UgYmV0d2VlbiByYXpvciBwYWdlcyBhbmQgKgIIADIFEAAYgAQyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yCxAAGIAEGIYDGIoFMggQABiiBBiJBTIFEAAY7wUyCBAAGIAEGKIESIKGAVCuGliudHACeAGQAQCYAZcBoAHPJaoBBTI1LjIzuAEByAEA-AEBmAIyoALkJsICChAAGLADGNYEGEfCAgsQABiABBiRAhiKBcICDhAuGIAEGLEDGNEDGMcBwgILEAAYgAQYsQMYgwHCAgsQLhiABBixAxiDAcICCBAAGIAEGLEDwgIREC4YgAQYsQMY0QMYgwEYxwHCAgsQLhiABBjRAxjHAcICChAAGIAEGEMYigXCAhAQABiABBixAxhDGIMBGIoFwgIWEC4YgAQYsQMY0QMYQxiDARjHARiKBcICCxAAGIAEGJIDGIoFwgIOEAAYgAQYsQMYgwEYigXCAgoQABiABBgUGIcCwgIFEC4YgATCAhQQLhiABBiXBRjcBBjeBBjgBNgBAZgDAIgGAZAGCLoGBggBEAEYFJIHBTI3LjIzoAf26gKyBwUyNS4yM7gH3CbCBwYwLjQ2LjTIB3CACAA&sclient=gws-wiz-serp)
+
+Razor Pages are page-focused and simplify development for simple, content-based UIs, while MVC provides a more flexible, scalable structure for large, complex enterprise applications.
+
+
+#### how to create a .net app with identity authetication
+
+to create an mvc app
+`dotnet new mvc -au Individual -o WebApplication1`
+
+to create an app using razor pages
+`dotnet new webapp -au Individual -o WebApp1`
+
+to create a blazor app
+`dotnet new blazor -au Individual -o BlazorApp1`
+
 #### how to create a controller with an entity model in cli
 
 `dotnet aspnet-codegenerator controller -name [Entity]Controller -m [Entity] -dc [YourDbContext] --outDir Controllers`
@@ -10,7 +28,7 @@
 #### how to create an empty controller in cli
 
 `dotnet aspnet-codegenerator controller -name [CustomName]Controller -actions -api -outDir Controllers`
-dotnet aspnet-codegenerator controller -name ExampleController -actions -api -outDir Controllers
+dotnet aspnet-codegenerator controller -name AccountController -m UserModel -dc AppDBContext --outDir Controllers
 
 #### how to create an mvc app in the console
 
