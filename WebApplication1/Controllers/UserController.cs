@@ -88,7 +88,7 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Email,Password,CreatedAt,UpdatedAt")] UserModel userModel)
         {
-            if (id != userModel.Id)
+            if (id != (int) userModel.Id)
             {
                 return NotFound();
             }

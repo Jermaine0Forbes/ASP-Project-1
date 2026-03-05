@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace WebApplication1.Models;
 
-public class UserModel : IdentityUser<int>
+public class UserModel : IdentityUser
 {
+
     public string? Username { get; set; }
 
     public string Password { get; set; } = "";

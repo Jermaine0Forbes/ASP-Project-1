@@ -64,6 +64,12 @@ The message "'UserModel.Id' hides inherited member 'IdentityUser.Id'" is a compi
 My understanding: Basically I'm extending a class that are already has an Id as a property and in order to keep the Id. I need to change the data type of it and add the keyword override in front of it. Personally, I'm just going to remove all the properties that already exist
 
 
+#### helpful links
+
+- [mvc authentication repo](https://github.com/cloverluo112/WebApplication1)
+- [Introduction to Identity on ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-10.0&tabs=net-cli)
+- [Identity Migrations](https://www.tutorialspoint.com/asp.net_core/asp.net_core_identity_migrations.htm)
+
 ### 3-1-26
 
 #### what are areas?

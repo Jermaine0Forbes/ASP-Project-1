@@ -1,9 +1,9 @@
-using Azure.Identity;
+// using Azure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
 using WebApplication1.ViewModels;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+// using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApplication1.Controllers
 {
