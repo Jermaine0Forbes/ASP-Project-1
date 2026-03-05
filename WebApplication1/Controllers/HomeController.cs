@@ -6,7 +6,7 @@ namespace WebApplication1.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index(UserModel userData)
+    public IActionResult Index(User userData)
     {
         return View(userData);
     }

@@ -2,11 +2,11 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model WebApplication1.Models.UserModel
+@model WebApplication1.Models.User
 
 <div class="text-center">
     <h1 class="display-4">@ViewData["Title"]</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     <p>Name: @Html.DisplayFor(model => model.Username)</p>
-    <p>Password: @Html.DisplayFor(model => model.Password)</p>
+    <p>Password: @Html.DisplayFor(model => model.PasswordHash)</p>
 </div>

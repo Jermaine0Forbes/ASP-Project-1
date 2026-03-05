@@ -28,7 +28,7 @@ public class LoginController : Controller
     }
 
     [HttpPost]
-    public IActionResult RegisterUser(UserModel userData)
+    public IActionResult RegisterUser(User userData)
     {
         if (ModelState.IsValid)
         {

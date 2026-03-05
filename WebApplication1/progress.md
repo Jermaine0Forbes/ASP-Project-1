@@ -14,7 +14,7 @@ Trying to keep track of the little things that I need to do
 - ~~seeding data into sqlserver~~
 - ~~create view models for register, login, change password, and verify email~~
 - create an account controller that will handle the view models
-- possibly create a migration that will assign the UserModel to be an IdentityUser
+- possibly create a migration that will assign the Users to be an IdentityUser
 - update the login and register views to encorporate the properties in the RegisterViewModel and LoginViewModel
 - save form data
 - encrypt password
@@ -32,13 +32,13 @@ dotnet run
 
 dotnet watch run
 
-# to create an mvc app
+# to create an mvc app with identity services
 dotnet new mvc -au Individual -o WebApplication1
 
-# to create an app using razor pages
+# to create an app using razor pages with identity services
 dotnet new webapp -au Individual -o WebApp1
 
-# to create a blazor app
+# to create a blazor app with identity services
 dotnet new blazor -au Individual -o BlazorApp1
 
 # creates an empty controller
@@ -56,6 +56,18 @@ dotnet add package Bogus
 
 # creates a migration from the db context
 dotnet ef migrations add InitialCreate
+
+# shows the different db contexts 
+dotnet ef dbcontext list
+
+# create a migration file with a specific context 
+dotnet ef migrations add <MigrationName> --context <YourDbContextName>
+
+# remove a specific db context
+dotnet ef migrations remove --context [YourDbContextName] 
+
+# updating the database to the current migration
+dotnet ef database update --context [YourDbContextName]
 
 # just shows all the options/flags you can add when creating a controller
 dotnet aspnet-codegenerator controller -h

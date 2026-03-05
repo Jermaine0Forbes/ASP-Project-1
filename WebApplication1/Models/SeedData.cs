@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 using WebApplication1.Data;
 using System;
 using System.Linq;
@@ -15,23 +16,24 @@ public static class SeedData
             serviceProvider.GetRequiredService<
                 DbContextOptions<AppDBContext>>()))
         {
-            // Look for any UserModels.
-            if (context.UserModel.Any())
+            using var scope = serviceProvider.CreateScope();
+            var roleManager = scope.ServiceProvider.GetRequiredService(RoleManager<IdentityRole>)();
+            // Look for any Userss.
+            if (context.Users.Any())
             {
                 return;   // DB has been seeded
             }
-            var userId = 1;
-            var fakeUsers = new Faker<UserModel>()
+            var fakeUsers = new Faker<User>()
             // .RuleFor(u => u.Id , f => userId++)
             .RuleFor(u => u.Username , f => f.Internet.UserName())
             .RuleFor(u => u.Email , f => f.Internet.Email())
-            .RuleFor(u => u.Password , f => f.Internet.Password())
+            .RuleFor(u => u.PasswordHash , f => f.Internet.Password())
             .RuleFor(u => u.CreatedAt , f => f.Date.Soon())
             .RuleFor(u => u.UpdatedAt , f => f.Date.Soon());
 
             var users = fakeUsers.Generate(10);
 
-            context.UserModel.AddRange(users);
+            context.Users.AddRange(users);
             context.SaveChanges();
         }
     }

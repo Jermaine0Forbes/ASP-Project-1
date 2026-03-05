@@ -15,7 +15,7 @@ namespace WebApplication1.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "New Password")]
         [Compare("ConfirmPassword", ErrorMessage = "Password does not match!")]
-        public string Password { get; set; } = "";
+        public string PasswordHash { get; set; } = "";
 
 
         [Required(ErrorMessage = "Confirm Password is required!")]

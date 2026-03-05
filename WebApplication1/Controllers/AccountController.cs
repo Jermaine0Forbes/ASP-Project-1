@@ -9,10 +9,10 @@ namespace WebApplication1.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly SignInManager<UserModel> signInManager;
-        private readonly UserManager<UserModel> userManager;
+        private readonly SignInManager<User> signInManager;
+        private readonly UserManager<User> userManager;
 
-        public AccountController(SignInManager<UserModel> signInManager, UserManager<UserModel> userManager)
+        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager)
         {
             this.signInManager = signInManager;
             this.userManager = userManager;
@@ -49,13 +49,13 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserModel users = new UserModel
+                User users = new User
                 {
                     Username = model.Name,
                     Email = model.Email,
                     UserName = model.Email,
                 };
-                var result = await userManager.CreateAsync(users, model.Password);
+                var result = await userManager.CreateAsync(users, model.PasswordHash);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Login", "Account");

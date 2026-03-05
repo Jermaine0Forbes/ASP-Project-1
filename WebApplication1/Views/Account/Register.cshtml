@@ -1,4 +1,4 @@
-@model WebApplication1.Models.UserModel
+@model WebApplication1.Models.User
 
 @{
     Layout = null;
@@ -14,7 +14,7 @@
 <body>
 
 <div>
-    <h4>UserModel</h4>
+    <h4>Users</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -24,10 +24,10 @@
             @Html.DisplayFor(model => model.Username)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
+            @Html.DisplayNameFor(model => model.PasswordHash)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
+            @Html.DisplayFor(model => model.PasswordHash)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CreatedAt)

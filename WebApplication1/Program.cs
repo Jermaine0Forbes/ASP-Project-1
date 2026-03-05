@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-// using WebApplication1.Areas.Identity.Data;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using WebApplication1.Data;
 using WebApplication1.Models;
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +9,12 @@ var connectionString = builder.Configuration.GetConnectionString("AppDBContext")
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseSqlServer());
 
+
+
 builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+.AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<AppDBContext>();
 
 // Add services to the container.
@@ -31,6 +34,15 @@ else
     using (var scope = app.Services.CreateScope())
     {
         var services = scope.ServiceProvider;
+        var roleManager = scope.ServiceProvider.GetRequiredService(RoleManager<IdentityRole>);
+        string[] roles = {"Admin", "User"};
+        foreach(var role in roles)
+        {
+            if(!await roleManager.RoleExistAsync(role))
+            {
+                await roleManager.CreateAsync(new IdentityRole(role));
+            }
+        }
 
         SeedData.Initialize(services);
     }
@@ -39,6 +51,7 @@ else
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

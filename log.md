@@ -1,5 +1,42 @@
 # Logs
 
+### 3-5-26
+
+#### data annotations that you can put on your model
+[From google:](https://www.google.com/search?q=dotnet+model+datatype+annotations&sca_esv=286534660d0b6d5d&biw=1523&bih=921&sxsrf=ANbL-n61v38e-WL8w--ggYqYdLKI4HZnyg%3A1772749059584&ei=AwGqaciiI5Du-LYPurG66QU&ved=0ahUKEwiIsOPv5ImTAxUQN94AHbqYLl0Q4dUDCBE&uact=5&oq=dotnet+model+datatype+annotations&gs_lp=Egxnd3Mtd2l6LXNlcnAiIWRvdG5ldCBtb2RlbCBkYXRhdHlwZSBhbm5vdGF0aW9uczIHECEYoAEYCjIHECEYoAEYCjIHECEYoAEYCkjc_QRQ3ZkEWNT7BHACeACQAQGYAZ0BoAHKHaoBBDcuMja4AQPIAQD4AQGYAiKgAsUdqAIUwgIHECMYJxjqAsICEBAAGAMYtAIY6gIYjwHYAQHCAhYQLhjRAxgDGLQCGMcBGOoCGI8B2AEBwgILEAAYgAQYkQIYigXCAg4QLhiABBixAxjRAxjHAcICBRAAGIAEwgIOEAAYgAQYsQMYgwEYigXCAg4QLhiABBixAxiDARiKBcICBBAjGCfCAggQABiABBixA8ICCxAAGIAEGLEDGIMBwgIKEAAYgAQYQxiKBcICERAuGIAEGLEDGNEDGIMBGMcBwgIIEC4YgAQYsQPCAggQABiABBjJA8ICDRAAGIAEGLEDGBQYhwLCAgoQABiABBgUGIcCwgIREAAYgAQYkQIYsQMYgwEYigXCAggQABgWGAoYHsICBhAAGBYYHsICBRAhGKABwgIFECEYqwLCAgUQIRifBZgDDPEFFC7Sha1NLea6BgYIARABGAqSBwQ4LjI2oAfa1gGyBwQ2LjI2uAexHcIHCDMuMjYuNC4xyAdQgAgA&sclient=gws-wiz-serp)
+
+
+**Validation Attributes**
+- `[Required]`: Specifies that a property cannot be null or empty.
+- `[StringLength(maximumLength, MinimumLength = minimumLength)]`: Defines the maximum and optionally minimum length of a string.
+- `[MaxLength(maximumLength)] / [MinLength(minimumLength)]`: Similar to [StringLength] but only for max/min length.
+- `[Range(minimum, maximum)]`: Validates that a numeric property falls within a specified range.
+- `[RegularExpression(@"pattern")]`: Validates a property against a specific regular expression pattern.
+- `[EmailAddress]`: Validates that the string has a valid email format.
+- `[CreditCard]`: Validates that the string is a valid credit card number format.
+- `[Phone]`: Validates that the string is a well-formed phone number.
+- `[Url]`: Validates that the string is a valid URL.
+- `[Compare("OtherProperty")]`: Validates that the property's value matches the value of another specified property (commonly used for password confirmation). 
+
+[microsoft annotation glossary](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-10.0)
+
+#### if you want to remove a dbcontext
+
+The only way to do that is to remove the file that holds the dbcontext. Delete the file, and also remove any traces that are mentioned in other file.
+Then you will truly be free from the old dbcontext
+
+#### migration commands
+
+[From google:](https://www.google.com/search?q=asp.net+core+migrate+down&oq=asp.net+core+migrate+down&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigAdIBCTIyMzU4ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+
+to update the database to a new migration
+`dotnet ef database update <Name-of-Target-Migration>`
+
+to empty the database 
+`dotnet ef database update 0`
+
+to remove the last migration file 
+`dotnet ef migrations remove`
 
 ### 3-3-26
 
@@ -28,7 +65,7 @@ to create a blazor app
 #### how to create an empty controller in cli
 
 `dotnet aspnet-codegenerator controller -name [CustomName]Controller -actions -api -outDir Controllers`
-dotnet aspnet-codegenerator controller -name AccountController -m UserModel -dc AppDBContext --outDir Controllers
+dotnet aspnet-codegenerator controller -name AccountController -m Users -dc AppDBContext --outDir Controllers
 
 #### how to create an mvc app in the console
 
@@ -55,11 +92,11 @@ Add this annotation on top of the property like so
 
 The asp-validation-summary="ModelOnly" attribute in ASP.NET Core is a Tag Helper used to display only model-level validation errors in a designated area (typically a <div> element), while excluding errors specific to individual properties.
 
-#### Error : 'UserModel.Id' hides inherited member 'IdentityUser<string>.Id'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.
+#### Error : 'Users.Id' hides inherited member 'IdentityUser<string>.Id'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword.
 
-[From google:](https://www.google.com/search?q=%27UserModel.Id%27+hides+inherited+member+%27IdentityUser%3Cstring%3E.Id%27.+To+make+the+current+member+override+that+implementation%2C+add+the+override+keyword.+Otherwise+add+the+new+keyword.&oq=%27UserModel.Id%27+hides+inherited+member+%27IdentityUser%3Cstring%3E.Id%27.+To+make+the+current+member+override+that+implementation%2C+add+the+override+keyword.+Otherwise+add+the+new+keyword.&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBBzczNWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
+[From google:](https://www.google.com/search?q=%27Users.Id%27+hides+inherited+member+%27IdentityUser%3Cstring%3E.Id%27.+To+make+the+current+member+override+that+implementation%2C+add+the+override+keyword.+Otherwise+add+the+new+keyword.&oq=%27Users.Id%27+hides+inherited+member+%27IdentityUser%3Cstring%3E.Id%27.+To+make+the+current+member+override+that+implementation%2C+add+the+override+keyword.+Otherwise+add+the+new+keyword.&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBBzczNWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
 
-The message "'UserModel.Id' hides inherited member 'IdentityUser.Id'" is a compiler warning in C# that occurs when a member in a derived class has the same name as a member in the base class, and the base member is not marked as virtual
+The message "'Users.Id' hides inherited member 'IdentityUser.Id'" is a compiler warning in C# that occurs when a member in a derived class has the same name as a member in the base class, and the base member is not marked as virtual
 
 My understanding: Basically I'm extending a class that are already has an Id as a property and in order to keep the Id. I need to change the data type of it and add the keyword override in front of it. Personally, I'm just going to remove all the properties that already exist
 
@@ -83,7 +120,7 @@ In the code provided by microsoft, I ran the example code like this and I obviou
 
 `dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovie.Data.MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries --databaseProvider sqlite`
 
-Then I tried to customize like this, and tried to run it but it didn't work out because it was telling me `A type with the name User does not exist`. This is them basically saying that the model name `User` doesn't exist, and that's true because I named my model `UserModel`
+Then I tried to customize like this, and tried to run it but it didn't work out because it was telling me `A type with the name User does not exist`. This is them basically saying that the model name `User` doesn't exist, and that's true because I named my model `Users`
 
 `dotnet aspnet-codegenerator controller -name UsersController -m User -dc MvcUser.Data.MvcUserContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries --databaseProvider sqlserver`
 
@@ -93,7 +130,7 @@ This is the proper syntax you should make your code generator run successfully
 
 So the final codegenerator command looked like this. This finally made it run
 
-`dotnet aspnet-codegenerator controller -name UserController -m UserModel -dc WebApplication1.Data.MvcUserContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries --databaseProvider sqlserver`
+`dotnet aspnet-codegenerator controller -name UserController -m Users -dc WebApplication1.Data.MvcUserContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries --databaseProvider sqlserver`
 
 #### so i messed up my web app
 
@@ -148,10 +185,10 @@ The DbContext snapshot file in ASP.NET Core Entity Framework (EF) Core migration
 - download [Bogus](https://github.com/bchavez/Bogus?tab=readme-ov-file)
 - Use bogus to generate fake data, here are [all the methods](https://github.com/bchavez/Bogus?tab=readme-ov-file#bogus-api-support) 
 
-#### Error: Cannot insert explicit value for identity column in table 'UserModel' when IDENTITY_INSERT is set to OFF
+#### Error: Cannot insert explicit value for identity column in table 'Users' when IDENTITY_INSERT is set to OFF
 
-[From google:](https://www.google.com/search?q=Cannot+insert+explicit+value+for+identity+column+in+table+%27UserModel%27+when+IDENTITY_INSERT+is+set+to+OFF&oq=Cannot+insert+explicit+value+for+identity+column+in+table+%27UserModel%27+when+IDENTITY_INSERT+is+set+to+OFF&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDEyNDFqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
-The error "Cannot insert explicit value for identity column in table 'UserModel' when IDENTITY_INSERT is set to OFF" occurs because you are attempting to provide a value for a column that SQL Server is configured to manage automatically. The column (likely the primary key, e.g., UserId) is an identity column, meaning the database is responsible for generating its value upon insertion
+[From google:](https://www.google.com/search?q=Cannot+insert+explicit+value+for+identity+column+in+table+%27Users%27+when+IDENTITY_INSERT+is+set+to+OFF&oq=Cannot+insert+explicit+value+for+identity+column+in+table+%27Users%27+when+IDENTITY_INSERT+is+set+to+OFF&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDEyNDFqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
+The error "Cannot insert explicit value for identity column in table 'Users' when IDENTITY_INSERT is set to OFF" occurs because you are attempting to provide a value for a column that SQL Server is configured to manage automatically. The column (likely the primary key, e.g., UserId) is an identity column, meaning the database is responsible for generating its value upon insertion
 
  #### helpful commands
 
@@ -197,7 +234,7 @@ dotnet aspnet-codegenerator controller -name UsersController -m User -dc MvcUser
 
 dotnet aspnet-codegenerator controller -name UsersController -m User -dc MvcUser.Data.MvcUserContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries --databaseProvider sqlserver
 
-dotnet aspnet-codegenerator controller -name UserController -m UserModel -dc WebApplication1.Data.MvcUserContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries --databaseProvider sqlserver
+dotnet aspnet-codegenerator controller -name UserController -m Users -dc WebApplication1.Data.MvcUserContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries --databaseProvider sqlserver
 
 
 ```
