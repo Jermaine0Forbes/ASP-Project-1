@@ -16,10 +16,10 @@ namespace WebApplication1.Data
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-        }
+        // protected override void  OnModelCreating(ModelBuilder builder)
+        // {
+        //     base.OnModelCreating(builder);
+        // }
 
 
         // public DbSet<User> Users { get; set; }

@@ -51,7 +51,6 @@ namespace WebApplication1.Controllers
             {
                 User users = new User
                 {
-                    Username = model.Name,
                     Email = model.Email,
                     UserName = model.Email,
                 };

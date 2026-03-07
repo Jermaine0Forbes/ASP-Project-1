@@ -34,17 +34,9 @@ else
     using (var scope = app.Services.CreateScope())
     {
         var services = scope.ServiceProvider;
-        var roleManager = scope.ServiceProvider.GetRequiredService(RoleManager<IdentityRole>);
-        string[] roles = {"Admin", "User"};
-        foreach(var role in roles)
-        {
-            if(!await roleManager.RoleExistAsync(role))
-            {
-                await roleManager.CreateAsync(new IdentityRole(role));
-            }
-        }
 
-        SeedData.Initialize(services);
+    //    SeedData.Initialize(services);
+       await  SeedData.Initialize(services);
     }
 }
 

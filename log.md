@@ -1,5 +1,15 @@
 # Logs
 
+
+### 3-6-26
+
+### the proper steps to migrate
+
+- create migration `dotnet ef migrations add [insert name]`
+- create seeder file in Models folder
+- update database `dotnet ef database update`
+- run dotnet `dotnet run`
+
 ### 3-5-26
 
 #### data annotations that you can put on your model

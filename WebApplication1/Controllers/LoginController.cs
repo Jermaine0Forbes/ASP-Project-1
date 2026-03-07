@@ -36,8 +36,8 @@ public class LoginController : Controller
 
         }
         
-        _logger.LogInformation("inside RegisterUser "+userData.Username);
-        // _logger.LogInformation(_javaScriptEncoder.Encode(userData.Username));
+        // _logger.LogInformation("inside RegisterUser "+userData.UserName);
+        // _logger.LogInformation(_javaScriptEncoder.Encode(userData.UserName));
         // _logger.LogInformation(userData.toString());
         return RedirectToAction("Index","Home", userData);
     }
