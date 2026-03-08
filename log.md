@@ -3,6 +3,34 @@
 
 ### 3-7-26
 
+#### __RequestVerificationToken AKA anti csrf token
+
+[From google:](https://www.google.com/search?q=asp+net+mvc+__+requestverificationtoken&oq=.net+mvc+requestverif&gs_lcrp=EgZjaHJvbWUqCAgBEAAYFhgeMgYIABBFGDkyCAgBEAAYFhgeMgcIAhAAGO8FMgoIAxAAGKIEGIkFMgoIBBAAGIAEGKIEMgcIBRAAGO8FMgoIBhAAGKIEGIkF0gEIOTYyMGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
+
+In ASP.NET Core MVC, the built-in Form Tag Helper automatically generates a hidden anti-forgery token to prevent Cross-Site Request Forgery (CSRF) attacks for POST methods. No explicit tag helper is needed in most cases; the mere use of the standard <form> tag with a method="post" attribute handles it automatically.
+
+The `__RequestVerificationToken` is a key component in ASP.NET MVC's defense against Cross-Site Request Forgery (CSRF) attacks. It is a randomly-generated, unique value used to ensure that any POST request to the application originates from a legitimate form on the same website
+
+
+#### .net handles form security
+.net automatically handles input sanitization and you can add form validation with the view models you create. It also hashes the password automatically, I'm not sure if it automatically creates csrf anti tokens though. Wait, I just found out that they do indeed generate anti csrf tokens
+
+#### change input type in the view through the model
+I wanted to change password input type to regular text so that I can see my password when writing it, but I didn't know where to change it. If you have a view model that is supposed to store the values from the form you can add/remove attributes that will change the type of input that will be shown in the view like so.
+
+```cs
+    public class RegisterViewModel
+    {
+
+        // [DataType(DataType.Password)] commenting out this annotation will change the input type to text
+        [Display(Name = "New Password")]
+        [Compare("ConfirmPassword", ErrorMessage = "Password does not match!")]
+        public string Password { get; set; } = "";
+        ...
+
+    }
+```
+
 #### Error: ArgumentOutOfRangeException: Token 20022b1 is not valid in the scope of module System.ModuleHandle. (Parameter 'typeToken')
 
 If you ever get this error, just stop `dotnet watch` and start it back again

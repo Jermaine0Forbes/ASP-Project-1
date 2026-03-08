@@ -49,13 +49,32 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                User users = new()
+
+
+
+                User user = new()
                 {
                     Email = model.Email,
                     UserName = model.UserName,
                 };
-                var result = await userManager.CreateAsync(users, model.Password);
+
+                var doesNameExist = await userManager.FindByNameAsync(user.UserName!);
+
+                if(doesNameExist != null)
+                {
+                    ModelState.AddModelError("", "the user name is not unique");
+                    return View(model);
+                }
+
+                var result = await userManager.CreateAsync(user, model.Password);
+                IdentityResult? role = null;
+
                 if (result.Succeeded)
+                {
+                     role  = await userManager.AddToRoleAsync(user,"User");
+                    
+                }
+                if(  role != null  && role.Succeeded)
                 {
                     return RedirectToAction("Login", "Account");
                 }
