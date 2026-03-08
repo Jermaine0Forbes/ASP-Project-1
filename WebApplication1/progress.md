@@ -18,7 +18,7 @@ Trying to keep track of the little things that I need to do
 - ~~update the login and register views to encorporate the properties in the RegisterViewModel and LoginViewModel~~
 - ~~register a user~~
 - ~~login a user~~
-- set up .net debug mode
+- ~~set up .net debug mode~~
 - add rate limiting to login
 - add authorization annotation to routes
 - create a post as a user

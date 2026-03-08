@@ -3,6 +3,22 @@
 
 ### 3-7-26
 
+#### how to enable .net debugger on vscode
+
+[From google:](https://www.google.com/search?q=how+enable+.net+debugger+on+vscode&oq=how+enable+.net+debugger+on+vscode&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRigATIHCAYQIRifBTIHCAcQIRifBTIHCAgQIRifBTIHCAkQIRifBdIBCTE3NDkzajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+
+Apparently, since I already installed the .NET SDK on vscode. If turn off the `dotnet run` or watch and then run the debug it should work fine
+
+#### implement rate limiting for login
+
+[From google:](https://www.google.com/search?q=.net+mvc+how+to+implement+rate+limiting+on+login&sca_esv=5e258db83c5b9e6b&sxsrf=ANbL-n58G1SlcstagWx64j6dvbtRD-QVYg%3A1772928415507&ei=n72safzLHvPGp84PwtXpiQI&biw=1720&bih=921&ved=0ahUKEwi8l6yDgY-TAxVz48kDHcJqOiEQ4dUDCBE&uact=5&oq=.net+mvc+how+to+implement+rate+limiting+on+login&gs_lp=Egxnd3Mtd2l6LXNlcnAiMC5uZXQgbXZjIGhvdyB0byBpbXBsZW1lbnQgcmF0ZSBsaW1pdGluZyBvbiBsb2dpbjIFECEYoAEyBRAhGKABMgUQIRigATIFECEYoAFIrKIBUNYsWIyfAXANeACQAQCYAZMBoAGENKoBBTEyLjQ4uAEDyAEA-AEBmAJJoAK9NagCEMICBxAjGCcY6gLCAhcQABiABBiRAhi0AhjnBhiKBRjqAtgBAcICBBAjGCfCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgoQABiABBhDGIoFwgIREC4YgAQYsQMY0QMYgwEYxwHCAgsQABiABBixAxiDAcICCxAuGIAEGNEDGMcBwgIOEC4YgAQYsQMY0QMYxwHCAggQABiABBixA8ICBRAAGIAEwgIIEC4YgAQYsQPCAgsQLhiABBixAxiDAcICBhAAGBYYHsICCBAAGBYYChgewgIIEAAYogQYiQXCAgUQABjvBcICCBAAGIAEGKIEwgIFECEYnwXCAgcQIRigARgKwgIFECEYqwKYAwnxBXzIQpN4SzC4ugYGCAEQARgBkgcFMjMuNTCgB5mNA7IHBTEwLjUwuAeXNcIHBjUuNTkuOcgHkQGACAA&sclient=gws-wiz-serp)
+
+#### how to implement anti forgery tokens in forms
+
+[From google:](https://www.google.com/search?q=.net+mvc+how+to+handle+csrf&sca_esv=fd9148ff6cb1b974&biw=1720&bih=921&sxsrf=ANbL-n4MX79rys_jw_oH2_G4xy3nFiYIZg%3A1772943896719&ei=GPqsacTPK-jbwN4P3vDtoAU&ved=0ahUKEwjEu67Zuo-TAxXoLdAFHV54G1QQ4dUDCBE&uact=5&oq=.net+mvc+how+to+handle+csrf&gs_lp=Egxnd3Mtd2l6LXNlcnAiGy5uZXQgbXZjIGhvdyB0byBoYW5kbGUgY3NyZjIFECEYoAEyBRAhGKABMgUQIRigATIFECEYoAEyBRAhGKABMgUQIRifBTIFECEYnwUyBRAhGJ8FMgUQIRifBTIFECEYnwVI-YEBULM9WI2AAXAKeACQAQCYAX-gAesUqgEFMTUuMTK4AQPIAQD4AQGYAiWgAtgVwgIIEAAYsAMY7wXCAgsQABiwAxiiBBiJBcICBBAjGCfCAgYQABgWGB7CAggQABgWGAoYHsICBRAAGO8FwgIKEAAYgAQYFBiHAsICBRAAGIAEwgIIEAAYogQYiQXCAggQABiABBiiBMICBRAhGKsCmAMAiAYBkAYFkgcFMjQuMTOgB-rJAbIHBTE0LjEzuAe5FcIHBjIuMjYuOcgHWoAIAA&sclient=gws-wiz-serp)
+
+In ASP.NET MVC, CSRF attacks are primarily handled using anti-forgery tokens (also known as request verification tokens) via the @Html.AntiForgeryToken() helper in the view and the `[ValidateAntiForgeryToken]` attribute on the controller's action method.
+
 #### When PasswordSignInAsync fails
 
 [From google:](https://www.google.com/search?q=dotnet++passwordsigninasync+not+succeeding&sca_esv=b1dbf1f96f7a69ca&biw=1720&bih=921&sxsrf=ANbL-n6IXtd7TuazIUkhM2zQFgCIirXK6g%3A1772946678652&ei=9gStaYKOIZmHp84PpsTlwQs&ved=0ahUKEwiC4euHxY-TAxWZw8kDHSZiObgQ4dUDCBM&uact=5&oq=dotnet++passwordsigninasync+not+succeeding&gs_lp=Egxnd3Mtd2l6LXNlcnAiKmRvdG5ldCAgcGFzc3dvcmRzaWduaW5hc3luYyBub3Qgc3VjY2VlZGluZzIFEAAY7wUyCBAAGKIEGIkFMggQABiiBBiJBTIFEAAY7wUyBRAAGO8FSOByUIAHWKhwcBV4AZABAZgB0AGgAY0eqgEHMTAuMjUuMbgBA8gBAPgBAZgCOKACtR3CAgoQABiwAxjWBBhHwgIIECEYoAEYwwTCAgUQIRigAcICBRAhGKsCwgIHECEYoAEYCpgDAIgGAZAGApIHBTI5LjI3oAfEtwGyBwQ4LjI3uAeFHcIHBjIuNTMuMcgHU4AIAA&sclient=gws-wiz-serp)
