@@ -3,6 +3,14 @@
 
 ### 3-7-26
 
+#### When PasswordSignInAsync fails
+
+[From google:](https://www.google.com/search?q=dotnet++passwordsigninasync+not+succeeding&sca_esv=b1dbf1f96f7a69ca&biw=1720&bih=921&sxsrf=ANbL-n6IXtd7TuazIUkhM2zQFgCIirXK6g%3A1772946678652&ei=9gStaYKOIZmHp84PpsTlwQs&ved=0ahUKEwiC4euHxY-TAxWZw8kDHSZiObgQ4dUDCBM&uact=5&oq=dotnet++passwordsigninasync+not+succeeding&gs_lp=Egxnd3Mtd2l6LXNlcnAiKmRvdG5ldCAgcGFzc3dvcmRzaWduaW5hc3luYyBub3Qgc3VjY2VlZGluZzIFEAAY7wUyCBAAGKIEGIkFMggQABiiBBiJBTIFEAAY7wUyBRAAGO8FSOByUIAHWKhwcBV4AZABAZgB0AGgAY0eqgEHMTAuMjUuMbgBA8gBAPgBAZgCOKACtR3CAgoQABiwAxjWBBhHwgIIECEYoAEYwwTCAgUQIRigAcICBRAhGKsCwgIHECEYoAEYCpgDAIgGAZAGApIHBTI5LjI3oAfEtwGyBwQ4LjI3uAeFHcIHBjIuNTMuMcgHU4AIAA&sclient=gws-wiz-serp)
+
+When PasswordSignInAsync fails, it usually returns a SignInResult object with properties (e.g., IsLockedOut, IsNotAllowed, RequiresTwoFactor) that provide details about the failure.
+
+The issue for me had to do with me 
+
 #### __RequestVerificationToken AKA anti csrf token
 
 [From google:](https://www.google.com/search?q=asp+net+mvc+__+requestverificationtoken&oq=.net+mvc+requestverif&gs_lcrp=EgZjaHJvbWUqCAgBEAAYFhgeMgYIABBFGDkyCAgBEAAYFhgeMgcIAhAAGO8FMgoIAxAAGKIEGIkFMgoIBBAAGIAEGKIEMgcIBRAAGO8FMgoIBhAAGKIEGIkF0gEIOTYyMGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)

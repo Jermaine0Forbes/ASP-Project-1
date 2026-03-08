@@ -23,19 +23,25 @@ namespace WebApplication1.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
                 }
+                if (result.IsNotAllowed)
+                {
+                    Console.WriteLine("is not allowed");    
+                }
                 else
                 {
-                    ModelState.AddModelError("", "Email or passowrd is incorrect.");
+                    ModelState.AddModelError("", "username or password is incorrect.");
                     return View(model);
+            
                 }
             }
             return View(model);
@@ -120,6 +126,7 @@ namespace WebApplication1.Controllers
             return View(new ChangePasswordViewModel { Email = username });
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (ModelState.IsValid)
