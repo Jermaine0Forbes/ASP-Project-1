@@ -49,12 +49,12 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                User users = new User
+                User users = new()
                 {
                     Email = model.Email,
-                    UserName = model.Email,
+                    UserName = model.UserName,
                 };
-                var result = await userManager.CreateAsync(users, model.PasswordHash);
+                var result = await userManager.CreateAsync(users, model.Password);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Login", "Account");
@@ -79,7 +79,7 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await userManager.FindByNameAsync(model.Email);
+                var user = await userManager.FindByNameAsync(model.Email!);
                 if (user == null)
                 {
                     ModelState.AddModelError("", "Something is wrong!");
@@ -105,13 +105,13 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await userManager.FindByNameAsync(model.Email);
+                var user = await userManager.FindByNameAsync(model.Email!);
                 if (user != null)
                 {
                     var result = await userManager.RemovePasswordAsync(user);
                     if (result.Succeeded)
                     {
-                        result = await userManager.AddPasswordAsync(user, model.NewPassword);
+                        result = await userManager.AddPasswordAsync(user, model.NewPassword!);
                         return RedirectToAction("Login", "Account");
                     }
                     else

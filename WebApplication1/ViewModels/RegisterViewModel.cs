@@ -5,7 +5,7 @@ namespace WebApplication1.ViewModels
     public class RegisterViewModel
     {
         [Required(ErrorMessage = "Name is required!")]
-        public string? Name { get; set; }
+        public string? UserName { get; set; }
         [Required(ErrorMessage = "Email is required!")]
         [EmailAddress]
         public string Email { get; set; } = "";
@@ -15,7 +15,7 @@ namespace WebApplication1.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "New Password")]
         [Compare("ConfirmPassword", ErrorMessage = "Password does not match!")]
-        public string PasswordHash { get; set; } = "";
+        public string Password { get; set; } = "";
 
 
         [Required(ErrorMessage = "Confirm Password is required!")]

@@ -1,6 +1,12 @@
 # Logs
 
 
+### 3-7-26
+
+#### Error: ArgumentOutOfRangeException: Token 20022b1 is not valid in the scope of module System.ModuleHandle. (Parameter 'typeToken')
+
+If you ever get this error, just stop `dotnet watch` and start it back again
+
 ### 3-6-26
 
 ### the proper steps to migrate

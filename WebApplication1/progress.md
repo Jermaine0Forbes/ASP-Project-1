@@ -14,8 +14,9 @@ Trying to keep track of the little things that I need to do
 - ~~seeding data into sqlserver~~
 - ~~create view models for register, login, change password, and verify email~~
 - ~~create an account controller that will handle the view models~~
-- possibly create a migration that will assign the Users to be an IdentityUser
-- update the login and register views to encorporate the properties in the RegisterViewModel and LoginViewModel
+- ~~possibly create a migration that will assign the Users to be an IdentityUser~~
+- ~~update the login and register views to encorporate the properties in the RegisterViewModel and LoginViewModel~~
+- register a user
 - save form data
 - encrypt password
 - set up NuGet packages on vscode
@@ -26,7 +27,7 @@ Trying to keep track of the little things that I need to do
 
 ## commands
 
-```
+```cs
 
 dotnet run
 
