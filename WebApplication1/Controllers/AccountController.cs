@@ -1,6 +1,7 @@
 // using Azure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using WebApplication1.Models;
 using WebApplication1.ViewModels;
 // using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -23,6 +24,7 @@ namespace WebApplication1.Controllers
             return View();
         }
         [HttpPost]
+        [EnableRateLimiting("LoginPolicy")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {

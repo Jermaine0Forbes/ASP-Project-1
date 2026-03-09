@@ -1,5 +1,8 @@
 # Logs
 
+### 3-9-26
+
+
 
 ### 3-7-26
 
@@ -12,6 +15,10 @@ Apparently, since I already installed the .NET SDK on vscode. If turn off the `d
 #### implement rate limiting for login
 
 [From google:](https://www.google.com/search?q=.net+mvc+how+to+implement+rate+limiting+on+login&sca_esv=5e258db83c5b9e6b&sxsrf=ANbL-n58G1SlcstagWx64j6dvbtRD-QVYg%3A1772928415507&ei=n72safzLHvPGp84PwtXpiQI&biw=1720&bih=921&ved=0ahUKEwi8l6yDgY-TAxVz48kDHcJqOiEQ4dUDCBE&uact=5&oq=.net+mvc+how+to+implement+rate+limiting+on+login&gs_lp=Egxnd3Mtd2l6LXNlcnAiMC5uZXQgbXZjIGhvdyB0byBpbXBsZW1lbnQgcmF0ZSBsaW1pdGluZyBvbiBsb2dpbjIFECEYoAEyBRAhGKABMgUQIRigATIFECEYoAFIrKIBUNYsWIyfAXANeACQAQCYAZMBoAGENKoBBTEyLjQ4uAEDyAEA-AEBmAJJoAK9NagCEMICBxAjGCcY6gLCAhcQABiABBiRAhi0AhjnBhiKBRjqAtgBAcICBBAjGCfCAgoQIxiABBgnGIoFwgILEAAYgAQYkQIYigXCAgoQABiABBhDGIoFwgIREC4YgAQYsQMY0QMYgwEYxwHCAgsQABiABBixAxiDAcICCxAuGIAEGNEDGMcBwgIOEC4YgAQYsQMY0QMYxwHCAggQABiABBixA8ICBRAAGIAEwgIIEC4YgAQYsQPCAgsQLhiABBixAxiDAcICBhAAGBYYHsICCBAAGBYYChgewgIIEAAYogQYiQXCAgUQABjvBcICCBAAGIAEGKIEwgIFECEYnwXCAgcQIRigARgKwgIFECEYqwKYAwnxBXzIQpN4SzC4ugYGCAEQARgBkgcFMjMuNTCgB5mNA7IHBTEwLjUwuAeXNcIHBjUuNTkuOcgHkQGACAA&sclient=gws-wiz-serp)
+
+To implement rate limiting on a login action in ASP.NET Core MVC (the modern .NET framework), you should use the built-in System.Threading.RateLimiting middleware. For ASP.NET MVC 5 (the older .NET Framework), you'll need a custom solution or a third-party package.
+
+`dotnet add package Microsoft.AspNetCore.RateLimiting`
 
 #### how to implement anti forgery tokens in forms
 
