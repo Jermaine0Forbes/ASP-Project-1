@@ -1,11 +1,19 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
+using WebApplication1.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly AppDBContext _context;
+
+    public HomeController(AppDBContext context)
+    {
+        _context = context;
+    }
     public IActionResult Index(User userData)
     {
         return View(userData);
@@ -20,5 +28,13 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+
+    public async Task<IActionResult> Users()
+    {
+        var userData = await _context.Users.ToListAsync();
+
+        return View(userData);
     }
 }

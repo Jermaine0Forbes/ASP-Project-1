@@ -19,13 +19,15 @@ Trying to keep track of the little things that I need to do
 - ~~register a user~~
 - ~~login a user~~
 - ~~set up .net debug mode~~
-- add rate limiting to login
+- ~~add rate limiting to login~~
 - add authorization annotation to routes
 - create a post as a user
 - list all posts for a user
 - send an email
 - create a policy
 - create a claim
+- centralize logging
+- enable log rotation
 - deploy app to either do, aws, or azure
 - set up NuGet packages on vscode
 

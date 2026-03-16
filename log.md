@@ -1,7 +1,17 @@
 # Logs
 
-### 3-9-26
+### 3-16-26
 
+#### helpful links
+- [Identity model customization in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/customize-identity-model?view=aspnetcore-10.0#customize-the-model)
+- [Users and Roles Seeding in ASP.NET Core Identity with Entity Framework Core: A Step-by-Step Guide](https://medium.com/@roshanj100/users-and-roles-seeding-in-asp-net-core-identity-with-entity-framework-core-a-step-by-step-guide-28e6f76a18db)
+- [Data Seeding](https://learn.microsoft.com/en-us/ef/core/modeling/data-seeding)
+- [Part 9, add validation to an ASP.NET Core MVC app](https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/validation?view=aspnetcore-10.0)
+- [Claims customization using a policy](https://learn.microsoft.com/en-us/entra/identity-platform/reference-claims-customization)
+- [.net create a transaction](https://www.google.com/search?q=.net+create+a+transaction&sca_esv=695579a362ffd7e3&biw=1720&bih=921&sxsrf=ANbL-n53HYZQGij4tt3Yt9QtODGf3yToYQ%3A1772864306245&ei=MsOraevcDqffp84P6e3I-QE&ved=0ahUKEwjrvdWZko2TAxWn78kDHek2Mh8Q4dUDCBE&uact=5&oq=.net+create+a+transaction&gs_lp=Egxnd3Mtd2l6LXNlcnAiGS5uZXQgY3JlYXRlIGEgdHJhbnNhY3Rpb24yBhAAGBYYHjILEAAYgAQYhgMYigUyCxAAGIAEGIYDGIoFMgUQABjvBTIIEAAYgAQYogQyBRAAGO8FSNBDUIEJWN9AcAp4AZABAJgBeKABtRaqAQUxOC4xMrgBA8gBAPgBAZgCKKACpxfCAgoQABiwAxjWBBhHwgIIEAAYFhgKGB7CAgoQABiABBixAxgNwgIHEAAYgAQYDcICBhAAGA0YHsICBBAjGCfCAggQABiABBixA8ICBRAAGIAEwgIIEAAYogQYiQXCAgUQIRigAZgDAIgGAZAGCJIHBTI0LjE2oAeayQGyBwUxNC4xNrgHiBfCBwYxLjMzLjbIB2KACAA&sclient=gws-wiz-serp)
+- [webcrawler to simulate activity on your website](https://www.google.com/search?q=webcrawler+to+simulate+activity+on+your+tes+website&sca_esv=286534660d0b6d5d&biw=1720&bih=921&sxsrf=ANbL-n7lPhFmK22sFmOahcONTb1ESx723A%3A1772862733412&ei=Db2rae7rGKecp84PjJfQ4A0&ved=0ahUKEwiupterjI2TAxUnzskDHYwLFNwQ4dUDCBE&uact=5&oq=webcrawler+to+simulate+activity+on+your+tes+website&gs_lp=Egxnd3Mtd2l6LXNlcnAiM3dlYmNyYXdsZXIgdG8gc2ltdWxhdGUgYWN0aXZpdHkgb24geW91ciB0ZXMgd2Vic2l0ZTIHECEYoAEYCjIHECEYoAEYCjIHECEYoAEYCkjVfFAAWM16cAd4AZABAJgBe6ABtS6qAQUyNC4zNLgBA8gBAPgBAZgCQaAC5i_CAgoQIxiABBgnGIoFwgIEECMYJ8ICCxAAGIAEGJECGIoFwgIOEC4YgAQYsQMY0QMYxwHCAgsQABiABBixAxiDAcICCxAuGIAEGLEDGIMBwgIIEAAYgAQYsQPCAgoQIxjwBRgnGMkCwgIKEAAYgAQYQxiKBcICEBAAGIAEGLEDGEMYgwEYigXCAhAQIxjwBRiABBgnGMkCGIoFwgINEAAYgAQYsQMYQxiKBcICCBAAGIAEGJIDwgITEC4YgAQYsQMY0QMYQxjHARiKBcICBRAAGIAEwgIHEAAYgAQYCsICCxAuGIAEGMcBGK8BwgIGEAAYFhgewgIIEAAYFhgKGB7CAgcQABiABBgNwgIIEAAYCBgNGB7CAgsQABiABBiGAxiKBcICCBAAGKIEGIkFwgIIEAAYgAQYogTCAgUQABjvBcICBRAhGJ8FwgIFECEYoAHCAgUQIRirApgDAJIHBTI0LjQxoAeTgwOyBwUxNy40MbgH1y_CBwYwLjU3LjjIB4oBgAgA&sclient=gws-wiz-serp)
+- [dotnet authorization annotations](https://www.google.com/search?q=dotnet+authorization+annotations&oq=dotnet+authorization+annotations&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yBwgCEAAY7wUyCggDEAAYgAQYogQyCggEEAAYgAQYogQyCggFEAAYogQYiQUyBwgGEAAY7wXSAQg5NzkyajBqN6gCCLACAfEFfU5aOQfrMdk&sourceid=chrome&ie=UTF-8)
+- [dotnet get model by context](https://www.google.com/search?q=dotnet+get+model+by+context&oq=dotnet+get+model+by+context&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRiPAtIBCTEwNzUxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 
 
 ### 3-7-26

@@ -21,8 +21,8 @@ builder.Services.AddRateLimiter(options =>
 {
     options.AddFixedWindowLimiter("LoginPolicy", config =>
     {
-        config.PermitLimit = 2; // Allow a maximum of 4 requests
-        config.Window = TimeSpan.FromMinutes(1); // per 1 minute window
+        config.PermitLimit = 5; // Allow a maximum of 4 requests
+        config.Window = TimeSpan.FromMinutes(5); // per 1 minute window
         config.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
         config.QueueLimit = 0; // Set to 0 to reject extra requests immediately
         config.AutoReplenishment = true;
