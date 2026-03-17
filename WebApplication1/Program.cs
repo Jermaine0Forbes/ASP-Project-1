@@ -73,7 +73,8 @@ app.MapStaticAssets();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets().RequireRateLimiting("LoginPolicy");
+    .WithStaticAssets();
+    // .WithStaticAssets().RequireRateLimiting("LoginPolicy");
 
 
 app.Run();

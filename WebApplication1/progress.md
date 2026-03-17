@@ -102,4 +102,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools
 # to include rate limiting service
 dotnet add package Microsoft.AspNetCore.RateLimiting
 
+
+dotnet aspnet-codegenerator controller -name UserController -m User -dc AppDBContext -outDir Controllers
+
 ```
