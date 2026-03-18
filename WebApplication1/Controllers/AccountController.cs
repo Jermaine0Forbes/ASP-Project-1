@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using WebApplication1.Models;
 using WebApplication1.ViewModels;
-// using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WebApplication1.Controllers
 {
@@ -59,11 +58,12 @@ namespace WebApplication1.Controllers
             {
 
 
-
+                DateTime currentDateTime = DateTime.Now;
                 User user = new()
                 {
                     Email = model.Email,
-                    UserName = model.UserName!,
+                    UserName = model.UserName ?? "",
+                    CreatedAt = currentDateTime,
                 };
 
                 var doesNameExist = await userManager.FindByNameAsync(user.UserName!);

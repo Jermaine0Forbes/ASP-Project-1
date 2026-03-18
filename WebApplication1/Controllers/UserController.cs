@@ -132,6 +132,8 @@ namespace WebApplication1.Controllers
             {
                 try
                 {
+                    DateTime currentDateTime = DateTime.Now;
+                    user.UpdatedAt = currentDateTime;
                     _context.Update(user);
                     await _context.SaveChangesAsync();
                 }

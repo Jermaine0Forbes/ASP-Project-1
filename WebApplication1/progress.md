@@ -108,6 +108,6 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.AspNetCore.RateLimiting
 
 
-dotnet aspnet-codegenerator controller -name UserController -m User -dc AppDBContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name PostController -m Post -dc AppDBContext -outDir Controllers
 
 ```

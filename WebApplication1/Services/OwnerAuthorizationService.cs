@@ -1,9 +1,9 @@
 
-using System.Net;
+// using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+// using System.Threading.Tasks;
+// using Microsoft.AspNetCore.Identity;
 
 namespace WebApplication1.Services
 {
@@ -45,7 +45,7 @@ public class UserOwnerHandler : AuthorizationHandler<OwnerAuthorizationRequireme
                 
             }
             var userId = context.User.FindFirst(ClaimTypes.NameIdentifier);
-            if(userId != null && userId.Value == resource)
+            if(userId != null && userId?.Value == resource)
             {
                  context.Succeed(requirement);
             }

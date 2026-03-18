@@ -1,3 +1,4 @@
 WebApplication1/bin/*
 WebApplication1/obj/*
 node_modules
+.vscode
