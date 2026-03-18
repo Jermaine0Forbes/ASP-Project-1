@@ -1,0 +1,17 @@
+{
+  "name": "webapplication1",
+  "version": "1.0.0",
+  "description": "Creating a simple app to create user accounts with rbac features in asp.net core",
+  "main": "index.js",
+"scripts": {
+  "css:build": "@tailwindcss -i ./wwwroot/css/site.css -o ./wwwroot/css/styles.css --minify",
+  "watch": "@tailwindcss -i ./wwwroot/css/site.css -o ./wwwroot/css/styles.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.1",
+    "tailwindcss": "^4.2.1"
+  }
+}

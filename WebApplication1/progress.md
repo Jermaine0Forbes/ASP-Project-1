@@ -20,7 +20,8 @@ Trying to keep track of the little things that I need to do
 - ~~login a user~~
 - ~~set up .net debug mode~~
 - ~~add rate limiting to login~~
-- add authorization annotation to routes
+- ~~add authorization annotation to routes~~
+- ~~install tailwind~~
 - create a post as a user
 - list all posts for a user
 - send an email
