@@ -63,7 +63,7 @@ namespace WebApplication1.Controllers
                 User user = new()
                 {
                     Email = model.Email,
-                    UserName = model.UserName,
+                    UserName = model.UserName!,
                 };
 
                 var doesNameExist = await userManager.FindByNameAsync(user.UserName!);

@@ -29,6 +29,10 @@ Trying to keep track of the little things that I need to do
 - centralize logging
 - enable log rotation
 - deploy app to either do, aws, or azure
+- upload a file
+- upload a file to aws or azure
+- implement two factor authentication
+- implement oauth 2 or oidc
 - set up NuGet packages on vscode
 
 

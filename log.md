@@ -1,5 +1,45 @@
 # Logs
 
+### 3-18-26
+
+#### how to do an if statement in a razor page
+
+```cs
+    @if(!loggedIn)
+    {
+
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account"
+            asp-action="Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account"
+            asp-action="Login">Login</a>
+        </li>
+    }
+
+```
+
+#### how to get the current identity of logged in user in a razor page
+
+```cs
+@{
+
+    var Name = User.Identity?.Name ;
+}
+
+```
+
+#### You can add null coalescing operators in c#
+`result = leftOperand ?? rightOperand;`
+
+#### helpful links
+
+- [dotnet ternary operator](https://www.google.com/search?q=dotnet+ternary+operator&sourceid=chrome&ie=UTF-8&udm=50&aep=48&cud=0&qsubts=1773841044867&source=chrome.crn.obic&mstk=AUtExfD0-b9DB7pn8T79k-JE7NCXbWMJbXMpQrpluX-gC6_hBlpKc1u7q0CJ2skv2o_DcpNDxj3syYbVnsIRZcaOUcTv_LfT1uMEQ2hpgEX3XOqLxGytY9MTE3gLSX8Irw5Sh9uesg3EMCkXi0xp5kFKMELpdUXsoRBc6MIvZ8IwuvhP-ua3LzZprkqi6M5mPU7eijhOjyIvT9ZbuhStZRFZTMXENiAT6twB9Z2poG8WI-YmU4JI4A-hpgMokYUDfTuGcMfNbQo7Mw6tz6HJ3B1GJRAekAGf-_SuxfZjTWpa02A0EyyiQPOr1bTSzF9GkyLM4U4qumkEAAzOFg&csuir=1&mtid=lKq6ab3RDtSGptQP1baSmAc)
+- [how to create a variable in razor page](https://www.google.com/search?q=how+to+create+a+variable+in+razor+page&oq=how+to+create+a+variable+in+razor+page&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yCggCEAAYogQYiQUyCggDEAAYogQYiQUyCggEEAAYogQYiQUyBwgFEAAY7wUyBwgGEAAY7wXSAQg3ODcwajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [dotnet how to get username in razor page](https://www.google.com/search?q=dotnet+how+to+get+username+in+razor+page&oq=dotnet+how+to+get+username+in+razor+page&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRifBdIBCDk2MDdqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
+
+
 ### 3-16-26
 
 #### helpful links

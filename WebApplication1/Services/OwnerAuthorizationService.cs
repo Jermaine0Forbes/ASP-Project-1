@@ -3,6 +3,7 @@ using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebApplication1.Services
 {
@@ -33,11 +34,15 @@ public class UserOwnerHandler : AuthorizationHandler<OwnerAuthorizationRequireme
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, OwnerAuthorizationRequirement requirement, string resource)
         {  
-            var roles = AuthorizedRoles.GetFlatRoles();
-            if(context.User.IsInRole(roles))
+            var roles = AuthorizedRoles.GetRoles();
+            foreach( var role in roles)
             {
-                context.Succeed(requirement);
-                return Task.CompletedTask;
+                if(context.User.IsInRole(role))
+                {
+                    context.Succeed(requirement);
+                    return Task.CompletedTask;
+                }
+                
             }
             var userId = context.User.FindFirst(ClaimTypes.NameIdentifier);
             if(userId != null && userId.Value == resource)
