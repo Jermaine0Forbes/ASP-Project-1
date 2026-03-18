@@ -14,21 +14,23 @@ namespace WebApplication1.Controllers
     public class UserController : Controller
     {
         private readonly AppDBContext _context;
+        private readonly IAuthorizationService _authorizationService;
 
-        public UserController(AppDBContext context)
+        public UserController(AppDBContext context, IAuthorizationService authorizationService)
         {
             _context = context;
+            _authorizationService = authorizationService;
         }
 
 
-        [Authorize(Roles="User, Manager, Admin")]
+        [Authorize(Roles = "User, Manager, Admin")]
         // GET: User
         public async Task<IActionResult> Index()
         {
             return View(await _context.Users.ToListAsync());
         }
 
-        [Authorize(Roles="User, Manager, Admin")]
+        [Authorize(Roles = "User, Manager, Admin")]
         // GET: User/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -47,7 +49,7 @@ namespace WebApplication1.Controllers
             return View(user);
         }
 
-        [Authorize(Roles="Manager, Admin")]
+        [Authorize(Roles = "Manager, Admin")]
         // GET: User/Create
         public IActionResult Create()
         {
@@ -57,7 +59,7 @@ namespace WebApplication1.Controllers
         // POST: User/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-       [Authorize(Roles="Manager, Admin")]
+        [Authorize(Roles = "Manager, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CreatedAt,UpdatedAt,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] User user)
@@ -71,8 +73,9 @@ namespace WebApplication1.Controllers
             return View(user);
         }
 
-        [Authorize(Roles="Manager, Admin")]
+        // [Authorize(Roles = "Manager, Admin")]
         // GET: User/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -85,13 +88,24 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
-            return View(user);
+
+            var authorizationResult = await _authorizationService.AuthorizeAsync(
+            User, // Current user principal
+            id, // The resource ID to check against (the profile's owner ID)
+            "IsOwnerOrAuthorized"); // The policy name
+
+            if (authorizationResult.Succeeded)
+            {
+                return View(user);
+            }
+            
+            return Forbid();
         }
 
         // POST: User/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles="Manager, Admin")]
+        // [Authorize(Roles = "Manager, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("CreatedAt,UpdatedAt,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] User user)
@@ -100,6 +114,19 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
+
+
+            var authorizationResult = await _authorizationService.AuthorizeAsync(
+            User, // Current user principal
+            id, // The resource ID to check against (the profile's owner ID)
+            "IsOwnerOrAuthorized"); // The policy name
+
+            if (!authorizationResult.Succeeded)
+            {
+                 return Forbid();
+            }
+            
+           
 
             if (ModelState.IsValid)
             {
@@ -125,7 +152,7 @@ namespace WebApplication1.Controllers
         }
 
         // GET: User/Delete/5
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -144,7 +171,7 @@ namespace WebApplication1.Controllers
         }
 
         // POST: User/Delete/5
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

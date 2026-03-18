@@ -15,6 +15,9 @@ public class User : IdentityUser
     [DataType(DataType.Date)]
     public DateTime? UpdatedAt { get; set; }
 
+    [Display(Name="Username")]
+    public override string UserName {get; set;} 
+
 
 
 }

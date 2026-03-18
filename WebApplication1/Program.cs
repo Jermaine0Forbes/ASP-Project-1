@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.AspNetCore.Authorization;
+// using Microsoft.Extensions.DependencyInjection;
+// using Microsoft.Extensions.DependencyInjection.Extensions;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using WebApplication1.Services;
 using System.Threading.RateLimiting;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDBContext") ?? throw new InvalidOperationException("Connection string 'AppDBContext' not found.");
@@ -37,6 +39,14 @@ builder.Services.AddRateLimiter(options =>
         return ValueTask.CompletedTask;
     };
 });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("IsOwnerOrAuthorized", policy =>
+        policy.Requirements.Add(new OwnerAuthorizationRequirement()));
+});
+builder.Services.AddSingleton<IAuthorizationHandler, UserOwnerHandler>();
+
 
 
 // Add services to the container.
