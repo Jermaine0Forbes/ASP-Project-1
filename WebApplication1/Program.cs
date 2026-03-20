@@ -10,8 +10,8 @@ using WebApplication1.Services;
 using System.Threading.RateLimiting;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDBContext") ?? throw new InvalidOperationException("Connection string 'AppDBContext' not found.");
-builder.Services.AddDbContext<AppDBContext>(options =>
-    options.UseSqlServer());
+// builder.Services.AddDbContext<AppDBContext>(options =>
+//     options.UseSqlServer());
 
 builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(connectionString));
 
@@ -40,12 +40,12 @@ builder.Services.AddRateLimiter(options =>
     };
 });
 
+builder.Services.AddSingleton<IAuthorizationHandler, UserOwnerHandler>();
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("IsOwnerOrAuthorized", policy =>
         policy.Requirements.Add(new OwnerAuthorizationRequirement()));
 });
-builder.Services.AddSingleton<IAuthorizationHandler, UserOwnerHandler>();
 
 
 
@@ -74,9 +74,9 @@ else
 
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseRateLimiter();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseRateLimiter();
 
 app.MapStaticAssets();
 

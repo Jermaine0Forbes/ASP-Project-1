@@ -12,11 +12,27 @@ public class HomeController : Controller
 
     public HomeController(AppDBContext context)
     {
-        _context = context;
+        _context = context ?? throw new ArgumentNullException(nameof(context));
     }
-    public IActionResult Index(User userData)
+    public IActionResult Index(string? id)
     {
-        return View(userData);
+            User? user = null;
+            
+            if (id != null)
+            {
+                user =  _context.Users
+                .FirstOrDefault(m => m.Id == id);
+            }
+
+
+            if (user == null)
+            {
+              return View();
+            }
+
+            return View(user);
+
+        
     }
 
     public IActionResult Privacy()
@@ -36,5 +52,11 @@ public class HomeController : Controller
         var userData = await _context.Users.ToListAsync();
 
         return View(userData);
+    }
+
+
+    public async Task<IActionResult> Profile()
+    {
+        return RedirectToAction("Profile","Account");
     }
 }

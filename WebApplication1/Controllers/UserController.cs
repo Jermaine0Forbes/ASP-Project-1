@@ -89,15 +89,15 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var authorizationResult = await _authorizationService.AuthorizeAsync(
-            User, // Current user principal
-            id, // The resource ID to check against (the profile's owner ID)
-            "IsOwnerOrAuthorized"); // The policy name
+            // var authorizationResult = await _authorizationService.AuthorizeAsync(
+            // User, // Current user principal
+            // id, // The resource ID to check against (the profile's owner ID)
+            // "IsOwnerOrAuthorized"); // The policy name
 
-            if (authorizationResult.Succeeded)
-            {
-                return View(user);
-            }
+            // if (authorizationResult.Succeeded)
+            // {
+            //     return View(user);
+            // }
             
             return Forbid();
         }
@@ -116,15 +116,15 @@ namespace WebApplication1.Controllers
             }
 
 
-            var authorizationResult = await _authorizationService.AuthorizeAsync(
-            User, // Current user principal
-            id, // The resource ID to check against (the profile's owner ID)
-            "IsOwnerOrAuthorized"); // The policy name
+            // var authorizationResult = await _authorizationService.AuthorizeAsync(
+            // User, // Current user principal
+            // id, // The resource ID to check against (the profile's owner ID)
+            // "IsOwnerOrAuthorized"); // The policy name
 
-            if (!authorizationResult.Succeeded)
-            {
-                 return Forbid();
-            }
+            // if (!authorizationResult.Succeeded)
+            // {
+            //      return Forbid();
+            // }
             
            
 

@@ -14,8 +14,8 @@ namespace WebApplication1.Controllers
 
         public AccountController(SignInManager<User> signInManager, UserManager<User> userManager)
         {
-            this.signInManager = signInManager;
-            this.userManager = userManager;
+            this.signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
+            this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         }
 
         public IActionResult Login()
@@ -167,6 +167,12 @@ namespace WebApplication1.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+
+        public async Task<IActionResult> Profile()
+        {
+            return View();
         }
     }
 }
