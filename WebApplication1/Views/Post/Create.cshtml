@@ -1,17 +1,10 @@
-@model WebApplication1.Models.Post
+@using WebApplication1.ViewModels;
+@model PostViewModel;
 
 @{
     @* Layout = null; *@
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
 
 <h4>Post</h4>
 <hr />
@@ -29,17 +22,7 @@
                 <textarea asp-for="Body" class="form-control"></textarea>
                 <span asp-validation-for="Body" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedAt" class="control-label"></label>
-                <input asp-for="UpdatedAt" class="form-control" />
-                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div class="form-group my-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -50,5 +33,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-</body>
-</html>

@@ -1,5 +1,34 @@
 # Logs
 
+### 3-19-26
+
+#### the bind attribute
+
+In ASP.NET MVC, the [Bind] attribute is used to explicitly control which properties of a model are included or excluded during model binding to protect against overposting attacks. View models are generally considered a better and more secure practice as they naturally prevent overposting and provide better separation of concerns
+
+```cs
+public ActionResult Create([Bind(Include = "FirstName,LastName")] Member member)
+{
+    // ...
+}
+
+```
+
+
+#### ternary operator in razor pages
+
+```cs
+<div class="@(Model.IsActive ? "active" : "")">
+    Content goes here
+</div>
+
+```
+
+#### helpful links
+- [.net mvc inline conditional](https://www.google.com/search?q=.net+mvc+inline+conditional&oq=.net+mvc+inline+conditional&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRirAjIHCAYQIRirAjIHCAcQIRifBTIHCAgQIRifBTIHCAkQIRifBdIBCTEwMDQ5ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [.net mvc what is the bind attribute and are view models better](https://www.google.com/search?q=.net+mvc+what+is+the+bind+attribute+and+are+view+models+better&sca_esv=84b4ab2849dc3d2a&sxsrf=ANbL-n71xlRpRJDrvZmeJThUSLtmg9-1Qg%3A1773971850747&ei=iqm8adGtLbStw8cPktiksA8&biw=1112&bih=980&ved=0ahUKEwjRmoWQsK2TAxW01vACHRIsCfYQ4dUDCBM&uact=5&oq=.net+mvc+what+is+the+bind+attribute+and+are+view+models+better&gs_lp=Egxnd3Mtd2l6LXNlcnAiPi5uZXQgbXZjIHdoYXQgaXMgdGhlIGJpbmQgYXR0cmlidXRlIGFuZCBhcmUgdmlldyBtb2RlbHMgYmV0dGVySPfPAlDfgwJY9s4CcAd4AZABAJgBuAGgAd8tqgEFMjYuMzC4AQPIAQD4AQGYAj2gAtctwgIKEAAYsAMY1gQYR8ICBRAAGIAEwgIGEAAYFhgewgILEAAYgAQYhgMYigXCAgUQABjvBcICCBAAGIAEGKIEwgIIEAAYogQYiQXCAggQABgWGAoYHsICBRAhGKABwgIFECEYqwLCAgUQIRifBZgDAIgGAZAGCJIHBTI1LjM2oAfvqgKyBwUxOC4zNrgHwS3CBwYyLjU1LjTIB2yACAA&sclient=gws-wiz-serp)
+
+
 ### 3-18-26
 
 #### how to do an if statement in a razor page
