@@ -4,6 +4,8 @@ namespace WebApplication1.ViewModels
 {
     public class PostViewModel
     {
+        public int? Id {get; set;} 
+
         [Required(ErrorMessage = "Title is required!")]
         [StringLength(255, MinimumLength = 8, ErrorMessage = "The {0} must be at {2} and at max {1} characters long!")]
         public string? Title { get; set; }
