@@ -1,9 +1,12 @@
 // using Azure.Identity;
+using System.Collections.ObjectModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using WebApplication1.Models;
 using WebApplication1.ViewModels;
+using WebApplication1.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Controllers
 {
@@ -12,10 +15,13 @@ namespace WebApplication1.Controllers
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
 
-        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager)
+        private readonly AppDBContext _context;
+
+        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager, AppDBContext context)
         {
             this.signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
             this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+           _context = context;
         }
 
         public IActionResult Login()
@@ -173,9 +179,12 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Profile()
         {
              var user = await userManager.GetUserAsync(User);
-             var posts =  user.Posts;
+             //Need to re migrate files so that I can retreive the posts through collection
+            var posts =  user != null 
+            ? await _context.Posts.Where( p => p.User != null && p.User.Id.Equals(user.Id)).ToListAsync() 
+            : [];
 
-            return View();
+            return View(posts);
         }
     }
 }
