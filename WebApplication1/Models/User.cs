@@ -15,9 +15,7 @@ public class User : IdentityUser
     [DataType(DataType.Date)]
     public DateTime? UpdatedAt { get; set; }
 
-    // [Display(Name="Username")]
-    // public new string UserName {get; set;} = "";
-
+    public ICollection<Post>? Posts {get; set;}
 
 
 }

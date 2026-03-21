@@ -172,6 +172,9 @@ namespace WebApplication1.Controllers
 
         public async Task<IActionResult> Profile()
         {
+             var user = await userManager.GetUserAsync(User);
+             var posts =  user.Posts;
+
             return View();
         }
     }
