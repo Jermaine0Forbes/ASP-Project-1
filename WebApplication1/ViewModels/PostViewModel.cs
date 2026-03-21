@@ -1,18 +1,24 @@
 using System.ComponentModel.DataAnnotations;
+using WebApplication1.Models;
 
 namespace WebApplication1.ViewModels
 {
     public class PostViewModel
     {
-        public int? Id {get; set;} 
 
         [Required(ErrorMessage = "Title is required!")]
-        [StringLength(255, MinimumLength = 8, ErrorMessage = "The {0} must be at {2} and at max {1} characters long!")]
+        [StringLength(255, MinimumLength = 8, 
+        ErrorMessage = "The {0} must be at {2} and at max {1} characters long!")]
         public string? Title { get; set; }
 
         [Required(ErrorMessage = "Message is required!")]
         [Display(Name="Message")]
-        [StringLength(500, MinimumLength = 3, ErrorMessage = "The {0} must be at {2} and at max {1} characters long!")]
+        [StringLength(500, MinimumLength = 3,
+         ErrorMessage = "The {0} must be at {2} and at max {1} characters long!")]
         public string? Body { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public User? User {get; set;}
     }
 }

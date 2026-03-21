@@ -22,7 +22,7 @@ Trying to keep track of the little things that I need to do
 - ~~add rate limiting to login~~
 - ~~add authorization annotation to routes~~
 - ~~install tailwind~~
-- create a post as a user
+- ~~create a post as a user~~
 - list all posts for a user
 - send an email
 - create a policy

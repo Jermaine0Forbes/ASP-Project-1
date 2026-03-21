@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
 using Microsoft.AspNetCore.Identity;
-// using WebApplication1.ViewModels;
+using WebApplication1.ViewModels;
 
 namespace WebApplication1.Controllers
 {
     public class PostController : Controller
     {
         private readonly AppDBContext _context;
-         private readonly UserManager<User> _userManager;
+        private readonly UserManager<User> _userManager;
 
         public PostController(AppDBContext context, UserManager<User> userManager)
         {
@@ -63,19 +63,25 @@ namespace WebApplication1.Controllers
         [Authorize(Roles = "User, Manager, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Body")] Post post)
+        public async Task<IActionResult> Create(PostViewModel model)
         {
             if (ModelState.IsValid)
             {
                 DateTime currentDateTime = DateTime.Now;
                 var user = await _userManager.GetUserAsync(User);
-                post.CreatedAt = currentDateTime;
-                post.User = user;
+                var post = new Post
+                {
+                    Title = model.Title ?? "",
+                    Body = model.Body ?? "",
+                    CreatedAt = currentDateTime,
+                    User = user,
+                };
+
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(post);
+            return View(model);
         }
 
         // GET: Post/Edit/5

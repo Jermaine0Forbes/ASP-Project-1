@@ -14,6 +14,8 @@ public class Post
     [Required]
     [Display(Name="Message")]
     [DataType(DataType.MultilineText)]
+    [StringLength(500, MinimumLength = 3,
+        ErrorMessage = "The {0} must be at {2} and at max {1} characters long!")]
     public string Body {get; set;} = "";
 
     [Display(Name="Created At")]
