@@ -83,23 +83,33 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            return await IsOwnerOrAuthorized(id);
+
+        }
+
+
+        public async Task<IActionResult> IsOwnerOrAuthorized(string id, bool needContext = false)
+        {
+
+                var user = await _context.Users.FindAsync(id);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                
+
+            var authorizationResult = await _authorizationService.AuthorizeAsync(
+            User, // Current user principal
+            id, // The resource ID to check against (the profile's owner ID)
+            "IsOwnerOrAuthorized"); // The policy name
+
+            if (authorizationResult.Succeeded)
             {
-                return NotFound();
+                return View(user);
             }
 
-            // var authorizationResult = await _authorizationService.AuthorizeAsync(
-            // User, // Current user principal
-            // id, // The resource ID to check against (the profile's owner ID)
-            // "IsOwnerOrAuthorized"); // The policy name
-
-            // if (authorizationResult.Succeeded)
-            // {
-            //     return View(user);
-            // }
-            
             return Forbid();
+
         }
 
         // POST: User/Edit/5
@@ -116,17 +126,17 @@ namespace WebApplication1.Controllers
             }
 
 
-            // var authorizationResult = await _authorizationService.AuthorizeAsync(
-            // User, // Current user principal
-            // id, // The resource ID to check against (the profile's owner ID)
-            // "IsOwnerOrAuthorized"); // The policy name
+            var authorizationResult = await _authorizationService.AuthorizeAsync(
+            User, // Current user principal
+            id, // The resource ID to check against (the profile's owner ID)
+            "IsOwnerOrAuthorized"); // The policy name
 
-            // if (!authorizationResult.Succeeded)
-            // {
-            //      return Forbid();
-            // }
-            
-           
+            if (!authorizationResult.Succeeded)
+            {
+                return Forbid();
+            }
+
+
 
             if (ModelState.IsValid)
             {

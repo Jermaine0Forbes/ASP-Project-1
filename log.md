@@ -1,5 +1,12 @@
 # Logs
 
+### 3-21-26
+
+#### helpful links
+- [.net usermanager reference one to many](https://www.google.com/search?q=.net+usermanager+reference+one+to+many&oq=.net+usermanager+reference+one+to+many&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRiPAjIHCAYQIRiPAtIBCTM4MTI3ajBqN6gCCLACAfEFynk-rihLJAA&sourceid=chrome&ie=UTF-8)
+- [.net how to where clause in context](https://www.google.com/search?q=.net+how+to+where+clause+in+context&sca_esv=f03daf4eddc76bb6&biw=1935&bih=980&sxsrf=ANbL-n5B4_p1tBe6HzPG7NWQ11hoDpTS6g%3A1774130308205&ei=hBS_afKVDLSvqtsPmIic4Ac&ved=0ahUKEwjy57i2_rGTAxW0l2oFHRgEB3wQ4dUDCBE&uact=5&oq=.net+how+to+where+clause+in+context&gs_lp=Egxnd3Mtd2l6LXNlcnAiIy5uZXQgaG93IHRvIHdoZXJlIGNsYXVzZSBpbiBjb250ZXh0MgUQIRigATIFECEYoAEyBRAhGKABMgUQIRifBUjFXlDNJ1jtV3AJeAGQAQGYAdEBoAH-HKoBBjkuMjIuMbgBA8gBAPgBAZgCKKACmxzCAgoQABiwAxjWBBhHwgIGEAAYFhgewgIIEAAYFhgKGB7CAgcQIRigARgKwgIFEAAY7wXCAggQABiiBBiJBcICCBAAGIAEGKIEwgILEAAYgAQYhgMYigXCAggQABgFGA0YHsICCBAAGAgYDRgewgIEECEYCsICBRAhGKsCmAMAiAYBkAYIkgcFMTYuMjSgB6rOAbIHBDcuMjS4B4EcwgcGMy4zNS4yyAdKgAgA&sclient=gws-wiz-serp)
+- [dotnet how to add guard clauses for services](https://www.google.com/search?q=dotnet+how+to+add+guard+clauses+for+services&oq=dotnet+how+to+add+guard+clauses+for+services&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigAdIBCTExMzI2ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+
 ### 3-19-26
 
 #### the bind attribute

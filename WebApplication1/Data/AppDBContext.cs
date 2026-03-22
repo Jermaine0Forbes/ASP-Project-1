@@ -16,10 +16,16 @@ namespace WebApplication1.Data
         {
         }
 
-        // protected override void  OnModelCreating(ModelBuilder builder)
-        // {
-        //     base.OnModelCreating(builder);
-        // }
+        protected override void  OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            // builder.Entity<User>()
+            // .HasMany(u => u.Posts)
+            // .WithOne(p => p.User)
+            // .HasForeignKey(p => p.User != null ? p.User.Id : null);
+
+        }
 
 
         // public DbSet<User> Users { get; set; }

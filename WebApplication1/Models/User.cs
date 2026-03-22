@@ -15,7 +15,7 @@ public class User : IdentityUser
     [DataType(DataType.Date)]
     public DateTime? UpdatedAt { get; set; }
 
-    public ICollection<Post>? Posts {get; set;}
+    public ICollection<Post> Posts {get; set;} = [];
 
 
 }

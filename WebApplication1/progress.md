@@ -35,6 +35,7 @@ Trying to keep track of the little things that I need to do
 - deploy app to either do, aws, or azure
 - upload a file
 - upload a file to aws or azure
+- possibly add guard clauses
 - set up NuGet packages on vscode
 
 
