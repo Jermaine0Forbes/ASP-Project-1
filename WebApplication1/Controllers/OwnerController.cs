@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Data;
 
 namespace WebApplication1.Controllers
 {
@@ -18,16 +19,19 @@ namespace WebApplication1.Controllers
             return !authorizationResult.Succeeded;
 
         }
-        public virtual async Task<bool> IsOwner(string id)
+        public virtual async Task<bool> IsPostOwner(string id, int postId , AppDBContext context)
         {
 
-            var authorizationResult = await _authorizationService.AuthorizeAsync(
-            User, // Current user principal
-            id, // The resource ID to check against (the profile's owner ID)
-            "IsOwner"); // The policy name
+               var post =  context.Posts.Where( p => p.User != null && p.User.Id == id && p.Id == postId ).Count();
 
-            return !authorizationResult.Succeeded;
+            return post == 0;
 
+        }
+
+
+        public virtual async Task<bool> IsOwner(string id, string userId , AppDBContext context)
+        {
+            return !(id == userId);
         }
     }
 

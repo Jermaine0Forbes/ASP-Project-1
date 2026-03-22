@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace WebApplication1.Services
 {
-public class OwnerAuthorizationRequirement(string[]? roles = null): IAuthorizationRequirement
+public class OwnerAuthorizationRequirement(string[]? roles = null, string model = ""): IAuthorizationRequirement
     {
         public readonly string[]? roles = roles;
+        public readonly string model = model;
     }
 
 public static class AuthorizedRoles
@@ -49,7 +50,23 @@ public class UserOwnerHandler : AuthorizationHandler<OwnerAuthorizationRequireme
                 return Task.CompletedTask;
             }
 
-            // var roles = AuthorizedRoles.GetRoles();
+            
+            if(requirement.roles is Array)
+            {
+               return HandleAuthorization(requirement, context); 
+            }
+
+
+            if(requirement.model == "Post")
+            {
+                return HandlePostOwner(requirement, context);
+            }
+
+            return Task.CompletedTask;
+        }
+
+        protected Task HandleAuthorization( OwnerAuthorizationRequirement requirement, AuthorizationHandlerContext context)
+        {
             if(requirement.roles is null)
             {
              return Task.CompletedTask;
@@ -65,7 +82,18 @@ public class UserOwnerHandler : AuthorizationHandler<OwnerAuthorizationRequireme
                 }
                 
             }
+
             return Task.CompletedTask;
+
+        }
+
+        protected Task HandlePostOwner( OwnerAuthorizationRequirement requirement, AuthorizationHandlerContext context)
+        {
+
+
+
+         return Task.CompletedTask;
+   
         }
         
     }

@@ -87,7 +87,7 @@ namespace WebApplication1.Controllers
             }
 
             var user = await _userManager.GetUserAsync(User);
-            var invalidUser = await IsOwnerOrAuthorized(user?.Id ?? "");
+            var invalidUser = await IsPostOwner(user?.Id ?? "", id ?? 0 , _context);
 
             if (invalidUser)
             {
@@ -115,7 +115,7 @@ namespace WebApplication1.Controllers
             }
 
             var user = await _userManager.GetUserAsync(User);
-            var invalidUser = await IsOwnerOrAuthorized(user?.Id ?? "");
+            var invalidUser = await IsPostOwner(user?.Id ?? "", id , _context);
 
             if (invalidUser)
             {
