@@ -1,7 +1,8 @@
-﻿@model IEnumerable<WebApplication1.Models.Post>
-
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<WebApplication1.Models.Post>
+@inject UserManager<User> UserManager
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = @UserManager.GetUserName(User)+"'s Profile";
 }
 <h1>@ViewData["Title"]</h1>
 
@@ -36,9 +37,9 @@
                 @Html.DisplayFor(modelItem => item.UpdatedAt)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-controller="User" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-controller="User" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

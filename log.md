@@ -2,6 +2,10 @@
 
 ### 3-21-26
 
+#### .net what does virtual keyword do for methods
+[From google](https://www.google.com/search?q=.net+what+does+virtual+keyword+do+for+methods&oq=.net+what+does+virtual+keyword+do+for+methods&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORigATIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRifBTIHCAUQIRifBTIHCAYQIRifBdIBCDg4NzlqMGo0qAIDsAIB8QWcvtkQxv6djw&sourceid=chrome&ie=UTF-8)
+The virtual keyword in .NET (specifically C#) is used on a method declaration in a base class to indicate that the method's implementation can be changed by an overriding member in a derived class
+
 #### helpful links
 - [.net usermanager reference one to many](https://www.google.com/search?q=.net+usermanager+reference+one+to+many&oq=.net+usermanager+reference+one+to+many&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRiPAjIHCAYQIRiPAtIBCTM4MTI3ajBqN6gCCLACAfEFynk-rihLJAA&sourceid=chrome&ie=UTF-8)
 - [.net how to where clause in context](https://www.google.com/search?q=.net+how+to+where+clause+in+context&sca_esv=f03daf4eddc76bb6&biw=1935&bih=980&sxsrf=ANbL-n5B4_p1tBe6HzPG7NWQ11hoDpTS6g%3A1774130308205&ei=hBS_afKVDLSvqtsPmIic4Ac&ved=0ahUKEwjy57i2_rGTAxW0l2oFHRgEB3wQ4dUDCBE&uact=5&oq=.net+how+to+where+clause+in+context&gs_lp=Egxnd3Mtd2l6LXNlcnAiIy5uZXQgaG93IHRvIHdoZXJlIGNsYXVzZSBpbiBjb250ZXh0MgUQIRigATIFECEYoAEyBRAhGKABMgUQIRifBUjFXlDNJ1jtV3AJeAGQAQGYAdEBoAH-HKoBBjkuMjIuMbgBA8gBAPgBAZgCKKACmxzCAgoQABiwAxjWBBhHwgIGEAAYFhgewgIIEAAYFhgKGB7CAgcQIRigARgKwgIFEAAY7wXCAggQABiiBBiJBcICCBAAGIAEGKIEwgILEAAYgAQYhgMYigXCAggQABgFGA0YHsICCBAAGAgYDRgewgIEECEYCsICBRAhGKsCmAMAiAYBkAYIkgcFMTYuMjSgB6rOAbIHBDcuMjS4B4EcwgcGMy4zNS4yyAdKgAgA&sclient=gws-wiz-serp)

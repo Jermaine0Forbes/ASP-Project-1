@@ -13,16 +13,10 @@ using WebApplication1.ViewModels;
 
 namespace WebApplication1.Controllers
 {
-    public class PostController : Controller
+    public class PostController(AppDBContext context, UserManager<User> userManager, IAuthorizationService authorizationService) : OwnerController(authorizationService)
     {
-        private readonly AppDBContext _context;
-        private readonly UserManager<User> _userManager;
-
-        public PostController(AppDBContext context, UserManager<User> userManager)
-        {
-            _context = context;
-            _userManager = userManager;
-        }
+        private readonly AppDBContext _context = context;
+        private readonly UserManager<User> _userManager = userManager;
 
         // GET: Post
         [AllowAnonymous]
@@ -92,6 +86,14 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
+            var user = await _userManager.GetUserAsync(User);
+            var invalidUser = await IsOwnerOrAuthorized(user?.Id ?? "");
+
+            if (invalidUser)
+            {
+                return Forbid();
+            }
+
             var post = await _context.Posts.FindAsync(id);
             if (post == null)
             {
@@ -110,6 +112,14 @@ namespace WebApplication1.Controllers
             if (id != post.Id)
             {
                 return NotFound();
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            var invalidUser = await IsOwnerOrAuthorized(user?.Id ?? "");
+
+            if (invalidUser)
+            {
+                return Forbid();
             }
 
             if (ModelState.IsValid)

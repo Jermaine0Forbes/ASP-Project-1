@@ -11,17 +11,9 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class UserController : Controller
+    public class UserController(AppDBContext context, IAuthorizationService authorizationService) : OwnerController(authorizationService)
     {
-        private readonly AppDBContext _context;
-        private readonly IAuthorizationService _authorizationService;
-
-        public UserController(AppDBContext context, IAuthorizationService authorizationService)
-        {
-            _context = context;
-            _authorizationService = authorizationService;
-        }
-
+        private readonly AppDBContext _context = context;
 
         [Authorize(Roles = "User, Manager, Admin")]
         // GET: User
@@ -73,49 +65,34 @@ namespace WebApplication1.Controllers
             return View(user);
         }
 
-        // [Authorize(Roles = "Manager, Admin")]
         // GET: User/Edit/5
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            if (id == null)
+            if (id == null || !UserExists(id))
             {
                 return NotFound();
             }
 
-            return await IsOwnerOrAuthorized(id);
+            var invalidUser = await IsOwnerOrAuthorized(id);
 
-        }
-
-
-        public async Task<IActionResult> IsOwnerOrAuthorized(string id, bool needContext = false)
-        {
-
-                var user = await _context.Users.FindAsync(id);
-                if (user == null)
-                {
-                    return NotFound();
-                }
-                
-
-            var authorizationResult = await _authorizationService.AuthorizeAsync(
-            User, // Current user principal
-            id, // The resource ID to check against (the profile's owner ID)
-            "IsOwnerOrAuthorized"); // The policy name
-
-            if (authorizationResult.Succeeded)
+            if (invalidUser)
             {
-                return View(user);
+                return Forbid();
             }
+            var user = await _context.Users
+                .FirstOrDefaultAsync(m => m.Id == id);
 
-            return Forbid();
+
+            return View(user);
 
         }
+
+
 
         // POST: User/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        // [Authorize(Roles = "Manager, Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("CreatedAt,UpdatedAt,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] User user)
@@ -125,13 +102,8 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-
-            var authorizationResult = await _authorizationService.AuthorizeAsync(
-            User, // Current user principal
-            id, // The resource ID to check against (the profile's owner ID)
-            "IsOwnerOrAuthorized"); // The policy name
-
-            if (!authorizationResult.Succeeded)
+            var invalidUser = await IsOwnerOrAuthorized(id);        
+            if (invalidUser)
             {
                 return Forbid();
             }

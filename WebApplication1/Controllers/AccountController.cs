@@ -7,22 +7,17 @@ using WebApplication1.Models;
 using WebApplication1.ViewModels;
 using WebApplication1.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication1.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController(SignInManager<User> signInManager, UserManager<User> userManager, AppDBContext context, IAuthorizationService authorizationService) : OwnerController(authorizationService)
     {
-        private readonly SignInManager<User> signInManager;
-        private readonly UserManager<User> userManager;
+        private readonly SignInManager<User> signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
+        private readonly UserManager<User> userManager  = userManager ?? throw new ArgumentNullException(nameof(userManager));
 
-        private readonly AppDBContext _context;
+        private readonly AppDBContext _context = context;
 
-        public AccountController(SignInManager<User> signInManager, UserManager<User> userManager, AppDBContext context)
-        {
-            this.signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
-            this.userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
-           _context = context;
-        }
 
         public IActionResult Login()
         {

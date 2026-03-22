@@ -7,9 +7,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace WebApplication1.Services
 {
-public class OwnerAuthorizationRequirement: IAuthorizationRequirement
-{
-}
+public class OwnerAuthorizationRequirement(string[]? roles = null): IAuthorizationRequirement
+    {
+        public readonly string[]? roles = roles;
+    }
 
 public static class AuthorizedRoles
     {
@@ -41,23 +42,30 @@ public class UserOwnerHandler : AuthorizationHandler<OwnerAuthorizationRequireme
             ArgumentNullException.ThrowIfNull(context,"context");
 
 
-            var roles = AuthorizedRoles.GetRoles();
-            foreach( var role in roles)
-            {
-                if(context.User.IsInRole(role))
-                {
-                    context.Succeed(requirement);
-                    return Task.CompletedTask;
-                }
-                
-            }
             var userId = context.User.FindFirst(ClaimTypes.NameIdentifier);
             if(userId != null && userId?.Value == resource)
             {
                  context.Succeed(requirement);
+                return Task.CompletedTask;
             }
 
+            // var roles = AuthorizedRoles.GetRoles();
+            if(requirement.roles is null)
+            {
              return Task.CompletedTask;
+                
+            }
+
+            foreach( var role in requirement.roles)
+            {
+                if(context.User.IsInRole(role))
+                {
+                    context.Succeed(requirement);
+                    break;
+                }
+                
+            }
+            return Task.CompletedTask;
         }
         
     }

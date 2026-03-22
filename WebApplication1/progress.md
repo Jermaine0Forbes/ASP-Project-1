@@ -30,6 +30,7 @@ Trying to keep track of the little things that I need to do
 - create a claim
 - centralize logging
 - enable log rotation
+- add isOwnerOrAuthorized into service
 - implement two factor authentication
 - implement oauth 2 or oidc
 - deploy app to either do, aws, or azure

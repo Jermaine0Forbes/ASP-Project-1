@@ -44,6 +44,8 @@ builder.Services.AddSingleton<IAuthorizationHandler, UserOwnerHandler>();
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("IsOwnerOrAuthorized", policy =>
+        policy.Requirements.Add(new OwnerAuthorizationRequirement(["Manager, Admin"])));
+    options.AddPolicy("IsOwner", policy =>
         policy.Requirements.Add(new OwnerAuthorizationRequirement()));
 });
 
