@@ -107,7 +107,7 @@ namespace WebApplication1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body,CreatedAt,UpdatedAt")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Body")] Post post)
         {
             if (id != post.Id)
             {
@@ -126,6 +126,8 @@ namespace WebApplication1.Controllers
             {
                 try
                 {
+                    DateTime currentDateTime = DateTime.Now;
+                    post.UpdatedAt = currentDateTime;
                     _context.Update(post);
                     await _context.SaveChangesAsync();
                 }
@@ -153,6 +155,15 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
+            
+            var user = await _userManager.GetUserAsync(User);
+            var invalidUser = await IsPostOwner(user?.Id ?? "", id ?? 0 , _context);
+
+            if (invalidUser)
+            {
+                return Forbid();
+            }
+
             var post = await _context.Posts
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
@@ -168,6 +179,15 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            
+            var user = await _userManager.GetUserAsync(User);
+            var invalidUser = await IsPostOwner(user?.Id ?? "", id , _context);
+
+            if (invalidUser)
+            {
+                return Forbid();
+            }
+
             var post = await _context.Posts.FindAsync(id);
             if (post != null)
             {
