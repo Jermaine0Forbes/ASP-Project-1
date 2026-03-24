@@ -1,5 +1,20 @@
 # Logs
 
+### 3-23-26
+
+#### how to send an email
+[From google:](https://www.google.com/search?q=.net+how+to+send+an+email&oq=.net+how+to+send+an+email&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yCAgCEAAYFhgeMggIAxAAGBYYHjIICAQQABgWGB4yCAgFEAAYFhgeMg0IBhAAGIYDGIAEGIoFMgcIBxAAGO8FMgoICBAAGIAEGKIEMgoICRAAGKIEGIkF0gEINTI0N2owajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
+
+To send emails in .NET, use the MailKit library (recommended) or System.Net.Mail with an SMTP server. Install MailKit via NuGet, create a MimeMessage, and use MailKit.Net.Smtp.SmtpClient to securely connect, authenticate, and send messages asynchronously. Use MimeMessage for assembling email content and attachments
+
+```
+dotnet add package MailKit
+dotnet add package MimeKit
+
+
+```
+
+
 ### 3-21-26
 
 #### .net what does virtual keyword do for methods

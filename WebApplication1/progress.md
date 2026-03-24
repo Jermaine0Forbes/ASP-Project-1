@@ -23,20 +23,20 @@ Trying to keep track of the little things that I need to do
 - ~~add authorization annotation to routes~~
 - ~~install tailwind~~
 - ~~create a post as a user~~
-- list all posts for a user
+- ~~list all posts for a user~~
 - send an email
 - enable email verification on register
 - create a policy
 - create a claim
 - centralize logging
 - enable log rotation
-- add isOwnerOrAuthorized into service
 - implement two factor authentication
 - implement oauth 2 or oidc
 - deploy app to either do, aws, or azure
 - upload a file
 - upload a file to aws or azure
 - possibly add guard clauses
+- add isOwnerOrAuthorized into service
 - set up NuGet packages on vscode
 
 
