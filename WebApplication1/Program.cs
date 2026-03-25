@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using WebApplication1.Configurations;
 // using Microsoft.Extensions.DependencyInjection;
 // using Microsoft.Extensions.DependencyInjection.Extensions;
 using WebApplication1.Data;
@@ -10,9 +11,7 @@ using WebApplication1.Services;
 using System.Threading.RateLimiting;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDBContext") ?? throw new InvalidOperationException("Connection string 'AppDBContext' not found.");
-// builder.Services.AddDbContext<AppDBContext>(options =>
-//     options.UseSqlServer());
-
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("GmailOptions")?? throw new InvalidOperationException("GmailOptions not found."));
 builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
@@ -40,6 +39,8 @@ builder.Services.AddRateLimiter(options =>
     };
 });
 
+
+builder.Services.AddScoped<EmailService>();
 builder.Services.AddSingleton<IAuthorizationHandler, UserOwnerHandler>();
 builder.Services.AddAuthorization(options =>
 {

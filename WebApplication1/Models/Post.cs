@@ -26,7 +26,7 @@ public class Post
     [DataType(DataType.Date)]
     public DateTime? UpdatedAt { get; set; }
 
-    public string UserId {get; set;}
+    public string? UserId {get; set;}
     public User? User {get; set;}
 
 

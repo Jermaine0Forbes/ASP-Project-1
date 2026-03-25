@@ -8,12 +8,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using WebApplication1.Services;
+using WebApplication1.Configurations;
 
 namespace WebApplication1.Controllers
 {
-    public class UserController(AppDBContext context, IAuthorizationService authorizationService) : OwnerController(authorizationService)
+    public class UserController
+    (AppDBContext context, 
+    IAuthorizationService authorizationService,
+    EmailService email
+    ) : OwnerController(authorizationService)
     {
         private readonly AppDBContext _context = context;
+        private readonly EmailService _email = email;
 
         [Authorize(Roles = "User, Manager, Admin")]
         // GET: User
@@ -173,6 +180,22 @@ namespace WebApplication1.Controllers
         private bool UserExists(string id)
         {
             return _context.Users.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> Email(string id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+              return NotFound();
+            }
+
+            // var es = new _email();
+
+            _email.Send("jermaine0forbes@gmail.com", "test", "this is a test email that is from the user "+user.UserName);
+
+            return RedirectToAction(nameof(Index));
+
         }
     }
 }

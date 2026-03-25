@@ -3,11 +3,19 @@
 
 ### 3-25-26
 
+
+#### If you are going to do Dependency Injection with a created service you need to also add it in program.cs
+
+```cs
+// for example
+builder.Services.AddScoped<EmailService>();
+```
+
 #### reduce text characters in bogus
 
 ```cs
 var testUsers = new Faker<User>()
-    .RuleFor(u => u.Bio, f => f.Lorem.Paragraph().ClampLength(max: 100)) // Limits bio to 100 chars
+    .RuleFor(u => u.Bio, f => f.Lorem.Sentences(5))
     .RuleFor(u => u.Code, f => f.Random.String2(5, "ABCDE")); // Exactly 5 chars from set
 
 ```
@@ -29,7 +37,11 @@ Console.WriteLine(dayName); // Output: Tuesday
 
 #### helpful links
 
-
+- []()
+- [InvalidOperationException: Unable to resolve service for type 'WebApplication1.Services.EmailService' while attempting to activate 'WebApplication1.Controllers.UserController'.](https://www.google.com/search?q=InvalidOperationException%3A+Unable+to+resolve+service+for+type+%27WebApplication1.Services.EmailService%27+while+attempting+to+activate+%27WebApplication1.Controllers.UserController%27.&sourceid=chrome&ie=UTF-8)
+- [.net how to get email configuration from appsettings.json](https://www.google.com/search?q=.net+how+to+get+email+configuration+from+appsettings.json&oq=.net+how+to+get+email+configuration+from+appsettings.json&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRifBdIBCTIxNjgxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [google app passwords](https://support.google.com/accounts/answer/185833?hl=en&sjid=4108040209412137281-NA)
+- [.net how to use google as a mail server](https://www.google.com/search?q=.net+how+to+use+google+as+a+mail+server&oq=.net+how+to+use+google+as+a+mail+server&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRigATIHCAYQIRifBTIHCAcQIRifBTIHCAgQIRifBTIHCAkQIRifBdIBCDgwNDBqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
 - [.net Cannot insert explicit value for identity column in table 'Posts' when IDENTITY_INSERT is set to OFF.](https://www.google.com/search?q=.net+Cannot+insert+explicit+value+for+identity+column+in+table+%27Posts%27+when+IDENTITY_INSERT+is+set+to+OFF.&oq=.net+Cannot+insert+explicit+value+for+identity+column+in+table+%27Posts%27+when+IDENTITY_INSERT+is+set+to+OFF.&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQIxgnMgYIAhAjGCcyCggDEAAYsQMYgAQyDQgEEAAYgwEYsQMYgAQyDQgFEAAYgwEYsQMYgAQyCggGEAAYsQMYgAQyCggHEAAYsQMYgAQyDQgIEAAYgwEYsQMYgAQyCggJEAAYsQMYgATSAQgzNjMwajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 - [.net mvc The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: SQL Network Interfaces, error: 52 - Unable to locate a Local Database Runtime installation. Verify that SQL Server Express is properly installed and that the Local Database Runtime feature is enabled.)](https://www.google.com/search?q=.net+mvc+The+server+was+not+found+or+was+not+accessible.+Verify+that+the+instance+name+is+correct+and+that+SQL+Server+is+configured+to+allow+remote+connections.+%28provider%3A+SQL+Network+Interfaces%2C+error%3A+52+-+Unable+to+locate+a+Local+Database+Runtime+installation.+Verify+that+SQL+Server+Express+is+properly+installed+and+that+the+Local+Database+Runtime+feature+is+enabled.%29&sca_esv=b7364511f8ed4c8d&biw=1672&bih=890&sxsrf=ANbL-n6vuv3DO7s9Zm11IUm7tfEPjzMWMg%3A1774440356073&ei=pM_DafOOBIi6mtkP2I-NoQQ&ved=0ahUKEwjz8OS4gbuTAxUInSYFHdhHI0QQ4dUDCBE&uact=5&oq=.net+mvc+The+server+was+not+found+or+was+not+accessible.+Verify+that+the+instance+name+is+correct+and+that+SQL+Server+is+configured+to+allow+remote+connections.+%28provider%3A+SQL+Network+Interfaces%2C+error%3A+52+-+Unable+to+locate+a+Local+Database+Runtime+installation.+Verify+that+SQL+Server+Express+is+properly+installed+and+that+the+Local+Database+Runtime+feature+is+enabled.%29&gs_lp=Egxnd3Mtd2l6LXNlcnAi9QIubmV0IG12YyBUaGUgc2VydmVyIHdhcyBub3QgZm91bmQgb3Igd2FzIG5vdCBhY2Nlc3NpYmxlLiBWZXJpZnkgdGhhdCB0aGUgaW5zdGFuY2UgbmFtZSBpcyBjb3JyZWN0IGFuZCB0aGF0IFNRTCBTZXJ2ZXIgaXMgY29uZmlndXJlZCB0byBhbGxvdyByZW1vdGUgY29ubmVjdGlvbnMuIChwcm92aWRlcjogU1FMIE5ldHdvcmsgSW50ZXJmYWNlcywgZXJyb3I6IDUyIC0gVW5hYmxlIHRvIGxvY2F0ZSBhIExvY2FsIERhdGFiYXNlIFJ1bnRpbWUgaW5zdGFsbGF0aW9uLiBWZXJpZnkgdGhhdCBTUUwgU2VydmVyIEV4cHJlc3MgaXMgcHJvcGVybHkgaW5zdGFsbGVkIGFuZCB0aGF0IHRoZSBMb2NhbCBEYXRhYmFzZSBSdW50aW1lIGZlYXR1cmUgaXMgZW5hYmxlZC4pMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMgoQABiwAxjWBBhHMhcQLhiwAxi4BhjYAhjIAxjaBhjcBtgBATIXEC4YsAMYuAYY2AIYyAMY2gYY3AbYAQEyFxAuGLADGLgGGNgCGMgDGNoGGNwG2AEBSIwcUK4IWK4IcAF4AZABAJgBAKABAKoBALgBA8gBAPgBAvgBAZgCAaACBZgDAIgGAZAGC7oGBAgBGBmSBwExoAcAsgcAuAcAwgcDMi0xyAcEgAgA&sclient=gws-wiz-serp)
 - [.net bogus how to reduce text characters](https://www.google.com/search?q=.net+bogus+how+to+reduce+text+characters&sca_esv=b7364511f8ed4c8d&sxsrf=ANbL-n4M1Ozc79vbNR4StCgdjCd-nogf3w%3A1774438328672&ei=uMfDac_hKMXMp84Pn9_pgQw&biw=1672&bih=897&ved=0ahUKEwjPnYby-bqTAxVF5skDHZ9vOsAQ4dUDCBE&uact=5&oq=.net+bogus+how+to+reduce+text+characters&gs_lp=Egxnd3Mtd2l6LXNlcnAiKC5uZXQgYm9ndXMgaG93IHRvIHJlZHVjZSB0ZXh0IGNoYXJhY3RlcnMyBRAhGKABMgUQIRigAUjJaFDdBljiZnALeAGQAQCYAfoBoAH8KqoBBjcuMzUuMbgBA8gBAPgBAZgCNqAC0izCAgoQABiwAxjWBBhHwgIOEAAYsAMY5AIY1gTYAQHCAhcQLhiwAxi4BhjYAhjIAxjaBhjcBtgBAcICBBAjGCfCAgUQABiABMICCBAAGBYYChgewgIGEAAYFhgewgILEAAYgAQYhgMYigXCAgUQIRirAsICBRAhGJ8FwgIIEAAYgAQYogTCAgUQABjvBcICBxAhGKABGAqYAwCIBgGQBg-6BgYIARABGAmSBwcxNi4zNy4xoAeb5QGyBwY1LjM3LjG4B50swgcJMS40Mi4xMC4xyAeHAYAIAA&sclient=gws-wiz-serp)
