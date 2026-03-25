@@ -26,14 +26,14 @@ Trying to keep track of the little things that I need to do
 - ~~list all posts for a user~~
 - send an email
 - enable email verification on register
-- create a policy
-- create a claim
 - centralize logging
 - enable log rotation
 - implement two factor authentication
 - implement oauth 2 or oidc
 - deploy app to either do, aws, or azure
 - upload a file
+- create a claim
+- create a policy
 - upload a file to aws or azure
 - possibly add guard clauses
 - add isOwnerOrAuthorized into service
