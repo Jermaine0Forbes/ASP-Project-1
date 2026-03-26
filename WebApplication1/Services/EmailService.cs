@@ -5,6 +5,9 @@ using Microsoft.Extensions.Options;
 using WebApplication1.Configurations;
 using System.Reflection;
 using System.Web;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using System.Text;
 
 namespace WebApplication1.Services
 {
@@ -17,10 +20,12 @@ namespace WebApplication1.Services
         // private SmtpClient _client;
 
         private readonly EmailSettings _es;
+        private readonly IWebHostEnvironment _whe;
 
-        public EmailService(IOptions<EmailSettings> emailSettings)
+        public EmailService(IOptions<EmailSettings> emailSettings, IWebHostEnvironment webHostEnvironment)
         {
             _es = emailSettings.Value;
+            _whe = webHostEnvironment;
         }
 
         public void Send<T>(ref T emailObject, string template, string toEmail)
@@ -48,18 +53,28 @@ namespace WebApplication1.Services
         {
             string body = string.Empty;
             Type type = emailObject.GetType();
-            using (StreamReader reader = new StreamReader(Server.MapPath($"~/Templates/{template}.html")))
+            string templateFileName = $"{template}.html";
+            string filePath = Path.Combine(_whe.ContentRootPath, "Templates", templateFileName);
+            try
             {
-                body = reader.ReadToEnd();
-            }
+                
 
-            foreach (PropertyInfo property in type.GetProperties())
-            {
-                if(body.Contains(property.Name))
+                using (StreamReader reader = new StreamReader(filePath, Encoding.UTF8))
                 {
-                    body = body.Replace("{"+property.Name+"}", property.GetValue(emailObject));
+                    body = reader.ReadToEnd();
                 }
-                // Console.WriteLine($"{property.Name}: {property.GetValue(emailObject)}");
+
+                foreach (PropertyInfo property in type.GetProperties())
+                {
+                    if(body.Contains(property.Name))
+                    {
+                        body = body.Replace("{"+property.Name+"}", property.GetValue(emailObject));
+                    }
+                    // Console.WriteLine($"{property.Name}: {property.GetValue(emailObject)}");
+                }
+            } catch (IOException e)
+            {
+                throw new Exception(e.Message);
             }
 
             return body;
