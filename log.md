@@ -1,5 +1,31 @@
 # Logs
 
+### 3-26-26
+
+####  how to insert variable into string
+
+```cs
+
+string name = "John";
+int age = 30;
+string message = $"Hello, my name is {name} and I am {age} years old.";
+
+Console.WriteLine(message); 
+// Output: Hello, my name is John and I am 30 years old.
+
+```
+
+#### helpful links
+
+- []()
+- [c# can you have a generic parameter in a method](https://www.google.com/search?q=c%23+can+you+have+a+generic+parameter+in+a+method&oq=c%23+can+you+have+a+generic+parameter+in+a+method&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRg60gEJMzMxNTNqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
+- [c# streamreader has the ability to check if text exists](https://www.google.com/search?q=c%23+streamreader+has+the+ability+to+check+if+text+exists&oq=c%23+streamreader+has+the+ability+to+check+if+text+exists&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRg60gEJMzI5NDVqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
+- [c# can you loop through a model and get it's properties](https://www.google.com/search?q=c%23+can+you+loop+through+a+model+and+get+it%27s+properties&oq=c%23+can+you+loop+through+a+model+and+get+it%27s+properties&gs_lcrp=EgZjaHJvbWUyCwgAEEUYChg5GKABMgYIARBFGDrSAQkxMjg0NmowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
+- [.net show me an example of how to send a confirmation email after registering a user](https://www.google.com/search?q=.net+show+me+an+example+of+how+to+send+a+confirmation+email+after+registering+a+user&sca_esv=994ded088dab9113&sxsrf=ANbL-n5NHu3UzM5g-r1DrwhUZZQifoflZA%3A1774470769726&ei=cUbEaYP_K6Xm-LYPxN3y8QM&biw=1672&bih=897&ved=0ahUKEwjD-5Lf8ruTAxUlM94AHcSuPD4Q4dUDCBE&uact=5&oq=.net+show+me+an+example+of+how+to+send+a+confirmation+email+after+registering+a+user&gs_lp=Egxnd3Mtd2l6LXNlcnAiVC5uZXQgc2hvdyBtZSBhbiBleGFtcGxlIG9mIGhvdyB0byBzZW5kIGEgY29uZmlybWF0aW9uIGVtYWlsIGFmdGVyIHJlZ2lzdGVyaW5nIGEgdXNlckiG1QJQ_xlY79MCcAZ4AJABAJgBmAGgAek-qgEFNzguMTO4AQPIAQD4AQGYAkCgAv8sqAIQwgIHECMY6gIYJ8ICFxAAGIAEGIoFGJECGOcGGOoCGLQC2AEBwgIIEAAYgAQYsQPCAgUQABiABMICBRAuGIAEwgILEC4YgAQYsQMYgwHCAgQQIxgnwgILEAAYgAQYsQMYgwHCAgoQABiABBgUGIcCwgIEEAAYHsICBhAAGB4YCsICBhAAGBYYHsICCBAAGBYYHhgKwgILEAAYgAQYigUYhgPCAggQABiABBiiBMICBRAAGO8FwgIIEAAYiQUYogTCAgYQABgHGB7CAggQABgFGAcYHsICBhAAGAgYHsICCBAAGAgYBxgewgIEECEYCsICBRAhGKABwgIFECEYqwKYAxjxBVubw2OQCmTCugYGCAEQARgBkgcFNDUuMTmgB8TtArIHBTQxLjE5uAfeLMIHCDEuNTMuNy4zyAesAYAIAQ&sclient=gws-wiz-serp)
+- [.net how to hide credentials that are inside appsettings.json](https://www.google.com/search?q=.net+how+to+hide+credentials+that+are+inside+appsettings.json&oq=.net+how+to+hide+&gs_lcrp=EgZjaHJvbWUqCAgAEEUYJxg7MggIABBFGCcYOzIGCAEQRRg5MggIAhAAGBYYHjIICAMQABgWGB4yCAgEEAAYFhgeMggIBRAAGBYYHjIICAYQABgWGB4yCAgHEAAYFhgeMgoICBAAGKIEGIkFMgcICRAAGO8F0gEINDEwNmowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
+- [.net mvc how to create email template](https://www.google.com/search?q=.net+mvc+how+to+create+email+template&oq=.net+mvc+how+to+create+email+template&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRirAjIHCAYQIRirAtIBCTExMTU4ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [Send Email using HTML Templates in ASP.Net MVC](https://www.aspsnippets.com/Articles/4114/Send-Email-using-HTML-Templates-in-ASPNet-MVC/#:~:text=Config%20file,template%20without%20changing%20the%20code.)
+- [.net core difference between addscoped and addtransient](https://www.google.com/search?q=.net+core+difference+between+addscoped+and+addtransient&oq=.net+what%27s+the+difference+between+addscoped&gs_lcrp=EgZjaHJvbWUqCAgBEAAYFhgeMgYIABBFGDkyCAgBEAAYFhgeMg0IAhAAGIYDGIAEGIoFMg0IAxAAGIYDGIAEGIoFMg0IBBAAGIYDGIAEGIoFMgoIBRAAGIAEGKIEMgoIBhAAGKIEGIkFMgoIBxAAGIAEGKIEMgoICBAAGIAEGKIE0gEJMTQ3OTRqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
 
 ### 3-25-26
 

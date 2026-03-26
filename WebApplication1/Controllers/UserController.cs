@@ -10,6 +10,7 @@ using WebApplication1.Data;
 using WebApplication1.Models;
 using WebApplication1.Services;
 using WebApplication1.Configurations;
+using System.ComponentModel;
 
 namespace WebApplication1.Controllers
 {
@@ -191,8 +192,14 @@ namespace WebApplication1.Controllers
             }
 
             // var es = new _email();
+            var dem = new DefaultEmailModel()
+            {
+                UserName = user.UserName,
+                Title = "test",
+                Description = "this is a test email that is from the user "+user.UserName,
+            };
 
-            _email.Send("jermaine0forbes@gmail.com", "test", "this is a test email that is from the user "+user.UserName);
+            _email.Send(ref dem, "DefaultEmail", "jermaine0forbes@gmail.com");
 
             return RedirectToAction(nameof(Index));
 
