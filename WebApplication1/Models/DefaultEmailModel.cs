@@ -1,11 +1,12 @@
 
 using System.ComponentModel.DataAnnotations;
+using WebApplication1.Interfaces;
 
 namespace WebApplication1.Models
 {
     
 
-    public class DefaultEmailModel
+    public class DefaultEmailModel: IEmail
     {
         [Required]
         public string UserName {get; set;} = "";
@@ -15,5 +16,7 @@ namespace WebApplication1.Models
 
         [Required]
         public string Description {get; set;} = "";
+
+        public string Url {get; set;} = "";
     }
 }

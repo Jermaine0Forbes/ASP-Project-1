@@ -8,6 +8,9 @@ using System.Web;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using System.Text;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using WebApplication1.Interfaces;
+using System.Threading.Tasks;
 
 namespace WebApplication1.Services
 {
@@ -28,17 +31,24 @@ namespace WebApplication1.Services
             _whe = webHostEnvironment;
         }
 
-        public void Send<T>(ref T emailObject, string template, string toEmail)
+        public void Send<T>( T emailObject, string template, string toEmail)  where T : IEmail
         {
+            if(emailObject == null)
+            {
+                throw new Exception("bad news sending email");
+            }
 
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("Jermaine Forbes", _es.Username));
             message.To.Add(new MailboxAddress("", toEmail));
-            message.Subject = emaliObject.Title;
+            message.Subject = emailObject?.Title ?? "";
 
             var body = PopulateBody(emailObject, template);
 
-            message.Body = new TextPart("plain") { Text = body };
+            var bodyBuilder = new BodyBuilder();
+            bodyBuilder.HtmlBody = body;
+
+            message.Body = bodyBuilder.ToMessageBody();
 
             using (var client = new SmtpClient())
             {
@@ -49,15 +59,15 @@ namespace WebApplication1.Services
             }
         }
 
-        private string PopulateBody(dynamic emailObject, string template)
+        private string PopulateBody<T>(T emailObject, string template) where T : IEmail
         {
             string body = string.Empty;
-            Type type = emailObject.GetType();
-            string templateFileName = $"{template}.html";
-            string filePath = Path.Combine(_whe.ContentRootPath, "Templates", templateFileName);
             try
             {
                 
+            Type type = emailObject.GetType();
+            string templateFileName = $"{template}.html";
+            string filePath = Path.Combine(_whe.ContentRootPath, "Templates", templateFileName);
 
                 using (StreamReader reader = new StreamReader(filePath, Encoding.UTF8))
                 {
@@ -68,9 +78,10 @@ namespace WebApplication1.Services
                 {
                     if(body.Contains(property.Name))
                     {
-                        body = body.Replace("{"+property.Name+"}", property.GetValue(emailObject));
+                        var name = "{"+property.Name+"}";
+                        var value = property.GetValue(emailObject) ?? "";
+                        body = body.Replace(name, value.ToString());
                     }
-                    // Console.WriteLine($"{property.Name}: {property.GetValue(emailObject)}");
                 }
             } catch (IOException e)
             {

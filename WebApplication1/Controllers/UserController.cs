@@ -194,12 +194,13 @@ namespace WebApplication1.Controllers
             // var es = new _email();
             var dem = new DefaultEmailModel()
             {
-                UserName = user.UserName,
+                UserName = user.UserName ?? "",
                 Title = "test",
                 Description = "this is a test email that is from the user "+user.UserName,
+                Url = $"{Request.Scheme}://{Request.Host}" ?? "",
             };
 
-            _email.Send(ref dem, "DefaultEmail", "jermaine0forbes@gmail.com");
+            _email.Send( dem, "DefaultEmail", "jermaine0forbes@gmail.com");
 
             return RedirectToAction(nameof(Index));
 
