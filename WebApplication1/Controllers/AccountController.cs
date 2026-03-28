@@ -8,15 +8,24 @@ using WebApplication1.ViewModels;
 using WebApplication1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
 {
-    public class AccountController(SignInManager<User> signInManager, UserManager<User> userManager, AppDBContext context, IAuthorizationService authorizationService) : OwnerController(authorizationService)
+    public class AccountController
+    (SignInManager<User> signInManager,
+    UserManager<User> userManager,
+    AppDBContext context,
+    IAuthorizationService authorizationService,
+    EmailService email
+    ) : OwnerController(authorizationService)
     {
         private readonly SignInManager<User> signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
-        private readonly UserManager<User> userManager  = userManager ?? throw new ArgumentNullException(nameof(userManager));
+        private readonly UserManager<User> userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
 
         private readonly AppDBContext _context = context;
+
+        private readonly EmailService _email = email;
 
 
         public IActionResult Login()
@@ -31,19 +40,20 @@ namespace WebApplication1.Controllers
             if (ModelState.IsValid)
             {
                 var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
+
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
                 }
                 if (result.IsNotAllowed)
                 {
-                    Console.WriteLine("is not allowed");    
+                    Console.WriteLine("is not allowed");
                 }
                 else
                 {
                     ModelState.AddModelError("", "username or password is incorrect.");
                     return View(model);
-            
+
                 }
             }
             return View(model);
@@ -69,7 +79,7 @@ namespace WebApplication1.Controllers
 
                 var doesNameExist = await userManager.FindByNameAsync(user.UserName!);
 
-                if(doesNameExist != null)
+                if (doesNameExist != null)
                 {
                     ModelState.AddModelError("", "the user name is not unique");
                     return View(model);
@@ -77,13 +87,29 @@ namespace WebApplication1.Controllers
 
                 var result = await userManager.CreateAsync(user, model.Password);
                 IdentityResult? role = null;
+                string? token = null;
 
                 if (result.Succeeded)
                 {
-                     role  = await userManager.AddToRoleAsync(user,"User");
-                    
+                    role = await userManager.AddToRoleAsync(user, "User");
+                    // 1. Generate Email Confirmation Token
+                    token = await userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                    // 2. Create confirmation link
+                    var confirmationLink = Url.Action("ConfirmEmail", "Account",
+                        new { userId = user.Id, token = token }, Request.Scheme);
+
+                    var cem = new ConfirmationEmailModel()
+                    {
+                        UserName = user.UserName,
+                        Title = "Confirmation Email",
+                        Url = confirmationLink ?? "",
+                    };
+
+                    _email.Send(cem, "ConfirmationEmail", user.Email);
+
                 }
-                if(  role != null  && role.Succeeded)
+                if (role != null && role.Succeeded && token != null)
                 {
                     return RedirectToAction("Login", "Account");
                 }
@@ -98,27 +124,36 @@ namespace WebApplication1.Controllers
             }
             return View(model);
         }
+
         public IActionResult VerifyEmail()
         {
             return View();
         }
-        [HttpPost]
-        public async Task<IActionResult> VerifyEmail(VerifyEmailViewModel model)
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail(VerifyEmailViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = await userManager.FindByNameAsync(model.Email!);
-                if (user == null)
+                var user = await userManager.FindByIdAsync(model.userId!);
+                if (user == null || model.token == null)
                 {
                     ModelState.AddModelError("", "Something is wrong!");
-                    return View(model);
+                    return RedirectToAction("Error", "Home");
                 }
-                else
+
+
+                var result = await userManager.ConfirmEmailAsync(user, model.token);
+                if (!result.Succeeded)
                 {
-                    return RedirectToAction("ChangePassword", "Account", new { username = user.UserName });
+                     return RedirectToAction("Error", "Home");
                 }
+
+                await signInManager.SignInAsync(user, false, "Password");
+
+                return View("VerifyEmail");
+
             }
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
         public IActionResult ChangePassword(string username)
         {
@@ -173,10 +208,10 @@ namespace WebApplication1.Controllers
 
         public async Task<IActionResult> Profile()
         {
-             var user = await userManager.GetUserAsync(User);
-             //Need to re migrate files so that I can retreive the posts through collection
-            var posts =  user != null 
-            ? await _context.Posts.Where( p => p.User != null && p.User.Id.Equals(user.Id)).ToListAsync() 
+            var user = await userManager.GetUserAsync(User);
+            //Need to re migrate files so that I can retreive the posts through collection
+            var posts = user != null
+            ? await _context.Posts.Where(p => p.User != null && p.User.Id.Equals(user.Id)).ToListAsync()
             : [];
 
             return View(posts);

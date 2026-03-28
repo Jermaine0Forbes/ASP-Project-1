@@ -1,5 +1,9 @@
 # Logs
 
+### 3-27-26
+
+Hooray!, I was able to create an email confirmation 
+
 ### 3-26-26
 
 ####  how to insert variable into string
