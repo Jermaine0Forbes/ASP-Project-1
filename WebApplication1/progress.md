@@ -25,7 +25,7 @@ Trying to keep track of the little things that I need to do
 - ~~create a post as a user~~
 - ~~list all posts for a user~~
 - ~~send an email~~
-- enable email verification on register
+- ~~enable email verification on register~~
 - centralize logging
 - enable log rotation
 - implement two factor authentication
