@@ -8,11 +8,50 @@ using WebApplication1.Configurations;
 using WebApplication1.Data;
 using WebApplication1.Models;
 using WebApplication1.Services;
+using WebApplication1.Middlewares;
 using System.Threading.RateLimiting;
+using Serilog;
+using Serilog.AspNetCore;
+using Serilog.Events;
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDBContext") ?? throw new InvalidOperationException("Connection string 'AppDBContext' not found.");
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("GmailOptions")?? throw new InvalidOperationException("GmailOptions not found."));
-builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<AppDBContext>(options => 
+{
+    options.UseSqlServer(connectionString)
+  .LogTo(Console.WriteLine, LogLevel.Information);
+
+});
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft.EntityFrameworkCore.Database.Command", LogEventLevel.Information)
+    .Enrich.FromLogContext()
+    .WriteTo.Console(
+        outputTemplate:
+        "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}"
+    )
+    .WriteTo.File(
+        path: "Logs/app-.log",
+        rollingInterval: RollingInterval.Day,
+        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}",
+        retainedFileCountLimit: 30)
+    .WriteTo.File(
+        path: "Logs/sql-.log",
+        rollingInterval: RollingInterval.Day,
+        restrictedToMinimumLevel: LogEventLevel.Information,
+        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [SQL] {Message:lj}{NewLine}{Exception}",
+        retainedFileCountLimit: 30,
+        shared: false)
+    .CreateLogger();
+
+builder.Host.UseSerilog((context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration)
+        .Enrich.FromLogContext() // Important for DiagnosticContext
+        // .WriteTo.Console()
+         .WriteTo.File("Logs/request-.log", rollingInterval: RollingInterval.Day)
+);
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
 .AddRoles<IdentityRole>()
@@ -41,6 +80,8 @@ builder.Services.AddRateLimiter(options =>
 
 
 // builder.Services.AddScoped<DefaultEmailModel>();
+
+
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddSingleton<IAuthorizationHandler, UserOwnerHandler>();
 builder.Services.AddAuthorization(options =>
@@ -75,12 +116,15 @@ else
        await  SeedData.Initialize(services);
     }
 }
+app.UseMiddleware<ErrorLoggingMiddleware>();
 
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseRateLimiter();
+app.UseSerilogRequestLogging();
+
 
 app.MapStaticAssets();
 

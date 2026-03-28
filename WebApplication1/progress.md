@@ -29,13 +29,17 @@ Trying to keep track of the little things that I need to do
 - centralize logging
 - enable log rotation
 - implement two factor authentication
+- hide credentials that will be in appsettingsjson
 - implement oauth 2 or oidc
-- deploy app to either do, aws, or azure
+- verify or implement error logging
+- deploy app to either to do, aws, or azure
 - upload a file
+- upload a file to aws or azure
+- create admin dashboard
 - create a claim
 - create a policy
-- upload a file to aws or azure
 - possibly add guard clauses
+- split logs for requests, and sql commands
 - add isOwnerOrAuthorized into service
 - set up NuGet packages on vscode
 
@@ -112,5 +116,14 @@ dotnet add package Microsoft.AspNetCore.RateLimiting
 
 
 dotnet aspnet-codegenerator controller -name PostController -m Post -dc AppDBContext -outDir Controllers
+
+# packages to do logging
+dotnet add package Serilog
+dotnet add package Serilog.Sinks.File
+dotnet add package Serilog.AspNetCore
+dotnet add package Serilog.Sinks.Map
+dotnet add package Serilog.Sinks.Seq
+dotnet add package Serilog.Sinks.Console
+
 
 ```
