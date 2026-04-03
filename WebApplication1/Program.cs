@@ -53,9 +53,14 @@ builder.Host.UseSerilog((context, configuration) =>
          .WriteTo.File("Logs/request-.log", rollingInterval: RollingInterval.Day)
 );
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<User>(options => {
+    options.SignIn.RequireConfirmedAccount = false;
+
+    options.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
+})
 .AddRoles<IdentityRole>()
-.AddEntityFrameworkStores<AppDBContext>();
+.AddEntityFrameworkStores<AppDBContext>()
+.AddDefaultTokenProviders();
 
 builder.Services.AddRateLimiter(options =>
 {

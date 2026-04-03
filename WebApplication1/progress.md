@@ -26,8 +26,8 @@ Trying to keep track of the little things that I need to do
 - ~~list all posts for a user~~
 - ~~send an email~~
 - ~~enable email verification on register~~
-- centralize logging
-- enable log rotation
+- ~~centralize logging~~
+- ~~enable log rotation~~
 - implement two factor authentication
 - hide credentials that will be in appsettingsjson
 - implement oauth 2 or oidc

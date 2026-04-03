@@ -41,21 +41,31 @@ namespace WebApplication1.Controllers
             {
                 var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
 
-                if (result.Succeeded)
+                if (!result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    ModelState.AddModelError("", "username or password is incorrect.");
+                    return View(model);
                 }
                 if (result.IsNotAllowed)
                 {
                     Console.WriteLine("is not allowed");
                 }
+
+                result = await userManager.FindByNameAsync(model.UserName);
+
+                if(result.UpdatedAt < DateTime.Now )
+                {
+                    // do something
+                }
+
                 else
                 {
-                    ModelState.AddModelError("", "username or password is incorrect.");
-                    return View(model);
+                    return RedirectToAction("Index", "Home");
 
                 }
             }
+
+            TempData["UserId"] = "foo";
             return View(model);
         }
         public IActionResult Register()

@@ -1,5 +1,18 @@
 # Logs
 
+### 4-3-26
+
+
+#### helpful links
+
+- []()
+- [.net mvc how to process events in the background](https://www.google.com/search?q=.net+mvc+how+to+process+events+in+the+background&oq=.net+mvc+how+to+process+events+in+the+background&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRifBTIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBdIBCTE3MDA3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [TokenOptions.DefaultAuthenticatorProvider](https://www.google.com/search?q=TokenOptions.DefaultAuthenticatorProvider&sourceid=chrome&ie=UTF-8)
+- [.net generatetwofactorasync](https://www.google.com/search?q=.net+generatetwofactorasync&oq=.net+generatetwofactorasync&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQIRgKGKABMgkIAhAhGAoYoAEyCQgDECEYChigATIJCAQQIRgKGKABMgkIBRAhGAoYoAEyBwgGECEYjwIyBwgHECEYjwLSAQg2Njg0ajBqNKgCALACAQ&sourceid=chrome&ie=UTF-8)
+- [.net adddefaultidentity options](https://www.google.com/search?q=.net+adddefaultidentity+optiosn&oq=.net+adddefaultidentity+optiosn&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIJCAEQIRgKGKABMgkIAhAhGAoYoAEyCQgDECEYChigATIHCAQQIRifBdIBCDc4ODdqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
+- [TokenOptions.AuthenticatorTokenProvider Property](https://www.google.com/search?q=TokenOptions.AuthenticatorTokenProvider+Property&sourceid=chrome&ie=UTF-8)
+
+
 ### 3-27-26
 
 Hooray!, I was able to create an email confirmation 
