@@ -9,6 +9,8 @@ using WebApplication1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using WebApplication1.Services;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Design;
 
 namespace WebApplication1.Controllers
 {
@@ -55,7 +57,18 @@ namespace WebApplication1.Controllers
 
                 if(result.UpdatedAt < DateTime.Now )
                 {
-                    // do something
+                   token =  await userManager.GenerateTwoFactorAsync(result, TokenOptions.DefaultEmailProvider);
+                  var dem = new DefaultEmailModel()
+                  {
+                    UserName = result.UserName,
+                    Title = "One Time Password",
+                    Description = "Here is your password "+token,
+                    Url = ""  
+                  };
+
+                   _email.Send(dem, "DefaultEmail", result.Email);
+                    TempData["UserId"] = result.Id;
+                    return RedirectToAction("VerifyOtp");
                 }
 
                 else
@@ -65,8 +78,14 @@ namespace WebApplication1.Controllers
                 }
             }
 
-            TempData["UserId"] = "foo";
             return View(model);
+        }
+
+
+        public async Task<IActionResult> VerifyOtp()
+        {
+            
+            View();
         }
         public IActionResult Register()
         {

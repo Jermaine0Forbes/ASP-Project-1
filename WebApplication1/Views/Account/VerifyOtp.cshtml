@@ -1,0 +1,11 @@
+<form method="post">
+    <input name="otp" placeholder="Enter OTP" />
+    <button type="submit">Verify</button>
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}
