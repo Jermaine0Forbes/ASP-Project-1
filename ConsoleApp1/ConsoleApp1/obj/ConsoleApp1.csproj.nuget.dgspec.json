@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\wamp64\\www\\ASP.NET\\project1\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "C:\\wamp64\\www\\ASP.NET\\project1\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "c:\\wamp64\\www\\ASP.NET\\project1\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "C:\\wamp64\\www\\ASP.NET\\project1\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\wamp64\\www\\ASP.NET\\project1\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "C:\\wamp64\\www\\ASP.NET\\project1\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "c:\\wamp64\\www\\ASP.NET\\project1\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectPath": "C:\\wamp64\\www\\ASP.NET\\project1\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
         "packagesPath": "C:\\Users\\skiva\\.nuget\\packages\\",
-        "outputPath": "c:\\wamp64\\www\\ASP.NET\\project1\\ConsoleApp1\\ConsoleApp1\\obj\\",
+        "outputPath": "C:\\wamp64\\www\\ASP.NET\\project1\\ConsoleApp1\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\skiva\\AppData\\Roaming\\NuGet\\NuGet.Config"

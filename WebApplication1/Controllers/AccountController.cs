@@ -55,7 +55,7 @@ namespace WebApplication1.Controllers
 
                 var user = await userManager.FindByNameAsync(model.UserName);
 
-                if (user != null && user.UpdatedAt < DateTime.Now)
+                if (user != null && ( user.UpdatedAt == null || user.UpdatedAt < DateTime.Now))
                 {
                     var token = await userManager.GenerateTwoFactorTokenAsync(user, TokenOptions.DefaultEmailProvider);
                     var dem = new DefaultEmailModel()
@@ -63,12 +63,11 @@ namespace WebApplication1.Controllers
                         UserName = user.UserName ?? "",
                         Title = "One Time Password",
                         Description = "Here is your password " + token,
-                        Url = $"{Request.Scheme}://{Request.Host}/VerifyOtp" ?? "",
+                        Url = $"{Request.Scheme}://{Request.Host}/Account/VerifyOtp" ?? "",
                     };
 
                     _email.Send(dem, "DefaultEmail", user.Email ?? "");
                     TempData["UserId"] = user.Id ?? "";
-                    TempData["token"] = token;
                     return RedirectToAction("VerifyOtp");
                 }
 
@@ -86,7 +85,6 @@ namespace WebApplication1.Controllers
         public IActionResult VerifyOtp()
         {
 
-            ViewBag.Message = TempData["token"] ?? "";
 
             return View();
         }
@@ -117,6 +115,7 @@ namespace WebApplication1.Controllers
                 DateTime newDateTime = DateTime.Now.AddDays(5);
                 user.UpdatedAt = newDateTime;
                 _context.Update(user);
+                await userManager.SetTwoFactorEnabledAsync(user, true);
                 await signInManager.SignInAsync(user, false);
                 return RedirectToAction("Index", "Home");
             }

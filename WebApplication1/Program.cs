@@ -84,8 +84,6 @@ builder.Services.AddRateLimiter(options =>
 });
 
 
-// builder.Services.AddScoped<DefaultEmailModel>();
-
 
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddSingleton<IAuthorizationHandler, UserOwnerHandler>();
