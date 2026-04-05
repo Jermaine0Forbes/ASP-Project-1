@@ -1,5 +1,16 @@
 # Logs
 
+### 4-5-26
+
+#### helpful links
+-[]()
+-[]()
+-[.net mvc how to process events in the background](https://www.google.com/search?q=.net+mvc+how+to+process+events+in+the+background&oq=.net+mvc+how+to+process+events+in+the+background&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRifBTIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBdIBCTE3MDA3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+-[dotnet how to get user in signinmanager service](https://www.google.com/search?q=dotnet+how+to+get+user+in+signinmanager+service&oq=dotnet+how+to+get+user+in+signinmanager+service&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRiPAtIBCDk3OTlqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
+-[dotnet mvc how to send data from the controller to the razor page](https://www.google.com/search?q=dotnet+mvc+how+to+send+data+from+the+controller+to+the+razor+page&sca_esv=2acb43a4eea5ff8c&biw=1737&bih=1039&sxsrf=ANbL-n4QWAD7ipNpMX0GXKCwdIhvKHFERw%3A1775355007747&ei=f8TRaaLxKuGqw8cP-pHpwQQ&ved=0ahUKEwjirNbk0NWTAxVh1fACHfpIOkgQ4dUDCBE&uact=5&oq=dotnet+mvc+how+to+send+data+from+the+controller+to+the+razor+page&gs_lp=Egxnd3Mtd2l6LXNlcnAiQWRvdG5ldCBtdmMgaG93IHRvIHNlbmQgZGF0YSBmcm9tIHRoZSBjb250cm9sbGVyIHRvIHRoZSByYXpvciBwYWdlSMzYIFDtFFi81yBwEXgBkAEAmAGBAaAB4CyqAQU1My4xMbgBA8gBAPgBAZgCTKAC2yvCAgoQABhHGNYEGLADwgILEAAYgAQYigUYkQLCAgUQABiABMICChAAGIAEGBQYhwLCAgYQABgWGB7CAggQABgWGB4YCsICCxAAGIAEGIoFGIYDwgIHEAAYgAQYDcICBhAAGB4YDcICCBAAGIkFGKIEwgIFEAAY7wXCAgUQIRigAcICBRAhGKsCwgIFECEYnwXCAggQABiABBiiBJgDAIgGAZAGCJIHBTYyLjE0oAfJ-gKyBwU0NS4xNLgHryvCBwYxLjcyLjPIB40BgAgB&sclient=gws-wiz-serp)
+
+
+
 ### 4-3-26
 
 

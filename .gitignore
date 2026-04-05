@@ -3,3 +3,4 @@ WebApplication1/obj/*
 node_modules
 .vscode
 WebApplication1/Logs/*
+.env

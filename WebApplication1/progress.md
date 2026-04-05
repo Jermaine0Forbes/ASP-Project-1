@@ -28,7 +28,7 @@ Trying to keep track of the little things that I need to do
 - ~~enable email verification on register~~
 - ~~centralize logging~~
 - ~~enable log rotation~~
-- implement two factor authentication
+- ~~implement two factor authentication~~
 - hide credentials that will be in appsettingsjson
 - implement oauth 2 or oidc
 - verify or implement error logging
