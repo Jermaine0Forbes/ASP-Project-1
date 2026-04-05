@@ -43,7 +43,7 @@ namespace WebApplication1.Services
             message.To.Add(new MailboxAddress("", toEmail));
             message.Subject = emailObject?.Title ?? "";
 
-            var body = PopulateBody(emailObject, template);
+            var body = PopulateBody(emailObject, template) ?? "";
 
             var bodyBuilder = new BodyBuilder();
             bodyBuilder.HtmlBody = body;

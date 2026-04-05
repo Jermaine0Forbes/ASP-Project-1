@@ -53,21 +53,22 @@ namespace WebApplication1.Controllers
                     Console.WriteLine("is not allowed");
                 }
 
-                result = await userManager.FindByNameAsync(model.UserName);
+                var user = await userManager.FindByNameAsync(model.UserName);
 
-                if(result.UpdatedAt < DateTime.Now )
+                if (user != null && user.UpdatedAt < DateTime.Now)
                 {
-                   token =  await userManager.GenerateTwoFactorAsync(result, TokenOptions.DefaultEmailProvider);
-                  var dem = new DefaultEmailModel()
-                  {
-                    UserName = result.UserName,
-                    Title = "One Time Password",
-                    Description = "Here is your password "+token,
-                    Url = ""  
-                  };
+                    var token = await userManager.GenerateTwoFactorTokenAsync(user, TokenOptions.DefaultEmailProvider);
+                    var dem = new DefaultEmailModel()
+                    {
+                        UserName = user.UserName ?? "",
+                        Title = "One Time Password",
+                        Description = "Here is your password " + token,
+                        Url = $"{Request.Scheme}://{Request.Host}/VerifyOtp" ?? "",
+                    };
 
-                   _email.Send(dem, "DefaultEmail", result.Email);
-                    TempData["UserId"] = result.Id;
+                    _email.Send(dem, "DefaultEmail", user.Email ?? "");
+                    TempData["UserId"] = user.Id ?? "";
+                    TempData["token"] = token;
                     return RedirectToAction("VerifyOtp");
                 }
 
@@ -81,12 +82,49 @@ namespace WebApplication1.Controllers
             return View(model);
         }
 
-
-        public async Task<IActionResult> VerifyOtp()
+        [HttpGet]
+        public IActionResult VerifyOtp()
         {
-            
-            View();
+
+            ViewBag.Message = TempData["token"] ?? "";
+
+            return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> VerifyOtp(string otp)
+        {
+            var userId = TempData["UserId"]?.ToString();
+
+            if (userId == null)
+                return RedirectToAction("Login");
+
+            var user = await userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Invalid User");
+                return View();
+            }
+
+            var isValid = await userManager.VerifyTwoFactorTokenAsync(
+                user,
+                TokenOptions.DefaultEmailProvider,
+                otp);
+
+            if (isValid)
+            {
+                DateTime newDateTime = DateTime.Now.AddDays(5);
+                user.UpdatedAt = newDateTime;
+                _context.Update(user);
+                await signInManager.SignInAsync(user, false);
+                return RedirectToAction("Index", "Home");
+            }
+
+            ModelState.AddModelError("", "Invalid OTP");
+            return View();
+        }
+
         public IActionResult Register()
         {
             return View();
@@ -174,7 +212,7 @@ namespace WebApplication1.Controllers
                 var result = await userManager.ConfirmEmailAsync(user, model.token);
                 if (!result.Succeeded)
                 {
-                     return RedirectToAction("Error", "Home");
+                    return RedirectToAction("Error", "Home");
                 }
 
                 await signInManager.SignInAsync(user, false, "Password");

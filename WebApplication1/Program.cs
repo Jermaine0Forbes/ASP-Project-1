@@ -19,8 +19,8 @@ var connectionString = builder.Configuration.GetConnectionString("AppDBContext")
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("GmailOptions")?? throw new InvalidOperationException("GmailOptions not found."));
 builder.Services.AddDbContext<AppDBContext>(options => 
 {
-    options.UseSqlServer(connectionString)
-  .LogTo(Console.WriteLine, LogLevel.Information);
+    options.UseSqlServer(connectionString);
+//   .LogTo(Console.WriteLine, LogLevel.Information);
 
 });
 Log.Logger = new LoggerConfiguration()
