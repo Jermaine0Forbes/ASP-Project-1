@@ -29,7 +29,7 @@ Trying to keep track of the little things that I need to do
 - ~~centralize logging~~
 - ~~enable log rotation~~
 - ~~implement two factor authentication~~
-- hide credentials that will be in appsettingsjson
+- ~~hide credentials that will be in appsettingsjson~~
 - implement oauth 2 or oidc
 - verify or implement error logging
 - deploy app to either to do, aws, or azure
