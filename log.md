@@ -4,6 +4,10 @@
 
 #### helpful links
 -[]()
+-[]()
+-[]()
+-[]()
+-[.net does the secrets in the secrets manager be pulled from another local computer](https://www.google.com/search?q=.net+does+the+secrets+in+the+secrets+manager+be+pulled+from+another+local+computer&oq=.net+does+the+secrets+in+the+secrets+manager+be+pulled+from+another+local+computer&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRiSAzIHCAIQIRiSAzIHCAMQIRiSAzIHCAQQIRiSAzIHCAUQIRiSAzIHCAYQIRiSAzIHCAcQIRiPAtIBCTM0NTE5ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 -[.net how to add configurations from secret manager tool to email settings](https://www.google.com/search?q=.net+how+to+add+configurations+from+secret+manager+tool+to+email+settings&sca_esv=b2c48e119f077edf&biw=1737&bih=1039&sxsrf=ANbL-n6wv3dOVKqt_lEbXvrFV9sEHQgRGw%3A1775431262178&ei=Xu7SaYnQCof8ptQPmvL9kA0&ved=0ahUKEwiJ99Ht7NeTAxUHvokEHRp5H9IQ4dUDCBM&uact=5&oq=.net+how+to+add+configurations+from+secret+manager+tool+to+email+settings&gs_lp=Egxnd3Mtd2l6LXNlcnAiSS5uZXQgaG93IHRvIGFkZCBjb25maWd1cmF0aW9ucyBmcm9tIHNlY3JldCBtYW5hZ2VyIHRvb2wgdG8gZW1haWwgc2V0dGluZ3NI_hNQ8AdYhg1wAXgBkAEAmAFRoAH4AqoBATW4AQPIAQD4AQGYAgKgAljCAgoQABhHGNYEGLADwgIEECMYJ5gDAIgGAZAGCJIHATKgB6YHsgcBMbgHU8IHBTAuMS4xyAcEgAgB&sclient=gws-wiz-serp)
 -[.net mvc how to process events in the background](https://www.google.com/search?q=.net+mvc+how+to+process+events+in+the+background&oq=.net+mvc+how+to+process+events+in+the+background&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRifBTIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBdIBCTE3MDA3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 -[dotnet how to get user in signinmanager service](https://www.google.com/search?q=dotnet+how+to+get+user+in+signinmanager+service&oq=dotnet+how+to+get+user+in+signinmanager+service&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRiPAtIBCDk3OTlqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
