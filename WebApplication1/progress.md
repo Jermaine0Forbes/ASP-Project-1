@@ -30,8 +30,7 @@ Trying to keep track of the little things that I need to do
 - ~~enable log rotation~~
 - ~~implement two factor authentication~~
 - ~~hide credentials that will be in appsettingsjson~~
-- implement oauth 2 or oidc
-- verify or implement error logging
+- ~~implement oauth 2 or oidc~~
 - deploy app to either to do, aws, or azure
 - upload a file
 - upload a file to aws or azure
@@ -40,6 +39,7 @@ Trying to keep track of the little things that I need to do
 - create a policy
 - possibly add guard clauses
 - split logs for requests, and sql commands
+- verify or implement error logging
 - add isOwnerOrAuthorized into service
 - create OTP expiration column in user
 - create an environment variable that holds otp expiration, and other things
