@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Google;
 using WebApplication1.Configurations;
 // using Microsoft.Extensions.DependencyInjection;
 // using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -16,11 +17,11 @@ using Serilog.Events;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDBContext") ?? throw new InvalidOperationException("Connection string 'AppDBContext' not found.");
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("GmailOptions")?? throw new InvalidOperationException("GmailOptions not found."));
-builder.Services.AddDbContext<AppDBContext>(options => 
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("GmailOptions") ?? throw new InvalidOperationException("GmailOptions not found."));
+builder.Services.AddDbContext<AppDBContext>(options =>
 {
     options.UseSqlServer(connectionString);
-//   .LogTo(Console.WriteLine, LogLevel.Information);
+    //   .LogTo(Console.WriteLine, LogLevel.Information);
 
 });
 Log.Logger = new LoggerConfiguration()
@@ -49,11 +50,12 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration)
         .Enrich.FromLogContext() // Important for DiagnosticContext
-        // .WriteTo.Console()
+                                 // .WriteTo.Console()
          .WriteTo.File("Logs/request-.log", rollingInterval: RollingInterval.Day)
 );
 
-builder.Services.AddDefaultIdentity<User>(options => {
+builder.Services.AddDefaultIdentity<User>(options =>
+{
     options.SignIn.RequireConfirmedAccount = false;
 
     options.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
@@ -81,6 +83,29 @@ builder.Services.AddRateLimiter(options =>
         context.HttpContext.Response.WriteAsync("Too many login attempts. Please try again later.", cancellationToken);
         return ValueTask.CompletedTask;
     };
+});
+
+
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = IdentityConstants.ApplicationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+}).AddGoogle(options =>
+{
+    options.ClientId =
+    builder.Configuration.GetValue<string>("Authentication:Google:ClientId")
+    ?? throw new InvalidOperationException("Google Client Id not found.");
+    options.ClientSecret =
+    builder.Configuration.GetValue<string>("Authentication:Google:ClientSecret")
+    ?? throw new InvalidOperationException("Google Client Secret not found.");
+    options.CallbackPath = "/signin-google";
+
+    // Optional but useful
+    options.SaveTokens = true;
+
+    options.Scope.Add("profile");
+    options.Scope.Add("email");
 });
 
 
@@ -115,8 +140,8 @@ else
     {
         var services = scope.ServiceProvider;
 
-    //    SeedData.Initialize(services);
-       await  SeedData.Initialize(services);
+        //    SeedData.Initialize(services);
+        await SeedData.Initialize(services);
     }
 }
 app.UseMiddleware<ErrorLoggingMiddleware>();
@@ -135,7 +160,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-    // .WithStaticAssets().RequireRateLimiting("LoginPolicy");
+// .WithStaticAssets().RequireRateLimiting("LoginPolicy");
 
 
 app.Run();

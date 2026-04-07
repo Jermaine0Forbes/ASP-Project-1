@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using WebApplication1.Services;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
+using System.Security.Claims;
 
 namespace WebApplication1.Controllers
 {
@@ -55,7 +56,7 @@ namespace WebApplication1.Controllers
 
                 var user = await userManager.FindByNameAsync(model.UserName);
 
-                if (user != null && ( user.UpdatedAt == null || user.UpdatedAt < DateTime.Now))
+                if (user != null && (user.UpdatedAt == null || user.UpdatedAt < DateTime.Now))
                 {
                     var token = await userManager.GenerateTwoFactorTokenAsync(user, TokenOptions.DefaultEmailProvider);
                     var dem = new DefaultEmailModel()
@@ -282,5 +283,57 @@ namespace WebApplication1.Controllers
 
             return View(posts);
         }
+
+
+        public IActionResult GoogleLogin()
+        {
+            var redirectUrl = Url.Action("GoogleResponse", "Account");
+            var properties = signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
+
+            return Challenge(properties, "Google");
+        }
+
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var info = await signInManager.GetExternalLoginInfoAsync();
+
+            if (info == null)
+                return RedirectToAction("Login");
+
+            var signInResult = await signInManager.ExternalLoginSignInAsync(
+                info.LoginProvider,
+                info.ProviderKey,
+                isPersistent: false);
+
+            if (signInResult.Succeeded)
+                return RedirectToAction("Index", "Home");
+
+            // If user does not exist → create one
+            var email = info.Principal.FindFirst(ClaimTypes.Email) 
+            ?? throw new Exception("Could not get email from Google's OAuth response");
+            
+            DateTime currentDateTime = DateTime.Now;
+            var name = email.Value.Split("@")[0];
+            var user = new User { 
+                UserName = name, 
+                Email = email.Value, 
+                CreatedAt= currentDateTime, 
+            };
+
+            var result = await userManager.CreateAsync(user);
+
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(user, "User");
+                await userManager.AddLoginAsync(user, info);
+                await signInManager.SignInAsync(user, isPersistent: false);
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Error", "Home");
+        }
+
+
     }
 }
