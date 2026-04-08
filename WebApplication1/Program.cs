@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using WebApplication1.Configurations;
 // using Microsoft.Extensions.DependencyInjection;
 // using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Hosting.Systemd;
 using WebApplication1.Data;
 using WebApplication1.Models;
 using WebApplication1.Services;
@@ -121,6 +122,7 @@ builder.Services.AddAuthorization(options =>
         policy.Requirements.Add(new OwnerAuthorizationRequirement()));
 });
 
+builder.Services.AddSystemd();
 
 
 // Add services to the container.

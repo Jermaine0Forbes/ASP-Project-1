@@ -1,11 +1,22 @@
 # Logs
 
+### 4-7-26
+
+#### helpful links
+
+- [How To Use Apache HTTP Server As Reverse-Proxy Using mod_proxy Extension](https://www.digitalocean.com/community/tutorials/how-to-use-apache-http-server-as-reverse-proxy-using-mod_proxy-extension)
+- [how to edit a config file in apache to allow reverse proxy](https://www.google.com/search?q=how+to+edit+a+config+file+in+apache+to+allow+reverse+proxy&oq=how+to+edit+a+config+file+in+apache+to+allow+reverse+proxy&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRigATIHCAYQIRirAtIBCTM0ODIxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [Host ASP.NET Core on Linux with Nginx](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-10.0&tabs=linux-ubuntu)
+- [how to make .net core app run on systemd](https://www.google.com/search?q=how+to+make+.net+core+app+run+on+systemd&oq=how+to+make+.net+core+app+run+on+systemd&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRifBTIHCAUQIRiPAtIBCTEzMTU5ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+
+
 ### 4-6-26
 
 #### helpful links
 
-- []()
-- []()
+- [install dotnet cli in linux](https://www.google.com/search?q=install+dotnet+cli+in+linux&oq=install+dotnet+cli+in+linux&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yCAgCEAAYFhgeMggIAxAAGBYYHjINCAQQABiGAxiABBiKBTINCAUQABiGAxiABBiKBTIKCAYQABiABBiiBNIBCDcxNTlqMGo0qAIBsAIB8QUM-0kU_9VD1A&sourceid=chrome&ie=UTF-8)
+- [.net identity result invalid username](https://www.google.com/search?q=.net+identity+result+invalid+username&sca_esv=11902b971e361d2f&biw=1737&bih=1039&sxsrf=ANbL-n5Tkky_cmpHdVO4QrkQn__1OoyUuw%3A1775518597628&ei=hUPUaZT_Je_tptQPkPqa0Q0&ved=0ahUKEwjU1baastqTAxXvtokEHRC9JtoQ4dUDCBE&uact=5&oq=.net+identity+result+invalid+username&gs_lp=Egxnd3Mtd2l6LXNlcnAiJS5uZXQgaWRlbnRpdHkgcmVzdWx0IGludmFsaWQgdXNlcm5hbWUyBRAhGKABMgUQIRigATIFECEYoAEyBRAhGKsCMgUQIRifBTIFECEYnwVIxU1Q3gdYpUxwBngBkAEAmAFvoAHAGqoBBDMyLje4AQPIAQD4AQGYAi2gAr8bwgIKEAAYRxjWBBiwA8ICBBAjGCfCAgoQABiABBgUGIcCwgIIEAAYgAQYsQPCAgsQABiABBixAxiDAcICBRAAGIAEwgIGEAAYFhgewgIHEAAYgAQYDcICBxAjGLACGCfCAggQABgWGB4YCpgDAIgGAZAGApIHBDM2LjmgB7qZArIHBDMwLjm4B68bwgcGMS40MS4zyAdXgAgB&sclient=gws-wiz-serp)
+- [c# how to slice string that has an email address](https://www.google.com/search?q=c%23+how+to+slice+string+that+has+an+email+address&sca_esv=11902b971e361d2f&biw=1737&bih=1039&sxsrf=ANbL-n7EQoqgHTqYjsdxI4Nl9LBLEBWE6w%3A1775519116404&ei=jEXUabepGP-2ptQPqu2OgQs&oq=c%23+how+to+slice+string+that+has+an+email&gs_lp=Egxnd3Mtd2l6LXNlcnAiKGMjIGhvdyB0byBzbGljZSBzdHJpbmcgdGhhdCBoYXMgYW4gZW1haWwqAggAMgUQIRigATIFECEYoAEyBRAhGKABMgUQIRigATIFECEYnwUyBRAhGJ8FMgUQIRifBTIFECEYnwVI5mNQwCdYzk9wA3gBkAEAmAGMAaABmg6qAQQxMC44uAEByAEA-AEBmAIVoALZDsICChAAGEcY1gQYsAPCAgYQABgWGB7CAgsQABiABBiKBRiGA8ICCBAAGIAEGKIEwgIFEAAY7wXCAgUQIRirApgDAIgGAZAGCJIHBTExLjEwoAeVaLIHBDguMTC4B9AOwgcGMC4xOS4yyAcngAgB&sclient=gws-wiz-serp)
 - [.net how to launch https profile](https://www.google.com/search?q=.net+how+to+launch+https+profile&oq=.net+how+to+launch+https+profile&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigAdIBCTE1MTY3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 - [.net show me an example of builder.Configuration.GetValue](https://www.google.com/search?q=.net+show+me+an+example+of++builder.Configuration.GetValue&sca_esv=b2c48e119f077edf&biw=1737&bih=1039&sxsrf=ANbL-n4E6GyLevUBcImsha6-XOGGwplrTQ%3A1775491232090&ei=oNjTabGdBeaU5OMPit2XuAw&ved=0ahUKEwix7cKhzNmTAxVmCnkGHYruBccQ4dUDCBE&uact=5&oq=.net+show+me+an+example+of++builder.Configuration.GetValue&gs_lp=Egxnd3Mtd2l6LXNlcnAiOi5uZXQgc2hvdyBtZSBhbiBleGFtcGxlIG9mICBidWlsZGVyLkNvbmZpZ3VyYXRpb24uR2V0VmFsdWUyBRAhGKABSMo4UNMFWKM0cAF4AZABAJgBbqABshCqAQQyMC4zuAEDyAEA-AEB-AECmAIYoAKQEcICChAAGEcY1gQYsAPCAggQABiABBixA8ICBRAAGIAEwgIEECMYJ8ICBhAAGBYYHsICCBAAGBYYHhgKwgIIEAAYiQUYogTCAgUQABjvBcICCBAAGIAEGKIEmAMAiAYBkAYIkgcEMTcuN6AH3tEBsgcEMTYuN7gHiRHCBwgxLjE3LjUuMcgHQYAIAQ&sclient=gws-wiz-serp)
 
