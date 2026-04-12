@@ -147,6 +147,11 @@ else
         await SeedData.Initialize(services);
     }
 }
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+
 app.UseMiddleware<ErrorLoggingMiddleware>();
 
 app.UseHttpsRedirection();
@@ -165,9 +170,5 @@ app.MapControllerRoute(
     .WithStaticAssets();
 // .WithStaticAssets().RequireRateLimiting("LoginPolicy");
 
-app.UseForwardedHeaders(new ForwardedHeadersOptions
-{
-    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-});
 
 app.Run();
