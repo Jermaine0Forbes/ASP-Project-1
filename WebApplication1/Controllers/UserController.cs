@@ -15,7 +15,8 @@ using System.ComponentModel;
 namespace WebApplication1.Controllers
 {
     public class UserController
-    (AppDBContext context, 
+    (
+        AppDBContext context,
     IAuthorizationService authorizationService,
     EmailService email
     ) : OwnerController(authorizationService)
@@ -110,7 +111,7 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            var invalidUser = await IsOwnerOrAuthorized(id);        
+            var invalidUser = await IsOwnerOrAuthorized(id);
             if (invalidUser)
             {
                 return Forbid();
@@ -188,7 +189,7 @@ namespace WebApplication1.Controllers
             var user = await _context.Users.FindAsync(id);
             if (user == null)
             {
-              return NotFound();
+                return NotFound();
             }
 
             // var es = new _email();
@@ -196,11 +197,11 @@ namespace WebApplication1.Controllers
             {
                 UserName = user.UserName ?? "",
                 Title = "test",
-                Description = "this is a test email that is from the user "+user.UserName,
+                Description = "this is a test email that is from the user " + user.UserName,
                 Url = $"{Request.Scheme}://{Request.Host}" ?? "",
             };
 
-            _email.Send( dem, "DefaultEmail", "jermaine0forbes@gmail.com");
+            _email.Send(dem, "DefaultEmail", "jermaine0forbes@gmail.com");
 
             return RedirectToAction(nameof(Index));
 

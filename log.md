@@ -1,5 +1,14 @@
 # Logs
 
+### 4-12-26
+
+I found out that whenever I accessed a route that forced you to be authorized I would be redirected to a google oauth  page. I found out that `options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;` is causing this so now I'm now I'm trying to create maybe a view or path for status errors.
+
+#### helpful links
+- [.net DefaultChallengeScheme options](https://www.google.com/search?q=.net+DefaultChallengeScheme+options&oq=.net+DefaultChallengeScheme+options&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRigAdIBCTE0NTU5ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [.net how to redirect a user if they're not authorized](https://www.google.com/search?q=.net+how+to+redirect+a+user+if+they%27re+not+authorized&oq=.net+how+to+redirect+a+user+if+they%27re+not+authorized&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRigAdIBCTIwNDUxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+
+
 ### 4-7-26
 
 #### helpful links

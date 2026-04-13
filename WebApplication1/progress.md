@@ -31,7 +31,8 @@ Trying to keep track of the little things that I need to do
 - ~~implement two factor authentication~~
 - ~~hide credentials that will be in appsettingsjson~~
 - ~~implement oauth 2 or oidc~~
-- deploy app to either to do, aws, or azure
+- ~~deploy app to either to do, aws, or azure~~
+- redirect to login if not authorized
 - upload a file
 - upload a file to aws or azure
 - create admin dashboard
@@ -127,5 +128,7 @@ dotnet add package Serilog.Sinks.Map
 dotnet add package Serilog.Sinks.Seq
 dotnet add package Serilog.Sinks.Console
 
+# command to publish your app
+dotnet publish -c Release -o insertPathToPublish
 
 ```

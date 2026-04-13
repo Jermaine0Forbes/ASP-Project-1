@@ -16,7 +16,8 @@ using System.Security.Claims;
 namespace WebApplication1.Controllers
 {
     public class AccountController
-    (SignInManager<User> signInManager,
+    (
+        SignInManager<User> signInManager,
     UserManager<User> userManager,
     AppDBContext context,
     IAuthorizationService authorizationService,
@@ -309,15 +310,16 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Index", "Home");
 
             // If user does not exist → create one
-            var email = info.Principal.FindFirst(ClaimTypes.Email) 
+            var email = info.Principal.FindFirst(ClaimTypes.Email)
             ?? throw new Exception("Could not get email from Google's OAuth response");
-            
+
             DateTime currentDateTime = DateTime.Now;
             var name = email.Value.Split("@")[0];
-            var user = new User { 
-                UserName = name, 
-                Email = email.Value, 
-                CreatedAt= currentDateTime, 
+            var user = new User
+            {
+                UserName = name,
+                Email = email.Value,
+                CreatedAt = currentDateTime,
             };
 
             var result = await userManager.CreateAsync(user);

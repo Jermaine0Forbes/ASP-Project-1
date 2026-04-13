@@ -16,6 +16,7 @@ using System.Threading.RateLimiting;
 using Serilog;
 using Serilog.AspNetCore;
 using Serilog.Events;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDBContext") ?? throw new InvalidOperationException("Connection string 'AppDBContext' not found.");
@@ -92,7 +93,8 @@ builder.Services.AddRateLimiter(options =>
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = IdentityConstants.ApplicationScheme;
-    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+    // options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 }).AddGoogle(options =>
 {
     options.ClientId =
@@ -108,7 +110,8 @@ builder.Services.AddAuthentication(options =>
 
     options.Scope.Add("profile");
     options.Scope.Add("email");
-});
+})
+.AddCookie();
 
 
 
