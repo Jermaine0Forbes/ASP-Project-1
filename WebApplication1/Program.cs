@@ -93,6 +93,7 @@ builder.Services.AddRateLimiter(options =>
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = IdentityConstants.ApplicationScheme;
+    // 
     // options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 }).AddGoogle(options =>
@@ -111,7 +112,11 @@ builder.Services.AddAuthentication(options =>
     options.Scope.Add("profile");
     options.Scope.Add("email");
 })
-.AddCookie();
+.AddCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+    // options.AccessDeniedPath = "";
+});
 
 
 

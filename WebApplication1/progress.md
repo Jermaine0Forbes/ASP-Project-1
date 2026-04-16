@@ -33,6 +33,7 @@ Trying to keep track of the little things that I need to do
 - ~~implement oauth 2 or oidc~~
 - ~~deploy app to either to do, aws, or azure~~
 - redirect to login if not authorized
+- create an error controller to negative status codes
 - upload a file
 - upload a file to aws or azure
 - create admin dashboard
@@ -94,8 +95,11 @@ dotnet ef migrations remove --context [YourDbContextName]
 # updating the database to the current migration
 dotnet ef database update --context [YourDbContextName]
 
-# just shows all the options/flags you can add when creating a controller
+# It's the help option that shows all the options/flags you can add when creating a controller
 dotnet aspnet-codegenerator controller -h
+
+# Create a new controller
+dotnet aspnet-codegenerator controller -name insertName -outDir insertFolderName
 
 # the initial tools you need to add if you are trying to use
 # the entity framework or the codegenerator command cli

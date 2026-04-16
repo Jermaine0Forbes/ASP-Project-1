@@ -1,10 +1,21 @@
 # Logs
 
+### 4-15-26
+
+#### helpful links
+- []()
+- [.net mv how to show page if controller return statuscode class](https://www.google.com/search?q=.net+mv+how+to+show+page+if+controller+return+statuscode+class&sca_esv=20900b575790d0b7&biw=1737&bih=1039&sxsrf=ANbL-n5koR5cQ126hYBmWwfqadKtGzBaGA%3A1776294620948&ei=3BrgabXKOa_IptQPzaiviQY&ved=0ahUKEwi1qJeP_fCTAxUvpIkEHU3UK2EQ4dUDCBE&uact=5&oq=.net+mv+how+to+show+page+if+controller+return+statuscode+class&gs_lp=Egxnd3Mtd2l6LXNlcnAiPi5uZXQgbXYgaG93IHRvIHNob3cgcGFnZSBpZiBjb250cm9sbGVyIHJldHVybiBzdGF0dXNjb2RlIGNsYXNzSL6cAlC-DFiH-QFwBHgBkAEAmAGFAaAB5SSqAQUxOC4yOLgBA8gBAPgBAZgCMKACxyTCAgoQABhHGNYEGLADwgIFEAAY7wXCAggQABiJBRiiBMICCBAhGKABGMMEwgIKECEYChigARjDBMICBBAhGArCAgcQIRgKGKABwgIFECEYqwLCAgUQIRifBZgDAOIDBRIBMSBAiAYBkAYIkgcFMTguMzCgB4OzArIHBTE0LjMwuAe7JMIHBjguMzkuMcgHS4AIAQ&sclient=gws-wiz-serp)
+- [with message: Package 'NuGet.Packaging' 6.12.1 has a known low severity vulnerability,](https://www.google.com/search?q=with+message%3A+Package+%27NuGet.Packaging%27+6.12.1+has+a+known+low+severity+vulnerability%2C&oq=with+message%3A+Package+%27NuGet.Packaging%27+6.12.1+has+a+known+low+severity+vulnerability%2C&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCjUwOTM1MWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
+- [warning CS8604: Possible null reference argument for parameter 'emailObject' in 'string EmailService.PopulateBody<T>(T emailObject, string template)'.](https://www.google.com/search?q=warning+CS8604%3A+Possible+null+reference+argument+for+parameter+%27emailObject%27+in+%27string+EmailService.PopulateBody%3CT%3E(T+emailObject%2C+string+template)%27.&oq=warning+CS8604%3A+Possible+null+reference+argument+for+parameter+%27emailObject%27+in+%27string+EmailService.PopulateBody%3CT%3E(T+emailObject%2C+string+template)%27.&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCjU2Mzg0OGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
+
+
 ### 4-12-26
 
 I found out that whenever I accessed a route that forced you to be authorized I would be redirected to a google oauth  page. I found out that `options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;` is causing this so now I'm now I'm trying to create maybe a view or path for status errors.
 
 #### helpful links
+- [ubuntu check if port is open](https://www.google.com/search?q=ubuntu+check+if+port+is+open&oq=ubuntu+check+if+port+is+open&gs_lcrp=EgZjaHJvbWUyDwgAEEUYORiRAhiABBiKBTIHCAEQABiABDIICAIQABgWGB4yCAgDEAAYFhgeMggIBBAAGBYYHjIICAUQABgWGB4yCAgGEAAYFhgeMggIBxAAGBYYHjIICAgQABgWGB4yCAgJEAAYFhge0gEIODc4M2owajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
+- [Deploy ASP.NET Core Applications on Linux With Apache](https://code-maze.com/aspnetcore-deploy-applications-on-linux-with-apache/#:~:text=Deploy%20the%20App%20and%20Run%20It%20in%20Kestrel&text=Next%2C%20let's%20publish%20the%20app,files%20in%20the%20specified%20location.&text=Application%20started.,Ctrl+C%20to%20shut%20down.&text=This%20makes%20a%20GET%20request,Best%20Practices%20eBook%20for%20FREE!&text=Now%20that%20we%20have%20it,as%20a%20reverse%20proxy%20server.)
 - [.net DefaultChallengeScheme options](https://www.google.com/search?q=.net+DefaultChallengeScheme+options&oq=.net+DefaultChallengeScheme+options&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRigAdIBCTE0NTU5ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 - [.net how to redirect a user if they're not authorized](https://www.google.com/search?q=.net+how+to+redirect+a+user+if+they%27re+not+authorized&oq=.net+how+to+redirect+a+user+if+they%27re+not+authorized&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRigAdIBCTIwNDUxajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 
