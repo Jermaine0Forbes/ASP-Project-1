@@ -32,8 +32,8 @@ Trying to keep track of the little things that I need to do
 - ~~hide credentials that will be in appsettingsjson~~
 - ~~implement oauth 2 or oidc~~
 - ~~deploy app to either to do, aws, or azure~~
-- redirect to login if not authorized
-- create an error controller to negative status codes
+- ~~redirect to login if not authorized~~
+- ~~create an error controller to route negative status codes~~
 - upload a file
 - upload a file to aws or azure
 - create admin dashboard

@@ -115,7 +115,7 @@ builder.Services.AddAuthentication(options =>
 .AddCookie(options =>
 {
     options.LoginPath = "/Account/Login";
-    // options.AccessDeniedPath = "";
+    options.AccessDeniedPath = "/Error/Index";
 });
 
 
@@ -151,7 +151,6 @@ else
     {
         var services = scope.ServiceProvider;
 
-        //    SeedData.Initialize(services);
         await SeedData.Initialize(services);
     }
 }
@@ -168,6 +167,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseRateLimiter();
 app.UseSerilogRequestLogging();
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
 
 app.MapStaticAssets();
