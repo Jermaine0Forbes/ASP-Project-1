@@ -34,7 +34,7 @@ Trying to keep track of the little things that I need to do
 - ~~deploy app to either to do, aws, or azure~~
 - ~~redirect to login if not authorized~~
 - ~~create an error controller to route negative status codes~~
-- upload a file
+- ~~upload a file~~
 - upload a file to aws or azure
 - create admin dashboard
 - create a claim

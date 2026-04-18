@@ -1,11 +1,17 @@
 # Logs
 
+
+### 4-18-26
+
+#### helpful links
+
+- [.net asp-action on forms](https://www.google.com/search?q=.net+asp-action+on+forms&oq=.net+asp-action+on+forms&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRigAdIBCDY2MDhqMGo3qAIIsAIB8QXyZu8TyGyvYw&sourceid=chrome&ie=UTF-8)
+- [.net mvc how to return json response](https://www.google.com/search?q=.net+mvc+how+to+return+json+response&oq=.net+mvc+how+to+return+json+response&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRirAjIHCAQQIRiPAtIBCTEwMDYyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [.net mv how to upload a file](https://www.google.com/search?q=.net+mv+how+to+upload+a+file&sca_esv=20900b575790d0b7&biw=1737&bih=1039&sxsrf=ANbL-n6QZz-5OOoRKc6voxkBw2YM3pl9-g%3A1776311303111&ei=B1zgaY7CBuehptQPx8HBqQE&ved=0ahUKEwjO4e2hu_GTAxXnkIkEHcdgMBUQ4dUDCBE&uact=5&oq=.net+mv+how+to+upload+a+file&gs_lp=Egxnd3Mtd2l6LXNlcnAiHC5uZXQgbXYgaG93IHRvIHVwbG9hZCBhIGZpbGUyBRAhGKABMgUQIRigATIFECEYqwIyBRAhGKsCMgUQIRifBTIFECEYnwUyBRAhGJ8FMgUQIRifBTIFECEYnwUyBRAhGJ8FSJsmUKwHWPskcAV4AZABAJgBdqABuQ-qAQQxMi44uAEDyAEA-AEBmAIZoAKNEMICChAAGEcY1gQYsAPCAgcQIRgKGKABwgIEECMYJ8ICCBAAGIkFGKIEwgIIEAAYgAQYogSYAwCIBgGQBgiSBwQxNi45oAeTdbIHBDExLjm4B_0PwgcGMS4yMi4yyAcxgAgB&sclient=gws-wiz-serp)
+
 ### 4-15-26
 
 #### helpful links
-- []()
-- []()
-- []()
 - [.net how to use viewbag](https://www.google.com/search?q=.net+how+to+use+viewbag&oq=.net+how+to+use+viewbag&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yCAgCEAAYFhgeMg0IAxAAGIYDGIAEGIoFMgoIBBAAGIAEGKIEMgcIBRAAGO8FMgcIBhAAGO8F0gEINDk3NWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
 - [.net mv how to show page if controller return statuscode class](https://www.google.com/search?q=.net+mv+how+to+show+page+if+controller+return+statuscode+class&sca_esv=20900b575790d0b7&biw=1737&bih=1039&sxsrf=ANbL-n5koR5cQ126hYBmWwfqadKtGzBaGA%3A1776294620948&ei=3BrgabXKOa_IptQPzaiviQY&ved=0ahUKEwi1qJeP_fCTAxUvpIkEHU3UK2EQ4dUDCBE&uact=5&oq=.net+mv+how+to+show+page+if+controller+return+statuscode+class&gs_lp=Egxnd3Mtd2l6LXNlcnAiPi5uZXQgbXYgaG93IHRvIHNob3cgcGFnZSBpZiBjb250cm9sbGVyIHJldHVybiBzdGF0dXNjb2RlIGNsYXNzSL6cAlC-DFiH-QFwBHgBkAEAmAGFAaAB5SSqAQUxOC4yOLgBA8gBAPgBAZgCMKACxyTCAgoQABhHGNYEGLADwgIFEAAY7wXCAggQABiJBRiiBMICCBAhGKABGMMEwgIKECEYChigARjDBMICBBAhGArCAgcQIRgKGKABwgIFECEYqwLCAgUQIRifBZgDAOIDBRIBMSBAiAYBkAYIkgcFMTguMzCgB4OzArIHBTE0LjMwuAe7JMIHBjguMzkuMcgHS4AIAQ&sclient=gws-wiz-serp)
 - [with message: Package 'NuGet.Packaging' 6.12.1 has a known low severity vulnerability,](https://www.google.com/search?q=with+message%3A+Package+%27NuGet.Packaging%27+6.12.1+has+a+known+low+severity+vulnerability%2C&oq=with+message%3A+Package+%27NuGet.Packaging%27+6.12.1+has+a+known+low+severity+vulnerability%2C&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCjUwOTM1MWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)

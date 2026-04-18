@@ -333,9 +333,38 @@ namespace WebApplication1.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return RedirectToAction("Error", "Home");
+            return RedirectToAction("Index", "Error", 500);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Upload(IFormFile file, string user)
+        {
+
+            if(file != null && file.Length > 0 )
+            {
+                string uploadsPath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot/uploads", user);
+                
+                if(!Directory.Exists(uploadsPath))
+                    Directory.CreateDirectory(uploadsPath);
+
+                string fullPath = Path.Combine(uploadsPath, file.FileName);
+
+                // Copy file content to a file stream on the disk
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+                
+                ViewBag.Message = "File uploaded successfully!";
+                ViewBag.Upload = fullPath;
+                
+            } else
+            {
+                ViewBag.Message = "The file cannot be uploaded";
+            }
+            return RedirectToAction("Profile", "Account");
+        }
 
     }
+
 }

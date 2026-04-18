@@ -4,3 +4,4 @@ node_modules
 .vscode
 WebApplication1/Logs/*
 .env
+WebApplication1/wwwroot/uploads/*
