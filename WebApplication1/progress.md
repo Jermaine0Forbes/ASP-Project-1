@@ -135,4 +135,8 @@ dotnet add package Serilog.Sinks.Console
 # command to publish your app
 dotnet publish -c Release -o insertPathToPublish
 
+# package to connect to Azure Blob service
+dotnet add package Azure.Storage.Blobs
+
+
 ```
