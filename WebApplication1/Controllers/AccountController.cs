@@ -57,7 +57,7 @@ namespace WebApplication1.Controllers
 
                 var user = await userManager.FindByNameAsync(model.UserName);
 
-                if (user != null && (user.UpdatedAt == null || user.UpdatedAt < DateTime.Now))
+                if (user != null && (user.OtpExpirationDate == null || user.OtpExpirationDate < DateTime.Now))
                 {
                     var token = await userManager.GenerateTwoFactorTokenAsync(user, TokenOptions.DefaultEmailProvider);
                     var dem = new DefaultEmailModel()
@@ -115,7 +115,7 @@ namespace WebApplication1.Controllers
             if (isValid)
             {
                 DateTime newDateTime = DateTime.Now.AddDays(5);
-                user.UpdatedAt = newDateTime;
+                user.OtpExpirationDate = newDateTime;
                 _context.Update(user);
                 await userManager.SetTwoFactorEnabledAsync(user, true);
                 await signInManager.SignInAsync(user, false);
@@ -138,11 +138,13 @@ namespace WebApplication1.Controllers
 
 
                 DateTime currentDateTime = DateTime.Now;
+                DateTime futureDateTime = DateTime.Now.AddDays(5);
                 User user = new()
                 {
                     Email = model.Email,
                     UserName = model.UserName ?? "",
                     CreatedAt = currentDateTime,
+                    OtpExpirationDate = futureDateTime,
                 };
 
                 var doesNameExist = await userManager.FindByNameAsync(user.UserName!);

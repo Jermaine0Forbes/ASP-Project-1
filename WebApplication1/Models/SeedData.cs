@@ -48,11 +48,14 @@ public static class SeedData
                 return;   // DB has been seeded
             }
 
+            DateTime currentDateTime = DateTime.Now;
+
             var fakeUsers = new Faker<User>()
             .RuleFor(u => u.UserName, f => f.Internet.UserName())
             .RuleFor(u => u.Email, f => f.Internet.Email())
             .RuleFor(u => u.PasswordHash, f => f.Internet.Password())
-            .RuleFor(u => u.CreatedAt, f => f.Date.Soon());
+            .RuleFor(u => u.CreatedAt, f => currentDateTime)
+            .RuleFor(u => u.OtpExpirationDate, f => currentDateTime);
             // .FinishWith((f, u) =>
             // {
             //     context.Posts.Add(new Post
@@ -152,7 +155,7 @@ public static class SeedData
 
         return new Post
         {
-            Title = post.Title + ":" + u.UserName + ": Title",
+            Title = u.UserName  + " Post : " + post.Title ,
             Body = post.Body,
             CreatedAt = u.CreatedAt,
             // UserId = u.Id,
