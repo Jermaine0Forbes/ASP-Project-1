@@ -138,5 +138,7 @@ dotnet publish -c Release -o insertPathToPublish
 # package to connect to Azure Blob service
 dotnet add package Azure.Storage.Blobs
 
+# set a secret
+dotnet user-secrets set "GmailOptions:Password" "123456"
 
 ```

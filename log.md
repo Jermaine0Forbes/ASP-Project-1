@@ -1,10 +1,22 @@
 # Logs
 
-
-### 4-19-26
+### 5-3-26
 
 #### helpful links
 
+- []()
+- []()
+- [.net how to set up a connection string from azure blob](https://www.google.com/search?q=.net+how+to+set+up+a+connection+string+from+azure+blob&sca_esv=35f533f402643216&sxsrf=ANbL-n6-_B1qyO4HLTJdPxxUzWhcZUchKw%3A1776734661531&ei=xdHmaeWRILXcp84PienGuQM&biw=1737&bih=1093&ved=0ahUKEwiliPGy5P2TAxU17skDHYm0MTcQ4dUDCBE&uact=5&oq=.net+how+to+set+up+a+connection+string+from+azure+blob&gs_lp=Egxnd3Mtd2l6LXNlcnAiNi5uZXQgaG93IHRvIHNldCB1cCBhIGNvbm5lY3Rpb24gc3RyaW5nIGZyb20gYXp1cmUgYmxvYjIIEAAYiQUYogQyBRAAGO8FMggQABiABBiiBDIIEAAYgAQYogQyCBAAGIkFGKIESJksULIHWJEocAh4AZABAJgBfKAB0AyqAQM4Lji4AQPIAQD4AQGYAhOgAoQJwgIKEAAYRxjWBBiwA8ICBBAhGArCAgoQIRgKGKABGMMEmAMAiAYBkAYIkgcEMTIuN6AHylGyBwM0Lje4B-0IwgcGNi4xMi4xyAcagAgB&sclient=gws-wiz-serp)
+- [.net mvc how to rename file when uploading a file](https://www.google.com/search?q=.net+mvc+how+to+rename+file+when+uploading+a+file&sca_esv=35f533f402643216&sxsrf=ANbL-n6YBvsrw3dEPU7i-w6RuS3trk7Ubg%3A1776734268110&ei=PNDmacG7Bv_gp84PjvuyiAQ&biw=1737&bih=1093&ved=0ahUKEwjByaT34v2TAxV_8MkDHY69DEEQ4dUDCBE&uact=5&oq=.net+mvc+how+to+rename+file+when+uploading+a+file&gs_lp=Egxnd3Mtd2l6LXNlcnAiMS5uZXQgbXZjIGhvdyB0byByZW5hbWUgZmlsZSB3aGVuIHVwbG9hZGluZyBhIGZpbGUyCBAAGIkFGKIEMgUQABjvBTIFEAAY7wUyBRAAGO8FSM4QUP8IWNcMcAF4AJABAJgBe6ABrwOqAQMxLjO4AQPIAQD4AQGYAgWgArwDwgIIEAAY7wUYsAPCAgsQABiABBiiBBiwA8ICBBAhGArCAgoQIRgKGKABGMMEmAMAiAYBkAYDkgcDMi4zoAeqEbIHAzEuM7gHugPCBwMxLjTIBweACAE&sclient=gws-wiz-serp)
+- [.net mvc how to get a file url from azure blob](https://www.google.com/search?q=.net+mvc+how+to+get+a+file+url+from+azure+blob&sca_esv=35f533f402643216&sxsrf=ANbL-n4T2_KcAGMGQkiwkdFKZo2T43v3Vg%3A1776734106786&ei=ms_maePZL-njp84P9deRmAw&biw=1737&bih=1093&ved=0ahUKEwjjjq6q4v2TAxXp8ckDHfVrBMMQ4dUDCBE&uact=5&oq=.net+mvc+how+to+get+a+file+url+from+azure+blob&gs_lp=Egxnd3Mtd2l6LXNlcnAiLi5uZXQgbXZjIGhvdyB0byBnZXQgYSBmaWxlIHVybCBmcm9tIGF6dXJlIGJsb2IyBRAAGO8FMggQABiJBRiiBDIIEAAYiQUYogQyBRAAGO8FMggQABiJBRiiBEjrQFCwEFjhP3ACeAGQAQCYAZcBoAHzBqoBAzMuNbgBA8gBAPgBAZgCCqACnAfCAgoQABhHGNYEGLADwgIEECMYJ8ICCBAAGIAEGKIEwgIIECEYoAEYwwTCAgoQIRgKGKABGMMEmAMAiAYBkAYIkgcDNC42oAfyI7IHAzIuNrgHlQfCBwUyLjcuMcgHEoAIAQ&sclient=gws-wiz-serp)
+- [Quickstart: Azure Blob Storage client library for .NET](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet?tabs=net-cli%2Cmanaged-identity%2Croles-azure-portal%2Csign-in-azure-cli%2Cidentity-visual-studio&pivots=blob-storage-quickstart-scratch#upload-a-blob-to-a-container)
+- [.net mvc how to upload a file to azure](https://www.google.com/search?q=.net+mvc+how+to+upload+a+file+to+azure&sca_esv=35f533f402643216&sxsrf=ANbL-n4BJUXNAFYrl08aG_U6xtdk1LpqlA%3A1776733646425&ei=zs3maYDVGandwN4P7s-VuQI&biw=1737&bih=1093&ved=0ahUKEwiA9OvO4P2TAxWpLtAFHe5nJScQ4dUDCBE&uact=5&oq=.net+mvc+how+to+upload+a+file+to+azure&gs_lp=Egxnd3Mtd2l6LXNlcnAiJi5uZXQgbXZjIGhvdyB0byB1cGxvYWQgYSBmaWxlIHRvIGF6dXJlMggQABiJBRiiBDIIEAAYiQUYogQyCBAAGIkFGKIEMgUQABjvBUiUClDNBVjMCHABeAGQAQCYAWWgAYEDqgEDMi4yuAEDyAEA-AEBmAIFoAKOA8ICChAAGEcY1gQYsAPCAggQIRigARjDBJgDAIgGAZAGCJIHAzMuMqAHkw2yBwMyLjK4B4oDwgcFMS4zLjHIBwiACAE&sclient=gws-wiz-serp)
+- [css make footer stick to bottom](https://www.google.com/search?q=css+make+footer+stick+to+bottom&oq=css+make+footer&gs_lcrp=EgZjaHJvbWUqBwgAEAAYgAQyBwgAEAAYgAQyBggBEEUYOTIHCAIQABiABDIICAMQABgWGB4yCAgEEAAYFhgeMggIBRAAGBYYHjIICAYQABgWGB4yCAgHEAAYFhgeMggICBAAGBYYHjIICAkQABgWGB7SAQg0OTEwajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+
+### 4-30-26
+
+#### helpful links
+- [Confusion resolving NuGet package vulnerabilities](https://stackoverflow.com/questions/79910943/confusion-resolving-nuget-package-vulnerabilities)
 
 ### 4-18-26
 
