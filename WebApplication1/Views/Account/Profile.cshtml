@@ -3,6 +3,7 @@
 @inject UserManager<User> UserManager
 @{
     ViewData["Title"] = @UserManager.GetUserName(User) + "'s Profile";
+    var user = await UserManager.GetUserAsync(User);
 }
 
 <section id="profile">
@@ -14,15 +15,15 @@
         <div class="row">
             <div class="col-sm">
                 <div id="card-img-empty">
-                    @if(ViewBag.Upload != null)
+                    @if(user?.Image != null)
                     {
-                        <img src="@ViewBag.Message" height="100%" width="100%" />
+                        <img src="~/uploads/@UserManager.GetUserId(User)/@user.Image" height="100%" width="100%" />
                     }
 
                 </div>
                 <form asp-controller="Account" asp-action="Upload" method="post" enctype="multipart/form-data">
                     <input type="file" name="file"/>
-                    <input type="hidden" name="user" value="@UserManager.GetUserId(User)"/>
+                    <input type="hidden" name="userId" value="@UserManager.GetUserId(User)"/>
                     <button type="submit">Upload Image</button>
                 </form>
             </div>

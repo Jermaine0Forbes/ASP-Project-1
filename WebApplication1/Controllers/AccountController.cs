@@ -339,14 +339,20 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Upload(IFormFile file, string user)
+        public async Task<IActionResult> Upload(IFormFile file, string userId)
         {
 
             if(file != null && file.Length > 0 )
             {
-                string uploadsPath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot/uploads", user);
-                
-                if(!Directory.Exists(uploadsPath))
+                string? uploadsPath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot/uploads", userId) ;
+                var user = await userManager.GetUserAsync(User) ?? throw new Exception("User is not identified");
+
+                if (uploadsPath == null)
+                {
+                   throw new Exception("the upload path is null");
+                }
+
+                if (!Directory.Exists(uploadsPath))
                     Directory.CreateDirectory(uploadsPath);
 
                 string fullPath = Path.Combine(uploadsPath, file.FileName);
@@ -355,6 +361,15 @@ namespace WebApplication1.Controllers
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
+                }
+
+                user.Image = file.FileName;
+
+                var result = await userManager.UpdateAsync(user);
+
+                if (!result.Succeeded)
+                {
+                    throw new Exception("User profile's image path has not been updated");
                 }
                 
                 ViewBag.Message = "File uploaded successfully!";
