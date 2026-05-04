@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.Extensions.Configuration
 @model IEnumerable<WebApplication1.Models.Post>
 @inject UserManager<User> UserManager
+@inject IConfiguration Configuration
 @{
     ViewData["Title"] = @UserManager.GetUserName(User) + "'s Profile";
     var user = await UserManager.GetUserAsync(User);
@@ -15,9 +17,13 @@
         <div class="row">
             <div class="col-sm">
                 <div id="card-img-empty">
-                    @if(user?.Image != null)
+                    @if(Configuration["AzureOptions:Storage"] != null && user?.Image != null )
                     {
-                        <img src="~/uploads/@UserManager.GetUserId(User)/@user.Image" height="100%" width="100%" />
+                        <img src="@user?.Image" height="100%" width="100%" />
+                    }
+                    else if (user?.Image != null)
+                    {
+                        <img src="~/uploads/@UserManager.GetUserId(User)/@user.Image"  width="100%" />
                     }
 
                 </div>

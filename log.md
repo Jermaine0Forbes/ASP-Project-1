@@ -2,6 +2,34 @@
 
 ### 5-3-26
 
+#### update user 
+
+```
+    // 2. Update properties
+    user.Email = newEmail;
+    user.UserName = newEmail; // Often synced with Email
+
+    // 3. Persist changes
+    var result = await _userManager.UpdateAsync(user);
+
+```
+
+#### get user data through razor
+
+```
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+
+@if (user != null)
+{
+    <h4>Welcome, @user.FirstName!</h4>
+    <p>Email: @user.Email</p>
+}
+
+
+```
+
 #### to update ef tools 
 
 ```
@@ -11,6 +39,8 @@ dotnet tool update --global dotnet-ef
 #### helpful links
 
 - []()
+- [.net userManager update user](https://www.google.com/search?q=.net+userManager+update+user&oq=.net+userManager+update+user&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRiPAtIBCDU4OThqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
+- [.net mvc razor get user data](https://www.google.com/search?q=.net+mvc+razor+get+user+data&oq=.net+mvc+razor+get+user+data&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRirAjIHCAYQIRirAjIHCAcQIRifBTIHCAgQIRifBTIHCAkQIRifBdIBCTEyMjQzajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 - [.net mvc datetime 5 days from now](https://www.google.com/search?q=.net+mvc+datetime+5+days+from+now&oq=.net+mvc+datetime+5+days+from+now&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRirAjIHCAYQIRifBdIBCDkzNTlqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
 - [.net how to set up a connection string from azure blob](https://www.google.com/search?q=.net+how+to+set+up+a+connection+string+from+azure+blob&sca_esv=35f533f402643216&sxsrf=ANbL-n6-_B1qyO4HLTJdPxxUzWhcZUchKw%3A1776734661531&ei=xdHmaeWRILXcp84PienGuQM&biw=1737&bih=1093&ved=0ahUKEwiliPGy5P2TAxU17skDHYm0MTcQ4dUDCBE&uact=5&oq=.net+how+to+set+up+a+connection+string+from+azure+blob&gs_lp=Egxnd3Mtd2l6LXNlcnAiNi5uZXQgaG93IHRvIHNldCB1cCBhIGNvbm5lY3Rpb24gc3RyaW5nIGZyb20gYXp1cmUgYmxvYjIIEAAYiQUYogQyBRAAGO8FMggQABiABBiiBDIIEAAYgAQYogQyCBAAGIkFGKIESJksULIHWJEocAh4AZABAJgBfKAB0AyqAQM4Lji4AQPIAQD4AQGYAhOgAoQJwgIKEAAYRxjWBBiwA8ICBBAhGArCAgoQIRgKGKABGMMEmAMAiAYBkAYIkgcEMTIuN6AHylGyBwM0Lje4B-0IwgcGNi4xMi4xyAcagAgB&sclient=gws-wiz-serp)
 - [.net mvc how to rename file when uploading a file](https://www.google.com/search?q=.net+mvc+how+to+rename+file+when+uploading+a+file&sca_esv=35f533f402643216&sxsrf=ANbL-n6YBvsrw3dEPU7i-w6RuS3trk7Ubg%3A1776734268110&ei=PNDmacG7Bv_gp84PjvuyiAQ&biw=1737&bih=1093&ved=0ahUKEwjByaT34v2TAxV_8MkDHY69DEEQ4dUDCBE&uact=5&oq=.net+mvc+how+to+rename+file+when+uploading+a+file&gs_lp=Egxnd3Mtd2l6LXNlcnAiMS5uZXQgbXZjIGhvdyB0byByZW5hbWUgZmlsZSB3aGVuIHVwbG9hZGluZyBhIGZpbGUyCBAAGIkFGKIEMgUQABjvBTIFEAAY7wUyBRAAGO8FSM4QUP8IWNcMcAF4AJABAJgBe6ABrwOqAQMxLjO4AQPIAQD4AQGYAgWgArwDwgIIEAAY7wUYsAPCAgsQABiABBiiBBiwA8ICBBAhGArCAgoQIRgKGKABGMMEmAMAiAYBkAYDkgcDMi4zoAeqEbIHAzEuM7gHugPCBwMxLjTIBweACAE&sclient=gws-wiz-serp)

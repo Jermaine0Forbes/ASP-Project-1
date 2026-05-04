@@ -21,6 +21,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDBContext") ?? throw new InvalidOperationException("Connection string 'AppDBContext' not found.");
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("GmailOptions") ?? throw new InvalidOperationException("GmailOptions not found."));
+builder.Services.Configure<AzureSettings>(builder.Configuration.GetSection("AzureOptions")?? throw new InvalidOperationException("AzureOptions not found."));
+
 builder.Services.AddDbContext<AppDBContext>(options =>
 {
     options.UseSqlServer(connectionString);

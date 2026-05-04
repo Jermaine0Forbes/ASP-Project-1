@@ -6,22 +6,29 @@ using Microsoft.AspNetCore.RateLimiting;
 using WebApplication1.Models;
 using WebApplication1.ViewModels;
 using WebApplication1.Data;
+using WebApplication1.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using WebApplication1.Services;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.Security.Claims;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Azure.Storage.Sas;
+using Microsoft.Extensions.Options;
 
 namespace WebApplication1.Controllers
 {
     public class AccountController
     (
-        SignInManager<User> signInManager,
+    SignInManager<User> signInManager,
     UserManager<User> userManager,
     AppDBContext context,
     IAuthorizationService authorizationService,
-    EmailService email
+    EmailService email,
+    IOptions<AzureSettings> azure
+
     ) : OwnerController(authorizationService)
     {
         private readonly SignInManager<User> signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
@@ -30,6 +37,8 @@ namespace WebApplication1.Controllers
         private readonly AppDBContext _context = context;
 
         private readonly EmailService _email = email;
+
+        private readonly AzureSettings _azure = azure.Value;
 
 
         public IActionResult Login()
@@ -342,28 +351,76 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Upload(IFormFile file, string userId)
         {
 
-            if(file != null && file.Length > 0 )
+            if (file != null && file.Length > 0)
             {
-                string? uploadsPath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot/uploads", userId) ;
                 var user = await userManager.GetUserAsync(User) ?? throw new Exception("User is not identified");
 
-                if (uploadsPath == null)
+                string connectionString = _azure.Storage;
+                var blobServiceClient = new BlobServiceClient(connectionString);
+
+                if (blobServiceClient != null)
                 {
-                   throw new Exception("the upload path is null");
+
+                    var containerClient = blobServiceClient.GetBlobContainerClient("uploads");
+
+                    // Ensure container exists
+                    await containerClient.CreateIfNotExistsAsync();
+
+                    // Get a reference to the blob
+                    var blobClient = containerClient.GetBlobClient(file.FileName);
+
+                    // Upload the file stream
+                    using var stream = file.OpenReadStream();
+                    await blobClient.UploadAsync(stream, new BlobHttpHeaders { ContentType = file.ContentType });
+
+                    // Check if the client can generate a SAS URI
+                    if (blobClient.CanGenerateSasUri)
+                    {
+                        var prop = await blobClient.GetPropertiesAsync();
+
+                        BlobSasBuilder sasBuilder = new BlobSasBuilder()
+                        {
+                            BlobContainerName = prop.GetRawResponse().Headers.FirstOrDefault(h => h.Name == "x-ms-meta-container").Value ?? "uploads",
+                            BlobName = blobClient.Name,
+                            Resource = "b",
+                            ExpiresOn = DateTimeOffset.UtcNow.AddHours(1) // Link valid for 1 hour
+                        };
+
+                        sasBuilder.SetPermissions(BlobSasPermissions.Read);
+
+                        user.Image = blobClient.GenerateSasUri(sasBuilder).ToString();
+                    }else
+                    {
+                        user.Image = blobClient.Name;
+                    }
+
+                }
+                else
+                {
+                    string? uploadsPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads", userId);
+
+                    if (uploadsPath == null)
+                    {
+                        throw new Exception("the upload path is null");
+                    }
+
+                    if (!Directory.Exists(uploadsPath))
+                        Directory.CreateDirectory(uploadsPath);
+
+                    string fullPath = Path.Combine(uploadsPath, file.FileName);
+
+                    // Copy file content to a file stream on the disk
+                    using (var stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+
+                    user.Image = file.FileName;
+
                 }
 
-                if (!Directory.Exists(uploadsPath))
-                    Directory.CreateDirectory(uploadsPath);
 
-                string fullPath = Path.Combine(uploadsPath, file.FileName);
 
-                // Copy file content to a file stream on the disk
-                using (var stream = new FileStream(fullPath, FileMode.Create))
-                {
-                    await file.CopyToAsync(stream);
-                }
-
-                user.Image = file.FileName;
 
                 var result = await userManager.UpdateAsync(user);
 
@@ -371,11 +428,11 @@ namespace WebApplication1.Controllers
                 {
                     throw new Exception("User profile's image path has not been updated");
                 }
-                
+
                 ViewBag.Message = "File uploaded successfully!";
-                ViewBag.Upload = fullPath;
-                
-            } else
+
+            }
+            else
             {
                 ViewBag.Message = "The file cannot be uploaded";
             }

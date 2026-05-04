@@ -8,7 +8,6 @@ using System.Web;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
 using System.Text;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using WebApplication1.Interfaces;
 using System.Threading.Tasks;
 
