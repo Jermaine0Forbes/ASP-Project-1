@@ -1,0 +1,15 @@
+
+<div class="account-container">
+    <div class="account-box">
+        <h2 class="text-center mb-4">Confirm Email</h2>
+        <p> Check your email so that you can be verified</p>
+        <a asp-controller="Home" asp-action="Index"> Go back home</a>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}

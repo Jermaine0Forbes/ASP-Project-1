@@ -39,6 +39,7 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [EnableRateLimiting("LoginPolicy")]
         [ValidateAntiForgeryToken]
@@ -46,19 +47,8 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
 
-                if (!result.Succeeded)
-                {
-                    ModelState.AddModelError("", "username or password is incorrect.");
-                    return View(model);
-                }
-                if (result.IsNotAllowed)
-                {
-                    Console.WriteLine("is not allowed");
-                }
-
-                var user = await userManager.FindByNameAsync(model.UserName);
+                var user = await userManager.FindByNameAsync(model.UserName) ?? throw new Exception("Cannot find User");
 
                 if (user != null && (user.OtpExpirationDate == null || user.OtpExpirationDate < DateTime.Now))
                 {
@@ -76,6 +66,25 @@ namespace WebApplication1.Controllers
                     return RedirectToAction("VerifyOtp");
                 }
 
+
+                var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
+
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", "username or password is incorrect.");
+                    return View(model);
+                }
+                if (result.IsNotAllowed)
+                {
+                    Console.WriteLine("is not allowed");
+                }
+
+
+                var roles = await GetRoles(user!);
+                if (roles.Contains("Admin"))
+                {
+                    return RedirectToAction("Index", "Admin");
+                }
                 else
                 {
                     return RedirectToAction("Index", "Home");
@@ -86,11 +95,15 @@ namespace WebApplication1.Controllers
             return View(model);
         }
 
+        public async Task<List<string>> GetRoles(User user)
+        {
+            var roles = await userManager.GetRolesAsync(user);
+            return [.. roles];
+        }
+
         [HttpGet]
         public IActionResult VerifyOtp()
         {
-
-
             return View();
         }
 
@@ -118,11 +131,21 @@ namespace WebApplication1.Controllers
             if (isValid)
             {
                 DateTime newDateTime = DateTime.Now.AddDays(5);
+                var roles = await GetRoles(user);
                 user.OtpExpirationDate = newDateTime;
                 _context.Update(user);
                 await userManager.SetTwoFactorEnabledAsync(user, true);
                 await signInManager.SignInAsync(user, false);
-                return RedirectToAction("Index", "Home");
+                
+                if (roles.Contains("Admin"))
+                {
+                    return RedirectToAction("Index", "Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+
+                }
             }
 
             ModelState.AddModelError("", "Invalid OTP");
@@ -133,6 +156,7 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -169,7 +193,7 @@ namespace WebApplication1.Controllers
                     token = await userManager.GenerateEmailConfirmationTokenAsync(user);
 
                     // 2. Create confirmation link
-                    var confirmationLink = Url.Action("ConfirmEmail", "Account",
+                    var confirmationLink = Url.Action("VerifyingEmail", "Account",
                         new { userId = user.Id, token = token }, Request.Scheme);
 
                     var cem = new ConfirmationEmailModel()
@@ -184,7 +208,7 @@ namespace WebApplication1.Controllers
                 }
                 if (role != null && role.Succeeded && token != null)
                 {
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("ConfirmEmail", "Account");
                 }
                 else
                 {
@@ -202,15 +226,16 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
         [HttpGet]
-        public async Task<IActionResult> ConfirmEmail(VerifyEmailViewModel model)
+        public async Task<IActionResult> VerifyingEmail(VerifyEmailViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = await userManager.FindByIdAsync(model.userId!);
                 if (user == null || model.token == null)
                 {
-                    ModelState.AddModelError("", "Something is wrong!");
+                    TempData["ErrorMsg"] = "Your username or token does not exist";
                     return RedirectToAction("Error", "Home");
                 }
 
@@ -218,6 +243,7 @@ namespace WebApplication1.Controllers
                 var result = await userManager.ConfirmEmailAsync(user, model.token);
                 if (!result.Succeeded)
                 {
+                    TempData["ErrorMsg"] = "Your username or token could not be verified";
                     return RedirectToAction("Error", "Home");
                 }
 
@@ -228,6 +254,13 @@ namespace WebApplication1.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail()
+        {
+            return View();
+        }
+
         public IActionResult ChangePassword(string username)
         {
             if (string.IsNullOrEmpty(username))
@@ -236,6 +269,7 @@ namespace WebApplication1.Controllers
             }
             return View(new ChangePasswordViewModel { Email = username });
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -277,7 +311,6 @@ namespace WebApplication1.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
 
         public async Task<IActionResult> Profile()
         {

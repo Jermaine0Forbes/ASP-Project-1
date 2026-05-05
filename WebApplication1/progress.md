@@ -39,8 +39,9 @@ Trying to keep track of the little things that I need to do
 - ~~upload a file to azure~~
 - ~~create azure service file~~
 - create admin dashboard
-    - create admin controller
+    - ~~create admin controller~~
     - create index, users, and setting pages
+    - create settings model and migration
     - create shared layout, and stylize
     - implement ip tracking graph
     - implement post creation graph
