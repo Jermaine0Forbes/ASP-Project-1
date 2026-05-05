@@ -35,15 +35,21 @@ Trying to keep track of the little things that I need to do
 - ~~redirect to login if not authorized~~
 - ~~create an error controller to route negative status codes~~
 - ~~upload a file~~
-- upload a file to aws or azure
+- ~~create OTP expiration column in user~~
+- upload a file to azure
+- create azure service file
+- create another email account
 - create admin dashboard
 - create a claim
 - create a policy
+- add payment gateway like stripe
 - possibly add guard clauses
 - split logs for requests, and sql commands
+- upload a file to aws
+- implement github oauth
+- implement token based auth for azure
 - verify or implement error logging
 - add isOwnerOrAuthorized into service
-- create OTP expiration column in user
 - create an environment variable that holds otp expiration, and other things
 - set up NuGet packages on vscode
 

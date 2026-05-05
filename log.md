@@ -1,5 +1,18 @@
 # Logs
 
+
+### 5-5-26
+
+#### helpful links
+
+- []()
+- []()
+- [.net how to azure blob with token based authentication](https://www.google.com/search?q=.net+how+to+azure+blob+with+token+based+authentication&oq=.net+how+to+azure+blob+with+token+based+authentication&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRirAjIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBTIHCAgQIRifBTIHCAkQIRifBdIBCTExNTg3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [Access Blob Storage](https://learn.microsoft.com/en-us/entra/identity-platform/multi-service-web-app-access-storage?tabs=azure-portal%2Cprogramming-language-csharp#access-blob-storage)
+- ['BlobClient' does not contain a definition for 'GetRawResponse' and no accessible extension method 'GetRawResponse' accepting a first argument of type 'BlobClient' could be found (are you missing a using directive or an assembly reference?)](https://www.google.com/search?q=%27BlobClient%27+does+not+contain+a+definition+for+%27GetRawResponse%27+and+no+accessible+extension+method+%27GetRawResponse%27+accepting+a+first+argument+of+type+%27BlobClient%27+could+be+found+%28are+you+missing+a+using+directive+or+an+assembly+reference%3F%29&oq=%27BlobClient%27+does+not+contain+a+definition+for+%27GetRawResponse%27+and+no+accessible+extension+method+%27GetRawResponse%27+accepting+a+first+argument+of+type+%27BlobClient%27+could+be+found+%28are+you+missing+a+using+directive+or+an+assembly+reference%3F%29&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBBzQzOGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
+- [.net elseif razor](https://www.google.com/search?q=.net+elseif+razor&oq=.net+elseif+razor&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBTIHCAgQIRifBTIHCAkQIRiPAtIBCDgzNzVqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
+- [.net get configuration in razor](https://www.google.com/search?q=.net+get+configuration+in+razor&sca_esv=3952bdc93efbafc6&biw=1707&bih=898&sxsrf=ANbL-n5JUxrnpqoNQTBaefRcY8kYrX2F2Q%3A1777876504761&ei=GD74aaqXLrOuwbkPhtGjmQQ&ved=0ahUKEwiqg5WMgp-UAxUzVzABHYboKEMQ4dUDCBE&uact=5&oq=.net+get+configuration+in+razor&gs_lp=Egxnd3Mtd2l6LXNlcnAiHy5uZXQgZ2V0IGNvbmZpZ3VyYXRpb24gaW4gcmF6b3IyBRAhGKABMgUQIRigATIFECEYoAEyBRAhGKABMgUQIRifBTIFECEYnwUyBRAhGJ8FMgUQIRifBTIFECEYnwVI5FRQ1glYhFNwBngBkAEAmAFZoAHLEKoBAjMxuAEDyAEA-AEBmAIloAKQEsICChAAGEcY1gQYsAPCAg4QABjkAhjWBBiwA9gBAcICFxAuGNwGGLgGGNoGGNgCGMgDGLAD2AEBwgIEECMYJ8ICChAAGIAEGBQYhwLCAgUQABiABMICBhAAGBYYHsICBRAAGO8FwgIIEAAYiQUYogTCAgcQABiABBgNwgIGEAAYHhgNwgIIEAAYFhgeGArCAggQABgFGB4YDcICBRAhGKsCmAMAiAYBkAYOugYGCAEQARgJkgcCMzegB9n7AbIHAjMxuAfrEcIHCTAuMTIuMjQuMcgHhQGACAE&sclient=gws-wiz-serp)
+
 ### 5-3-26
 
 #### update user 
@@ -38,7 +51,6 @@ dotnet tool update --global dotnet-ef
 
 #### helpful links
 
-- []()
 - [.net userManager update user](https://www.google.com/search?q=.net+userManager+update+user&oq=.net+userManager+update+user&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRiPAtIBCDU4OThqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
 - [.net mvc razor get user data](https://www.google.com/search?q=.net+mvc+razor+get+user+data&oq=.net+mvc+razor+get+user+data&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRirAjIHCAYQIRirAjIHCAcQIRifBTIHCAgQIRifBTIHCAkQIRifBdIBCTEyMjQzajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 - [.net mvc datetime 5 days from now](https://www.google.com/search?q=.net+mvc+datetime+5+days+from+now&oq=.net+mvc+datetime+5+days+from+now&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRirAjIHCAYQIRifBdIBCDkzNTlqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
