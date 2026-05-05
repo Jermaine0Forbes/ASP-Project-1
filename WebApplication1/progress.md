@@ -90,6 +90,7 @@ dotnet  new mvc -o insertNameOfFolder
 # and creates a database connection to an sql server
 dotnet aspnet-codegenerator controller -name insertNameOfController -m insertNameOfModel -dc insertRootDirectoryName.Data.insertNameOfContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries --databaseProvider insertNameOfDatabase
 
+
 # installs faker for .net
 dotnet add package Bogus
 
@@ -135,7 +136,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.AspNetCore.RateLimiting
 
 
-dotnet aspnet-codegenerator controller -name PostController -m Post -dc AppDBContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name AdminController -m User -dc AppDBContext -outDir Controllers
 
 # packages to do logging
 dotnet add package Serilog
