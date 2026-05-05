@@ -19,7 +19,7 @@
                 <div id="card-img-empty">
                     @if(Configuration["AzureOptions:Storage"] != null && user?.Image != null )
                     {
-                        <img src="@user?.Image" height="100%" width="100%" />
+                        <img src="@ViewBag.ProfileImg"  width="100%" />
                     }
                     else if (user?.Image != null)
                     {

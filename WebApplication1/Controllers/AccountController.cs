@@ -1,4 +1,3 @@
-// using Azure.Identity;
 using System.Collections.ObjectModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -6,17 +5,12 @@ using Microsoft.AspNetCore.RateLimiting;
 using WebApplication1.Models;
 using WebApplication1.ViewModels;
 using WebApplication1.Data;
-using WebApplication1.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using WebApplication1.Services;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.Security.Claims;
-using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
-using Azure.Storage.Sas;
-using Microsoft.Extensions.Options;
 
 namespace WebApplication1.Controllers
 {
@@ -27,7 +21,7 @@ namespace WebApplication1.Controllers
     AppDBContext context,
     IAuthorizationService authorizationService,
     EmailService email,
-    IOptions<AzureSettings> azure
+    AzureService azure
 
     ) : OwnerController(authorizationService)
     {
@@ -38,7 +32,7 @@ namespace WebApplication1.Controllers
 
         private readonly EmailService _email = email;
 
-        private readonly AzureSettings _azure = azure.Value;
+        private readonly AzureService _azure = azure;
 
 
         public IActionResult Login()
@@ -287,7 +281,9 @@ namespace WebApplication1.Controllers
 
         public async Task<IActionResult> Profile()
         {
+
             var user = await userManager.GetUserAsync(User);
+            ViewBag.ProfileImg = user?.Image != null ? await _azure.GetBlob(user.Image) : null;
             //Need to re migrate files so that I can retreive the posts through collection
             var posts = user != null
             ? await _context.Posts.Where(p => p.User != null && p.User.Id.Equals(user.Id)).ToListAsync()
@@ -355,44 +351,12 @@ namespace WebApplication1.Controllers
             {
                 var user = await userManager.GetUserAsync(User) ?? throw new Exception("User is not identified");
 
-                string connectionString = _azure.Storage;
-                var blobServiceClient = new BlobServiceClient(connectionString);
 
-                if (blobServiceClient != null)
+
+                if (_azure.IsBlobConnected())
                 {
 
-                    var containerClient = blobServiceClient.GetBlobContainerClient("uploads");
-
-                    // Ensure container exists
-                    await containerClient.CreateIfNotExistsAsync();
-
-                    // Get a reference to the blob
-                    var blobClient = containerClient.GetBlobClient(file.FileName);
-
-                    // Upload the file stream
-                    using var stream = file.OpenReadStream();
-                    await blobClient.UploadAsync(stream, new BlobHttpHeaders { ContentType = file.ContentType });
-
-                    // Check if the client can generate a SAS URI
-                    if (blobClient.CanGenerateSasUri)
-                    {
-                        var prop = await blobClient.GetPropertiesAsync();
-
-                        BlobSasBuilder sasBuilder = new BlobSasBuilder()
-                        {
-                            BlobContainerName = prop.GetRawResponse().Headers.FirstOrDefault(h => h.Name == "x-ms-meta-container").Value ?? "uploads",
-                            BlobName = blobClient.Name,
-                            Resource = "b",
-                            ExpiresOn = DateTimeOffset.UtcNow.AddHours(1) // Link valid for 1 hour
-                        };
-
-                        sasBuilder.SetPermissions(BlobSasPermissions.Read);
-
-                        user.Image = blobClient.GenerateSasUri(sasBuilder).ToString();
-                    }else
-                    {
-                        user.Image = blobClient.Name;
-                    }
+                    user.Image = await _azure.UploadBlob(file);
 
                 }
                 else
@@ -421,7 +385,8 @@ namespace WebApplication1.Controllers
 
 
 
-
+                DateTime currentDateTime = DateTime.Now;
+                user.UpdatedAt = currentDateTime;
                 var result = await userManager.UpdateAsync(user);
 
                 if (!result.Succeeded)

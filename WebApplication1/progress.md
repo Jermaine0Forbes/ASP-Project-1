@@ -36,13 +36,14 @@ Trying to keep track of the little things that I need to do
 - ~~create an error controller to route negative status codes~~
 - ~~upload a file~~
 - ~~create OTP expiration column in user~~
-- upload a file to azure
+- ~~upload a file to azure~~
 - create azure service file
 - create another email account
 - create admin dashboard
 - create a claim
 - create a policy
 - add payment gateway like stripe
+- add events or background workers for email
 - possibly add guard clauses
 - split logs for requests, and sql commands
 - upload a file to aws

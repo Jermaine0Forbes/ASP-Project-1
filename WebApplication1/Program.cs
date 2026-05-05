@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.Google;
 using WebApplication1.Configurations;
-// using Microsoft.Extensions.DependencyInjection;
-// using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting.Systemd;
 using WebApplication1.Data;
 using WebApplication1.Models;
@@ -123,6 +121,7 @@ builder.Services.AddAuthentication(options =>
 
 
 builder.Services.AddScoped<EmailService>();
+builder.Services.AddScoped<AzureService>();
 builder.Services.AddSingleton<IAuthorizationHandler, UserOwnerHandler>();
 builder.Services.AddAuthorization(options =>
 {

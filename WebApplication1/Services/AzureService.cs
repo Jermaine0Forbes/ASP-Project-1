@@ -1,4 +1,3 @@
-using System.Reflection.Metadata;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Azure.Storage.Sas;
@@ -11,25 +10,31 @@ namespace WebApplication1.Services
 
     public class AzureService
     (
-         IOptions<AzureSettings> azure
+         IOptions<AzureSettings> settings
     )
     {
-        private readonly AzureSettings _azure = azure.Value;
+        private readonly AzureSettings _settings = settings.Value;
         private BlobServiceClient? bsc = null;
+        private string blobContainerName = "uploads";
 
 
         public Boolean IsBlobConnected()
         {
-            string connectionString = _azure.Storage;
+            string connectionString = _settings.Storage;
             bsc = new BlobServiceClient(connectionString);
 
-            return bsc == null;
+            return bsc != null;
+        }
+
+        public void SetBlobContainerName(string name)
+        {
+            blobContainerName = name;
         }
 
 
         public async Task<string> UploadBlob(IFormFile file)
         {
-            var containerClient = bsc?.GetBlobContainerClient("uploads") ?? throw new Exception("Blob service is not connected");
+            var containerClient = bsc?.GetBlobContainerClient(blobContainerName) ?? throw new Exception("Blob service is not connected");
 
             // Ensure container exists
             await containerClient.CreateIfNotExistsAsync();
@@ -44,6 +49,40 @@ namespace WebApplication1.Services
 
             return blobClient.Name;
 
+        }
+
+        public async Task<string> GetBlob(string fileName)
+        {
+
+            if (!IsBlobConnected())
+            {
+                throw new Exception("Blob service is not connected");
+            }
+
+            BlobContainerClient containerClient = bsc?.GetBlobContainerClient(blobContainerName)
+                ?? throw new Exception("Blob service is not connected");
+            BlobClient blobClient = containerClient.GetBlobClient(fileName);
+
+            if (!blobClient.CanGenerateSasUri)
+            {
+                throw new Exception("Blob client cannot generate SAS Uri");
+            }
+
+
+            var prop = await blobClient.GetPropertiesAsync();
+
+            BlobSasBuilder sasBuilder = new BlobSasBuilder()
+            {
+                BlobContainerName = prop.GetRawResponse().Headers.FirstOrDefault(h => h.Name == "x-ms-meta-container").Value 
+                ?? blobContainerName,
+                BlobName = blobClient.Name,
+                Resource = "b",
+                ExpiresOn = DateTimeOffset.UtcNow.AddHours(1) // Link valid for 1 hour
+            };
+
+            sasBuilder.SetPermissions(BlobSasPermissions.Read);
+
+            return  blobClient.GenerateSasUri(sasBuilder).ToString();
         }
 
 
