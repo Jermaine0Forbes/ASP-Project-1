@@ -40,8 +40,8 @@ Trying to keep track of the little things that I need to do
 - ~~create azure service file~~
 - create admin dashboard
     - ~~create admin controller~~
-    - create index, users, and setting pages
-    - create settings model and migration
+    - ~~create index, users, and setting pages~~
+    - ~~create settings model and migration~~
     - create shared layout, and stylize
     - implement ip tracking graph
     - implement post creation graph
@@ -55,7 +55,7 @@ Trying to keep track of the little things that I need to do
 - split logs for requests, and sql commands
 - upload a file to aws
 - implement github oauth
-- implement token based auth for azure
+- implement token based auth/passwordless auth for azure
 - verify or implement error logging
 - add isOwnerOrAuthorized into service
 - create an environment variable that holds otp expiration, and other things
