@@ -37,13 +37,19 @@ Trying to keep track of the little things that I need to do
 - ~~upload a file~~
 - ~~create OTP expiration column in user~~
 - ~~upload a file to azure~~
-- create azure service file
-- create another email account
+- ~~create azure service file~~
 - create admin dashboard
+    - create admin controller
+    - create index, users, and setting pages
+    - create shared layout, and stylize
+    - implement ip tracking graph
+    - implement post creation graph
+    - trending posts views
 - create a claim
 - create a policy
 - add payment gateway like stripe
 - add events or background workers for email
+- research twilio sendgrid
 - possibly add guard clauses
 - split logs for requests, and sql commands
 - upload a file to aws

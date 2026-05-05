@@ -1,4 +1,4 @@
-@import "tailwindcss";
+/* @import "tailwindcss"; */
 
 
 html {
@@ -15,9 +15,9 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-header.style-1 {
+/* header.style-1 {
 @apply bg-emerald-100
-}
+} */
 
 html {
   position: relative;
