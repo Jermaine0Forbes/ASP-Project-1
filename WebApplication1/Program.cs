@@ -161,6 +161,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 });
 
 app.UseMiddleware<ErrorLoggingMiddleware>();
+app.UseMiddleware<IpAddressMiddleware>();
 
 app.UseHttpsRedirection();
 app.UseRouting();

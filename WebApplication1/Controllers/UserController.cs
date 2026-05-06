@@ -192,7 +192,6 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
-            // var es = new _email();
             var dem = new DefaultEmailModel()
             {
                 UserName = user.UserName ?? "",

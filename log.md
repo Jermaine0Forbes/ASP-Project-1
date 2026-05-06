@@ -1,13 +1,23 @@
 # Logs
 
 
-### 5-5-26
+### 5-6-26
 
 #### helpful links
 
 - []()
 - []()
 - []()
+- [Quickstart: Azure Blob Storage client library for .NET](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet?tabs=net-cli%2Cmanaged-identity%2Croles-azure-portal%2Csign-in-azure-cli%2Cidentity-visual-studio&pivots=blob-storage-quickstart-scratch#prerequisites)
+- [.net how to create middleware that returns ip address](https://www.google.com/search?q=.net+how+to+create+middleware+that+returns+ip+address&sca_esv=c02f11ccf237de23&sxsrf=ANbL-n6j_mssfKEQCcWyKLY4Xju69ikIGA%3A1778033888032&ei=4KT6aenUAbSqwbkP7_3Y8Q8&biw=1707&bih=898&oq=.net+how+to+create+middleware+that+&gs_lp=Egxnd3Mtd2l6LXNlcnAiIy5uZXQgaG93IHRvIGNyZWF0ZSBtaWRkbGV3YXJlIHRoYXQgKgIIADIFECEYoAEyBRAhGKABMgUQIRigAUj5owFQAFj4dXAaeAGQAQCYAZsBoAGdJqoBBDUxLji4AQHIAQD4AQGYAlWgAtEpqAIQwgIEECMYJ8ICChAjGIAEGIoFGCfCAgsQABiABBiKBRiRAsICERAuGIAEGLEDGIMBGMcBGNEDwgIIEAAYgAQYsQPCAgsQABiABBixAxiDAcICChAAGIAEGIoFGEPCAg4QLhiABBixAxiDARjlBMICBRAAGIAEwgIQEAAYgAQYigUYQxixAxiDAcICDhAAGIAEGIoFGLEDGIMBwgILEC4YgAQYxwEY0QPCAg4QLhjHARixAxjRAxiABMICDRAAGIAEGIoFGEMYsQPCAgsQLhiABBjHARivAcICCxAAGIAEGLEDGMkDwgILEC4YgAQYsQMYgwHCAggQABiABBiSA8ICBxAjGOoCGCfCAhcQABiABBiKBRiRAhjnBhjqAhi0AtgBAcICCxAAGIAEGIoFGLEDwgIGEAAYFhgewgIIEAAYFhgeGArCAgsQABiABBiKBRiGA8ICBRAAGO8FwgIIEAAYiQUYogTCAggQABiABBiiBMICBhAAGB4YDcICCBAAGAUYHhgNwgIIEAAYCBgeGA3CAgcQIRgKGKABwgIEECEYCsICBRAhGJ8FwgIFECEYqwKYAwfxBZxd9AjHS4OTugYGCAEQARgBkgcFNzUuMTCgB4q_A7IHBTQ5LjEwuAfRKMIHCzIuMzkuNDIuMS4xyAewAoAIAQ&sclient=gws-wiz-serp)
+- [.net show me an example of getting ip address](https://www.google.com/search?q=.net+show+me+an+example+of+getting+ip+address&oq=.net+show+me+an+example+of+gettin&gs_lcrp=EgZjaHJvbWUqBwgBECEYoAEyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRiPAjIHCAYQIRiPAtIBCTE0NzUyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [.net how to create middleware that ignores resource requests](https://www.google.com/search?q=.net+how+to+create+middleware+that+ignores+resource+requests&sca_esv=2139bdf85252c619&biw=1707&bih=898&sxsrf=ANbL-n5nckCvwvITUWks5Zpjb5IwvJkJjA%3A1778086327630&ei=t3H7af-ZJv_Fp84PlsjbuAc&ved=0ahUKEwi_0cDfj6WUAxX_4skDHRbkFncQ4dUDCBE&uact=5&oq=.net+how+to+create+middleware+that+ignores+resource+requests&gs_lp=Egxnd3Mtd2l6LXNlcnAiPC5uZXQgaG93IHRvIGNyZWF0ZSBtaWRkbGV3YXJlIHRoYXQgaWdub3JlcyByZXNvdXJjZSByZXF1ZXN0czIFECEYoAEyBRAhGKABMgUQIRigATIFECEYoAEyBRAhGJ8FMgUQIRifBTIFECEYnwUyBRAhGJ8FMgUQIRifBUjzHlD7BFjcHXAGeAGQAQCYAXSgAfUKqgEEMTIuM7gBA8gBAPgBAZgCFaAC3gvCAgoQABhHGNYEGLADwgIFECEYqwLCAgcQIRgKGKABwgIEECEYCpgDAIgGAZAGCJIHBDE1LjagB4d6sgcDOS42uAe-C8IHBjAuMTQuN8gHO4AIAQ&sclient=gws-wiz-serp)
+
+
+### 5-5-26
+
+#### helpful links
+
 - [.net how to get a role name from a user](https://www.google.com/search?q=.net+how+to+get+a+role+name+from+a+user&sca_esv=b7b28de9b2affd5c&sxsrf=ANbL-n4WHptliqlClUvvBCJafnX9P_jprw%3A1777994972675&ei=3Az6aYfdKIaxwt0P-sDAiA4&biw=1707&bih=898&ved=0ahUKEwiHu4i2u6KUAxWGmLAFHXogEOEQ4dUDCBM&uact=5&oq=.net+how+to+get+a+role+name+from+a+user&gs_lp=Egxnd3Mtd2l6LXNlcnAiJy5uZXQgaG93IHRvIGdldCBhIHJvbGUgbmFtZSBmcm9tIGEgdXNlcjIFECEYoAEyBRAhGKABMgUQIRigATIFECEYnwUyBRAhGJ8FMgUQIRifBTIFECEYnwUyBRAhGJ8FMgUQIRifBTIFECEYnwVIrWVQgyJYhGNwBHgBkAEAmAHmAaABiBiqAQcxNi4xMy4xuAEDyAEA-AEBmAIioALGGcICChAAGEcY1gQYsAPCAgYQABgWGB7CAgQQIxgnwgIIEAAYFhgeGArCAgsQABiABBiKBRiGA8ICCBAAGIAEGKIEwgIIEAAYiQUYogTCAgUQABjvBcICBRAhGKsCmAMAiAYBkAYIkgcHMTQuMTkuMaAH1eIBsgcHMTAuMTkuMbgHohnCBwkwLjE3LjE2LjHIB3yACAE&sclient=gws-wiz-serp)
 - [.net what are the different parameters for redirecttoaction](https://www.google.com/search?q=.net+what+are+the+different+parameters+for+redirecttoaction&sca_esv=251dd46310ce0ad5&sxsrf=ANbL-n4gqgJ1G3r_fgqHge8tguBKvAdaiA%3A1778015864407&ei=eF76adbFGNuFwbkPsb2oeA&biw=1707&bih=898&ved=0ahUKEwjW4YKgiaOUAxXbQjABHbEeCg8Q4dUDCBM&uact=5&oq=.net+what+are+the+different+parameters+for+redirecttoaction&gs_lp=Egxnd3Mtd2l6LXNlcnAiOy5uZXQgd2hhdCBhcmUgdGhlIGRpZmZlcmVudCBwYXJhbWV0ZXJzIGZvciByZWRpcmVjdHRvYWN0aW9uMgUQIRigATIFECEYoAEyBRAhGJ8FMgUQIRifBTIFECEYnwUyBRAhGJ8FMgUQIRifBTIFECEYnwUyBRAhGJ8FMgUQIRifBUilyQFQAFiCxwFwCHgBkAEAmAF4oAHnLKoBBTUxLjE0uAEDyAEA-AEBmAJJoALLL8ICCBAAGIAEGLEDwgIFEAAYgATCAgsQABiABBixAxiDAcICCBAuGLEDGIAEwgIEECMYJ8ICChAjGIAEGIoFGCfCAgYQABgWGB7CAggQABgWGB4YCsICCxAAGIAEGIoFGIYDwgIIEAAYgAQYogTCAgUQABjvBcICCBAAGIkFGKIEwgIFECEYqwLCAgcQIRgKGKABwgIEECEYCpgDAJIHBTUwLjIzoAeOhASyBwU0Mi4yM7gHpy_CBwkwLjM5LjMzLjHIB-IBgAgB&sclient=gws-wiz-serp)
 - [invalidOperationException: Unable to resolve service for type 'WebApplication1.Services.AzureService' while attempting to activate 'WebApplication1.Controllers.AccountController'.](https://www.google.com/search?q=nvalidOperationException%3A+Unable+to+resolve+service+for+type+%27WebApplication1.Services.AzureService%27+while+attempting+to+activate+%27WebApplication1.Controllers.AccountController%27.&sourceid=chrome&ie=UTF-8)
