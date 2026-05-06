@@ -42,6 +42,13 @@ namespace WebApplication1.Controllers
         }
 
 
+                // GET: Admin/Settings
+        public async Task<IActionResult> Account()
+        {
+            return View(await _context.Users.ToListAsync());
+        }
+
+
         private bool UserExists(string id)
         {
             return _context.Users.Any(e => e.Id == id);

@@ -37,6 +37,9 @@ body {
   text-align: start;
 }
 
+
+
+
 /**************
 Footer
 **************/
@@ -49,6 +52,13 @@ footer {
   background: white;
 }
 
+/**************
+Nav
+**************/
+nav#sidebar{
+
+  height:100vh;
+}
 
 /**************
 Profile
@@ -60,4 +70,15 @@ Profile
   height: 130px;
   width: 130px;
   display:block;
+}
+
+
+/**************
+Classes
+**************/
+
+#admin-name {
+  font-weight:bold;
+  font-size:1.3em;
+  margin-bottom:1em;
 }

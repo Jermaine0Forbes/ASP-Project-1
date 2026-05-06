@@ -42,9 +42,9 @@ Trying to keep track of the little things that I need to do
     - ~~create admin controller~~
     - ~~create index, users, and setting pages~~
     - ~~create settings model and migration~~
-    - create shared layout, and stylize
-    - implement ip tracking graph
-    - implement post creation graph
+    - create shared layout, navbar(account, dashboard, users, settings), and stylize
+    - implement ip tracking graph on dashboard
+    - implement post creation graph dashboard
     - trending posts views
 - create a claim
 - create a policy
