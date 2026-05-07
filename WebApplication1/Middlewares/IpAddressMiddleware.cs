@@ -1,11 +1,8 @@
 using IP2LocationIOComponent;
-using NuGet.Protocol;
 using System.Net.Http;
 using System.Security.Claims;
 using WebApplication1.Data;
 using WebApplication1.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace WebApplication1.Middlewares
 {
@@ -15,12 +12,15 @@ namespace WebApplication1.Middlewares
         private readonly string[] _ignoreExtensions = [".js", ".ts", ".json", ".css", ".scss", ".png", ".jpg", ".map", ".ico", "xml"];
         private readonly string[] _ignoreIps = ["::1", "127.0.0.1"];
 
-        private readonly AppDBContext _context;
 
-        public IpAddressMiddleware(RequestDelegate next, AppDBContext context)
+        private readonly ILogger<IpAddressMiddleware> _logger;
+
+
+
+        public IpAddressMiddleware(RequestDelegate next, ILogger<IpAddressMiddleware> logger)
         {
             _next = next;
-            _context = context;
+            _logger = logger;
         }
 
         private bool isEndPoint(HttpContext context)
@@ -48,7 +48,7 @@ namespace WebApplication1.Middlewares
             return remoteIp ?? "";
         }
 
-        public async Task InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context, AppDBContext dbcontext)
         {
 
             if (isEndPoint(context))
@@ -60,31 +60,45 @@ namespace WebApplication1.Middlewares
                 };
                 IPGeolocation IPL = new(Config);
                 var remoteIp = await GetIp(context);
-
                 var endpoint = await IPL.Lookup(remoteIp);
-                // var endpoint = JObject.Parse(lookup);
 
-                // Example: Add the IP to response headers
+                // Add the IP to response headers
                 context.Response.Headers.Append("X-Client-IP", remoteIp);
-                var userId = context.User.FindFirst(ClaimTypes.NameIdentifier);
-                var authenticated = context?.User?.Identity?.IsAuthenticated ?? null;
-                var path = context.Request.Path;
-                if(endpoint == null) throw new Exception("endpoint is null");
-                
+                var authenticated = context?.User?.Identity?.IsAuthenticated ?? false;
+                var userId = authenticated ? context?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value : "";
+                var path = context?.Request.Path ?? null;
+
                 IpAddress ia = new()
                 {
                     Path = path,
                     Address = remoteIp,
-                    UserId = userId?.Value ?? null,
-                    Latitude = (string)endpoint["latitude"] ?? "",
-                    Longitude = (string)endpoint["longitude"] ?? "",
-                    CountryCode = (string)endpoint["country_code"] ?? "",
-                    CountryName = (string)endpoint["country_name"] ?? "",
-                    Region = (string)endpoint["region_name"] ?? "",
-                    City = (string)endpoint["city_name"] ?? "",
-                    Zip = (string)endpoint["zip_code"] ?? "",
+                    UserId = userId ?? null,
+                    Latitude = endpoint["latitude"]?.ToString() ?? "",
+                    Longitude = endpoint["longitude"]?.ToString() ?? "",
+                    CountryCode = endpoint["country_code"]?.ToString() ?? "",
+                    CountryName = endpoint["country_name"]?.ToString() ?? "",
+                    Region = endpoint["region_name"]?.ToString() ?? "",
+                    City = endpoint["city_name"]?.ToString() ?? "",
+                    Zip = endpoint["zip_code"]?.ToString() ?? "",
+                    CreatedAt = DateTime.Now
 
                 };
+
+                await dbcontext.IpAddresses.AddAsync(ia);
+                await dbcontext.SaveChangesAsync();
+
+                var logScope = new Dictionary<string, object>
+                {
+                    ["User"] = (bool)authenticated ? userId : "unauthenticated",
+                    ["Ip Address"] = remoteIp,
+                };
+
+                using (_logger.BeginScope(logScope))
+                {
+                    _logger.LogDebug("Path: {0}", path);
+                    _logger.LogDebug("Zip code: {0}", endpoint["zip_code"]?.ToString() ?? "cannot find zip code");
+                }
+
                 Console.WriteLine("Path is {0}", path);
                 Console.WriteLine("Ip address is {0}", remoteIp);
                 Console.WriteLine("endpoint {0}", endpoint["country_name"]);

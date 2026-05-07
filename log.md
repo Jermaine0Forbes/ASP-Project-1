@@ -7,6 +7,8 @@
 - []()
 - []()
 - []()
+- [.net mvc how to save data with dbcontext](https://www.google.com/search?q=.net+mvc+how+to+save+data+with+dbcontext&sca_esv=11b5b769ef94331f&sxsrf=ANbL-n6pqb0oQiCW7hObKZdxi1gCj9Uc3w%3A1778115395137&ei=Q-P7aa-CCIbjwN4P3OThgQk&biw=1707&bih=898&ved=0ahUKEwjvr_yD_KWUAxWGMdAFHVxyOJAQ4dUDCBE&uact=5&oq=.net+mvc+how+to+save+data+with+dbcontext&gs_lp=Egxnd3Mtd2l6LXNlcnAiKC5uZXQgbXZjIGhvdyB0byBzYXZlIGRhdGEgd2l0aCBkYmNvbnRleHQyBRAhGKABMgUQIRigATIFECEYoAEyBRAhGKABMgUQIRigATIFECEYnwUyBRAhGJ8FMgUQIRifBTIFECEYnwUyBRAhGJ8FSI06UM8HWKI5cAR4AZABAJgBd6ABpheqAQQzMC40uAEDyAEA-AEBmAImoAKJGcICChAAGEcY1gQYsAPCAgQQIxgnwgIGEAAYFhgewgIFEAAY7wXCAggQABiABBiiBMICCBAAGIkFGKIEwgIIEAAYFhgeGArCAgcQIRgKGKABwgIFECEYqwKYAwCIBgGQBgiSBwQzMC44oAe0sgKyBwQyNi44uAfNGMIHCzAuMjEuMTUuMS4xyAeLAYAIAQ&sclient=gws-wiz-serp)
+- [Converting null literal or possible null value to non-nullable type. (string)endpoint["longitude"]](https://www.google.com/search?q=Converting+null+literal+or+possible+null+value+to+non-nullable+type.+%28string%29endpoint%5B%22longitude%22%5D&sca_esv=8639ec9b40ab010a&biw=1707&bih=898&sxsrf=ANbL-n6szedMm0nZz6iXJsmsVgK-tmCDjg%3A1778168074000&ei=CbH8aYfnPK_Bp84PoraO0QI&ved=0ahUKEwjHj5ujwKeUAxWv4MkDHSKbIyoQ4dUDCBM&uact=5&oq=Converting+null+literal+or+possible+null+value+to+non-nullable+type.+%28string%29endpoint%5B%22longitude%22%5D&gs_lp=Egxnd3Mtd2l6LXNlcnAiYkNvbnZlcnRpbmcgbnVsbCBsaXRlcmFsIG9yIHBvc3NpYmxlIG51bGwgdmFsdWUgdG8gbm9uLW51bGxhYmxlIHR5cGUuIChzdHJpbmcpZW5kcG9pbnRbImxvbmdpdHVkZSJdSNMQUI8DWIIIcAF4AZABAJgBZqABngGqAQMxLjG4AQPIAQD4AQH4AQKYAgKgAnXCAgoQABhHGNYEGLADwgILEAAYgAQYigUYkQLCAgYQABgWGB6YAwCIBgGQBgiSBwMxLjGgB7YOsgcDMC4xuAdswgcDMi0yyAcLgAgB&sclient=gws-wiz-serp)
 
 ### 5-6-26
 
