@@ -1,12 +1,17 @@
 # Logs
 
 
+### 5-7-26
+
+#### helpful links
+- []()
+- []()
+- []()
+
 ### 5-6-26
 
 #### helpful links
 
-- []()
-- []()
 - [.net how to get your ip address](https://www.google.com/search?q=.net+how+to+get+your+ip+address&sca_esv=11c72b9740f8d846&sxsrf=ANbL-n5vdnNI5UfeKh2-UpSS0AVrL4IRuw%3A1778102016968&ei=AK_7aZXkOt27mtkPhJWTwA0&biw=1707&bih=898&ved=0ahUKEwiV5OGYyqWUAxXdnSYFHYTKBNgQ4dUDCBE&uact=5&oq=.net+how+to+get+your+ip+address&gs_lp=Egxnd3Mtd2l6LXNlcnAiHy5uZXQgaG93IHRvIGdldCB5b3VyIGlwIGFkZHJlc3MyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjILEAAYgAQYigUYhgMyBRAAGO8FMgUQABjvBUiANVAAWIoycAd4AZABAJgBa6AB_xWqAQQzNS4zuAEDyAEA-AEBmAItoAL1F8ICCBAAGIAEGLEDwgIFEAAYgATCAgsQABiABBixAxiDAcICCxAuGIMBGLEDGIAEwgIEECMYJ8ICBxAAGIAEGA3CAgcQIxiwAhgnwgIGEAAYHhgNwgIHECEYChigAcICBxAhGKsCGArCAggQABgWGB4YCsICCBAAGIkFGKIEwgIIEAAYgAQYogTCAggQABgFGB4YDZgDAJIHBDM5LjagB-XUArIHBDMyLja4B9EXwgcGMC43LjM4yAe2AYAIAQ&sclient=gws-wiz-serp)
 - [.net how to get the viewport size of user](https://www.google.com/search?q=.net+how+to+get+the+viewport+size+of+user&sca_esv=11c72b9740f8d846&sxsrf=ANbL-n6pWEkqk6bU5pu3jyqZL22n8FOkbA%3A1778106924437&ei=LML7aZSsGoWawbkP1oy9oQU&biw=1707&bih=898&ved=0ahUKEwiU8um83KWUAxUFTTABHVZGL1QQ4dUDCBE&uact=5&oq=.net+how+to+get+the+viewport+size+of+user&gs_lp=Egxnd3Mtd2l6LXNlcnAiKS5uZXQgaG93IHRvIGdldCB0aGUgdmlld3BvcnQgc2l6ZSBvZiB1c2VyMgUQIRigATIFECEYoAEyBRAhGKABMgUQIRigATIFECEYoAFI9lFQAFjARnAEeAGQAQCYAcoBoAH6IaoBBzMxLjEzLjG4AQPIAQD4AQGYAjGgAvgjwgIIEAAYgAQYsQPCAgUQABiABMICCxAAGIAEGLEDGIMBwgILEC4YgwEYsQMYgATCAgQQIxgnwgIGEAAYFhgewgIIEAAYFhgeGArCAgsQABiABBiKBRiGA8ICCBAAGIAEGKIEwgIIEAAYiQUYogTCAgUQABjvBcICBRAhGJ8FwgIFECEYqwKYAwCSBwczMy4xNC4yoAeb9gKyBwcyOS4xNC4yuAfmI8IHCTAuMjAuMjguMcgHrgGACAE&sclient=gws-wiz-serp)
 - [.net mvc how to get user Id in middleware](https://www.google.com/search?q=.net+mvc+how+to+get+user+Id+in+middleware&sca_esv=11c72b9740f8d846&sxsrf=ANbL-n4NWKZmcCcs17AUwr1B_33PA5wnlQ%3A1778107042107&ei=osL7adCJBordwN4PwIHwgA0&biw=1707&bih=898&ved=0ahUKEwjQ4vf03KWUAxWKLtAFHcAAHNAQ4dUDCBE&uact=5&oq=.net+mvc+how+to+get+user+Id+in+middleware&gs_lp=Egxnd3Mtd2l6LXNlcnAiKS5uZXQgbXZjIGhvdyB0byBnZXQgdXNlciBJZCBpbiBtaWRkbGV3YXJlMgUQIRigATIFECEYoAEyBRAhGKABMgUQIRigAUi7GlDjB1jKGHABeAGQAQCYAXygAYwJqgEEMTIuMbgBA8gBAPgBAZgCDaACgQnCAgoQABhHGNYEGLADwgIEECMYJ8ICBRAAGO8FwgIIEAAYiQUYogTCAgUQIRirAsICBxAhGAoYoAGYAwCIBgGQBgiSBwQxMC4zoAe6ObIHAzkuM7gH3QjCBwowLjEwLjIuMC4xyAcsgAgB&sclient=gws-wiz-serp)

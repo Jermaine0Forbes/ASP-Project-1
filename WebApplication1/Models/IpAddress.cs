@@ -11,6 +11,9 @@ public class IpAddress
     [StringLength(50)]
     public string Address { get; set; } = "";
 
+    [Required]
+    public string Path { get; set; } = "";
+
     public string? UserId {get; set;}
 
     public string Latitude {get; set;} = "";

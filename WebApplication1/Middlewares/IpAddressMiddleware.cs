@@ -3,6 +3,9 @@ using NuGet.Protocol;
 using System.Net.Http;
 using System.Security.Claims;
 using WebApplication1.Data;
+using WebApplication1.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace WebApplication1.Middlewares
 {
@@ -59,12 +62,30 @@ namespace WebApplication1.Middlewares
                 var remoteIp = await GetIp(context);
 
                 var endpoint = await IPL.Lookup(remoteIp);
+                // var endpoint = JObject.Parse(lookup);
 
                 // Example: Add the IP to response headers
                 context.Response.Headers.Append("X-Client-IP", remoteIp);
                 var userId = context.User.FindFirst(ClaimTypes.NameIdentifier);
                 var authenticated = context?.User?.Identity?.IsAuthenticated ?? null;
-                Console.WriteLine("Path is {0}", context.Request.Path);
+                var path = context.Request.Path;
+                if(endpoint == null) throw new Exception("endpoint is null");
+                
+                IpAddress ia = new()
+                {
+                    Path = path,
+                    Address = remoteIp,
+                    UserId = userId?.Value ?? null,
+                    Latitude = (string)endpoint["latitude"] ?? "",
+                    Longitude = (string)endpoint["longitude"] ?? "",
+                    CountryCode = (string)endpoint["country_code"] ?? "",
+                    CountryName = (string)endpoint["country_name"] ?? "",
+                    Region = (string)endpoint["region_name"] ?? "",
+                    City = (string)endpoint["city_name"] ?? "",
+                    Zip = (string)endpoint["zip_code"] ?? "",
+
+                };
+                Console.WriteLine("Path is {0}", path);
                 Console.WriteLine("Ip address is {0}", remoteIp);
                 Console.WriteLine("endpoint {0}", endpoint["country_name"]);
                 Console.WriteLine("is authenticated {0}", authenticated);
