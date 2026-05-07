@@ -31,5 +31,6 @@ namespace WebApplication1.Data
         // public DbSet<User> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Settings> Settings { get; set; }
+        public DbSet<IpAddress> IpAddresses { get; set; }
     }
 }

@@ -1,17 +1,23 @@
 using IP2LocationIOComponent;
+using NuGet.Protocol;
 using System.Net.Http;
+using System.Security.Claims;
+using WebApplication1.Data;
 
 namespace WebApplication1.Middlewares
 {
     public class IpAddressMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly string[] _ignoreExtensions = [".js", ".ts", ".json", ".css", ".scss", ".png", ".jpg", ".map", ".ico"];
+        private readonly string[] _ignoreExtensions = [".js", ".ts", ".json", ".css", ".scss", ".png", ".jpg", ".map", ".ico", "xml"];
         private readonly string[] _ignoreIps = ["::1", "127.0.0.1"];
 
-        public IpAddressMiddleware(RequestDelegate next)
+        private readonly AppDBContext _context;
+
+        public IpAddressMiddleware(RequestDelegate next, AppDBContext context)
         {
             _next = next;
+            _context = context;
         }
 
         private bool isEndPoint(HttpContext context)
@@ -56,9 +62,13 @@ namespace WebApplication1.Middlewares
 
                 // Example: Add the IP to response headers
                 context.Response.Headers.Append("X-Client-IP", remoteIp);
+                var userId = context.User.FindFirst(ClaimTypes.NameIdentifier);
+                var authenticated = context?.User?.Identity?.IsAuthenticated ?? null;
                 Console.WriteLine("Path is {0}", context.Request.Path);
                 Console.WriteLine("Ip address is {0}", remoteIp);
                 Console.WriteLine("endpoint {0}", endpoint["country_name"]);
+                Console.WriteLine("is authenticated {0}", authenticated);
+                Console.WriteLine("user ids {0}", userId);
 
             }
 

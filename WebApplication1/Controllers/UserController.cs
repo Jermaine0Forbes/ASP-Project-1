@@ -16,7 +16,7 @@ namespace WebApplication1.Controllers
 {
     public class UserController
     (
-        AppDBContext context,
+    AppDBContext context,
     IAuthorizationService authorizationService,
     EmailService email
     ) : OwnerController(authorizationService)
