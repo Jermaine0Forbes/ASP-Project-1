@@ -1,0 +1,68 @@
+@* <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.js" integrity="sha512-y5GdcvG8/LoqZllcaDnZKY4hKSDowG4vWAytStZ1AZ8sxgWke7KtkMx3G9KQU0Ih3kIDfY/3EO1sSyKGRxqwJQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</script> *@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.js" integrity="sha512-D4pL3vNgjkHR/qq+nZywuS6Hg1gwR+UzrdBW6Yg8l26revKyQHMgPq9CLJ2+HHalepS+NuGw1ayCCsGXu9JCXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js" referrerpolicy="no-referrer"></script>
+
+
+<script>
+(async function() {
+
+const CHART_COLORS = {
+  red: 'rgb(255, 99, 132)',
+  orange: 'rgb(255, 159, 64)',
+  yellow: 'rgb(255, 205, 86)',
+  green: 'rgb(75, 192, 192)',
+  blue: 'rgb(54, 162, 235)',
+  purple: 'rgb(153, 102, 255)',
+  grey: 'rgb(201, 203, 207)'
+};
+
+ function transparentize(value, opacity) {
+  var alpha = opacity === undefined ? 0.5 : 1 - opacity;
+  return chroma(value).alpha(alpha);
+}
+
+  const data = [
+    { year: 2010, count: 10 },
+    { year: 2011, count: 20 },
+    { year: 2012, count: 15 },
+    { year: 2013, count: 25 },
+    { year: 2014, count: 22 },
+    { year: 2015, count: 30 },
+    { year: 2016, count: 28 },
+  ];
+
+  const x = "nothing";
+
+  console.log(x);
+
+  const c = new Chart(
+    document.getElementById('ip-tracker'),
+    {
+      type: 'line',
+      data: {
+        labels: data.map(row => row.year),
+        datasets: [
+          {
+            label: 'Ip Traffic',
+            borderColor: CHART_COLORS.orange,
+            backgroundColor: transparentize(CHART_COLORS.orange, 0.5),
+            data: data.map(row => row.count),
+            pointStyle: "circle",
+            pointRadius: 10,
+            pointHoverRadius: 15
+          }
+        ]
+      },
+      options: {
+        responsive:true,
+      }
+    }
+  );
+
+  console.log(c)
+})();
+
+</script>

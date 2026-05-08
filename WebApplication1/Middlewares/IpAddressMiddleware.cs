@@ -87,27 +87,15 @@ namespace WebApplication1.Middlewares
                 await dbcontext.IpAddresses.AddAsync(ia);
                 await dbcontext.SaveChangesAsync();
 
-                var logScope = new Dictionary<string, object>
-                {
-                    ["User"] = (bool)authenticated ? userId : "unauthenticated",
-                    ["Ip Address"] = remoteIp,
-                };
 
-                using (_logger.BeginScope(logScope))
-                {
-                    _logger.LogDebug("Path: {0}", path);
-                    _logger.LogDebug("Zip code: {0}", endpoint["zip_code"]?.ToString() ?? "cannot find zip code");
-                }
+                var user = authenticated ? userId : "unauthenticated";
 
-                Console.WriteLine("Path is {0}", path);
-                Console.WriteLine("Ip address is {0}", remoteIp);
-                Console.WriteLine("endpoint {0}", endpoint["country_name"]);
-                Console.WriteLine("is authenticated {0}", authenticated);
-                Console.WriteLine("user ids {0}", userId);
+                _logger.LogWarning("User: {0}, Address: {1}, Path: {2}", user, remoteIp, path);
+                _logger.LogWarning("User: {0}, Address: {1}, Zip code: {2}", user, remoteIp, endpoint["zip_code"]?.ToString() ?? "cannot find zip code");
 
             }
 
-            await _next(context);
+            await _next(context!);
         }
     }
 
