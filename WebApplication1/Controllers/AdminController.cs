@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
 using Microsoft.AspNetCore.Authorization;
+using WebApplication1.ViewModels;
 
 namespace WebApplication1.Controllers
 {
@@ -47,7 +48,10 @@ namespace WebApplication1.Controllers
             ORDER BY H.Hour;
             ";
 
-            var addresses = await _context.IpAddresses.FromSqlRaw(query).ToListAsync();
+            // var addresses = await _context.IpAddresses.FromSqlRaw(query)
+            // .ToListAsync();
+
+            var addresses = await _context.Database.SqlQueryRaw<IpDailyViewModel>(query).ToListAsync();
             ViewBag.Addresses = addresses;
             return View(await _context.Users.ToListAsync());
         }
