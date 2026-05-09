@@ -41,13 +41,15 @@ const CHART_COLORS = {
     {
       type: 'line',
       data: {
-        labels: data.map(row => row.year),
+        @* labels: data.map(row => row.year), *@
+        labels: x.map(row => row.label),
         datasets: [
           {
             label: 'Ip Traffic',
             borderColor: CHART_COLORS.orange,
             backgroundColor: transparentize(CHART_COLORS.orange, 0.5),
-            data: data.map(row => row.count),
+            @* data: data.map(row => row.count), *@
+            data: x.map(row => row.num),
             pointStyle: "circle",
             pointRadius: 10,
             pointHoverRadius: 15

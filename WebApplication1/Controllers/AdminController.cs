@@ -27,29 +27,37 @@ namespace WebApplication1.Controllers
         {
 
             string query = @"
-            WITH Hours AS (
-                SELECT 0 AS Hour
+
+            WITH Hours12 AS (
+                SELECT 0 AS Hour UNION ALL
+                SELECT Hour + 1 FROM Hours12 WHERE Hour < 11
+            ),
+            AllHours AS (
+                SELECT Hour,
+                    CASE Hour WHEN 0 THEN '12 AM' ELSE CAST(Hour AS VARCHAR) + ' AM' END AS Label
+                FROM Hours12
                 UNION ALL
-                SELECT Hour + 1 FROM Hours WHERE Hour < 23
+                SELECT Hour + 12,
+                    CASE Hour WHEN 0 THEN '12 PM' ELSE CAST(Hour AS VARCHAR) + ' PM' END AS Label
+                FROM Hours12
             ),
             HourlyData AS (
                 SELECT 
-                    DATEPART(HOUR, CreatedAt) AS Hour,
-                    COUNT(*)                   AS Num
+                    DATEPART(HOUR, CreatedAt)   AS Hour,
+                    COUNT(*) AS Num
                 FROM [IpAddresses]
-                WHERE CAST(CreatedAt AS DATE) = CAST(GETDATE() AS DATE)
+                WHERE CreatedAt  >= CAST(GETDATE() AS DATE)
+                AND CreatedAt  <  DATEADD(DAY, 1, CAST(GETDATE() AS DATE))
                 GROUP BY DATEPART(HOUR, CreatedAt)
             )
             SELECT 
-                H.Hour,
+                A.Hour,
+                A.Label,
                 ISNULL(D.Num, 0) AS Num
-            FROM Hours H
-            LEFT JOIN HourlyData D ON H.Hour = D.Hour
-            ORDER BY H.Hour;
+            FROM AllHours A
+            LEFT JOIN HourlyData D ON A.Hour = D.Hour
+            ORDER BY A.Hour;
             ";
-
-            // var addresses = await _context.IpAddresses.FromSqlRaw(query)
-            // .ToListAsync();
 
             var addresses = await _context.Database.SqlQueryRaw<IpDailyViewModel>(query).ToListAsync();
             ViewBag.Addresses = addresses;
