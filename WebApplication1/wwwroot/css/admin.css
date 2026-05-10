@@ -77,8 +77,39 @@ Profile
 Classes
 **************/
 
+
+/**************
+Id's
+**************/
+
 #admin-name {
   font-weight:bold;
   font-size:1.3em;
   margin-bottom:1em;
+}
+
+
+#ip-table tbody {
+
+  max-height:200px;
+  display: block;
+  overflow-y: scroll;
+}
+
+
+#ip-table thead, #ip-table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;/* even columns width , fix width of table too*/
+
+    
+}
+
+#ip-table td {
+    max-width:100px;
+     overflow-x:hidden;
+    text-overflow: ellipsis;
+}
+#ip-table thead {
+    width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
 }

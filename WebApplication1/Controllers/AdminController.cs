@@ -60,7 +60,11 @@ namespace WebApplication1.Controllers
             ";
 
             var addresses = await _context.Database.SqlQueryRaw<IpDailyViewModel>(query).ToListAsync();
+            var  views = await _context.IpAddresses.Take(100)
+            .Select(ip => new { ip.Address, ip.Path, ip.CreatedAt, ip.UserId , ip.Zip})
+            .OrderByDescending(m => m.CreatedAt).ToListAsync();
             ViewBag.Addresses = addresses;
+            ViewBag.Views = views;
             return View(await _context.Users.ToListAsync());
         }
 
@@ -79,7 +83,7 @@ namespace WebApplication1.Controllers
         }
 
 
-        // GET: Admin/Settings
+        // GET: Admin/Account
         public async Task<IActionResult> Account()
         {
             return View(await _context.Users.ToListAsync());

@@ -1,12 +1,20 @@
 # Logs
 
-
-### 5-7-26
+### 5-9-26
 
 #### helpful links
 - []()
 - []()
-- []()
+- [.net mvc dbcontext order by desc](https://www.google.com/search?q=.net+mvc+dbcontext+order+by+desc&oq=.net+mvc+dbcontext+order+by+desc&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRirAjIHCAYQIRiPAjIHCAcQIRiPAtIBCTE0MTIzajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [.net mvc foreach get index](https://www.google.com/search?q=.net+mvc+foreach+get+index&oq=.net+mvc+foreach+get+index&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRirAjIHCAUQIRirAjIHCAYQIRifBTIHCAcQIRifBTIHCAgQIRifBTIHCAkQIRifBdIBCjI4NzAyNWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
+- [.net dbcontext limit](https://www.google.com/search?q=.net+dbcontext+limit&sca_esv=b5b468572594fe9e&sxsrf=ANbL-n7x7IjanTaV7pMKGf1Q2IDjfdy5pQ%3A1778364694797&ei=FrH_aYmwMM7bwN4P9dm92QM&biw=1707&bih=898&ved=0ahUKEwiJk6jfnK2UAxXOLdAFHfVsLzsQ4dUDCBE&uact=5&oq=.net+dbcontext+limit&gs_lp=Egxnd3Mtd2l6LXNlcnAiFC5uZXQgZGJjb250ZXh0IGxpbWl0MgUQIRigATIFECEYoAEyBRAhGKABSO8KUPwEWNoJcAF4AZABAJgBWaABjwOqAQE1uAEDyAEA-AEBmAIGoAKyA8ICChAAGEcY1gQYsAPCAgYQABgWGB7CAggQABiABBiiBMICCBAAGIkFGKIEwgIFEAAY7wWYAwCIBgGQBgiSBwE2oAf4ErIHATW4B6kDwgcFMC40LjLIBxKACAE&sclient=gws-wiz-serp)
+- [.net mvc how to pass several data models into view](https://www.google.com/search?q=.net+mvc+how+to+pass+several+data+models+into+view&oq=.net+mvc+how+to+pass+several+data+models+into+view&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBdIBCTQzMjA1ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [.net how to convert List data into a js array in a razor page](https://www.google.com/search?q=.net+how+to+convert+List+data+into+a+js+array+in+a+razor+page&sca_esv=ca108703168478ee&sxsrf=ANbL-n6thIsigEKaBse7vAdXb1k_nbD-DQ%3A1778201259935&ei=qzL9afT0N-uEp84PnOfMyA8&biw=1707&bih=898&ved=0ahUKEwi09r7zu6iUAxVrwskDHZwzE_kQ4dUDCBM&uact=5&oq=.net+how+to+convert+List+data+into+a+js+array+in+a+razor+page&gs_lp=Egxnd3Mtd2l6LXNlcnAiPS5uZXQgaG93IHRvIGNvbnZlcnQgTGlzdCBkYXRhIGludG8gYSBqcyBhcnJheSBpbiBhIHJhem9yIHBhZ2VIqIgDUKRbWNeGA3ATeAGQAQCYAZABoAHkK6oBBDU3Ljm4AQPIAQD4AQGYAlOgAuotwgIKEAAYRxjWBBiwA8ICFxAuGNwGGLgGGNoGGNgCGMgDGLAD2AEBwgIEECMYJ8ICBRAAGIAEwgIKEAAYgAQYFBiHAsICBhAAGBYYHsICCBAAGBYYHhgKwgIFEAAY7wXCAggQABiJBRiiBMICBRAhGKABwgIFECEYqwLCAgUQIRifBcICCxAAGIAEGIoFGIYDmAMAiAYBkAYQugYGCAEQARgZkgcFNjkuMTSgB_SVA7IHBTUwLjE0uAePLcIHCTIuNDAuMzguM8gHhAKACAE&sclient=gws-wiz-serp)
+
+### 5-7-26
+
+#### helpful links
+
 - [.net how to assign DTO to a raw query](https://www.google.com/search?q=.net+how+to+assign+DTO+to+a+raw+query&sca_esv=ca108703168478ee&biw=1707&bih=898&sxsrf=ANbL-n7LFxNLAXDwfYfMQApBi9FEZdp9vg%3A1778201493598&ei=lTP9afKcJNrmwN4Poqea2Qw&ved=0ahUKEwiyu_XivKiUAxVaM9AFHaKTJssQ4dUDCBM&uact=5&oq=.net+how+to+assign+DTO+to+a+raw+query&gs_lp=Egxnd3Mtd2l6LXNlcnAiJS5uZXQgaG93IHRvIGFzc2lnbiBEVE8gdG8gYSByYXcgcXVlcnkyBxAhGAoYoAEyBxAhGAoYoAEyBxAhGAoYoAEyBxAhGAoYoAFIhsUCUKmKAlj2wgJwA3gBkAEAmAF4oAHGFqoBBDMyLjK4AQPIAQD4AQGYAiWgAuwXwgIKEAAYRxjWBBiwA8ICBBAjGCfCAgUQABiABMICChAAGIAEGBQYhwLCAgYQABgWGB7CAggQABgWGB4YCsICCxAAGIAEGIoFGIYDwgIFEAAY7wXCAggQABiJBRiiBMICBRAhGJ8FwgIFECEYoAHCAgUQIRirApgDAIgGAZAGCJIHBTI3LjEwoAfD7AGyBwUyNC4xMLgH4BfCBwcwLjIxLjE2yAdogAgB&sclient=gws-wiz-serp)
 - [The type arguments for method 'RelationalDatabaseFacadeExtensions.SqlQueryRaw<TResult>(DatabaseFacade, string, params object[])' cannot be inferred from the usage. Try specifying the type arguments explicitly.](https://www.google.com/search?q=The+type+arguments+for+method+%27RelationalDatabaseFacadeExtensions.SqlQueryRaw%3CTResult%3E%28DatabaseFacade%2C+string%2C+params+object%5B%5D%29%27+cannot+be+inferred+from+the+usage.+Try+specifying+the+type+arguments+explicitly.&oq=The+type+arguments+for+method+%27RelationalDatabaseFacadeExtensions.SqlQueryRaw%3CTResult%3E%28DatabaseFacade%2C+string%2C+params+object%5B%5D%29%27+cannot+be+inferred+from+the+usage.+Try+specifying+the+type+arguments+explicitly.&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCjcxNjA1MGowajSoAgCwAgA&sourceid=chrome&ie=UTF-8)
 - [.net how to quote a multiline string](https://www.google.com/search?q=.net+how+to+quote+a+multiline+string&oq=.net+how+to+quote+a+multiline+string&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRirAjIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBTIHCAgQIRifBTIHCAkQIRifBdIBCTcxMTEzajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
