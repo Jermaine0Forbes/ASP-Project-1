@@ -33,6 +33,7 @@ const CHART_COLORS = {
   ];
 
   const x = @Json.Serialize(ViewBag.Addresses) || null;
+  const posts = @Json.Serialize(ViewBag.Posts) || null;
 
 
   const c = new Chart(
@@ -40,18 +41,14 @@ const CHART_COLORS = {
     {
       type: 'line',
       data: {
-        @* labels: data.map(row => row.year), *@
         labels: x.map(row => row.label),
         datasets: [
           {
             label: 'Ip Traffic',
-            borderColor: CHART_COLORS.blue,
-            backgroundColor: transparentize(CHART_COLORS.blue, 0.5),
+            borderColor: CHART_COLORS.purple,
+            backgroundColor: transparentize(CHART_COLORS.purple, 0.5),
             data: x.map(row => row.num),
             tension: 0.3,
-            @* pointStyle: "circle", 
-             pointRadius: 10,
-            pointHoverRadius: 15 *@
           }
         ]
       },
@@ -62,16 +59,41 @@ const CHART_COLORS = {
             x:{title:{display:true, text: "Today", font:{size: 16}}},
 
         },
-        @* plugins: {
-            title: {
-                display: true,
-                text: "IP Tracking Graph"
-            },
-
-        } *@
       }
     }
   );
+
+  if(posts){
+       new Chart(
+        document.getElementById('post-creation'),
+        {
+        type: 'line',
+        data: {
+            labels: posts.map(row => row.label),
+            datasets: [
+            {
+                label: 'Post Creation',
+                borderColor: CHART_COLORS.blue,
+                backgroundColor: transparentize(CHART_COLORS.blue, 0.5),
+                data: posts.map(row => row.num),
+                tension: 0.3,
+                @* pointStyle: "circle", 
+                pointRadius: 10,
+                pointHoverRadius: 15 *@
+            }
+            ]
+        },
+        options: {
+            responsive:true,
+            scales:{
+                y:{title:{display:true, text: "Posts", font:{size: 16}}},
+                x:{title:{display:true, text: "Today", font:{size: 16}}},
+
+            },
+        }
+        }
+    );
+  }
 
 })();
 

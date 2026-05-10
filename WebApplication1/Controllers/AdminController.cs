@@ -26,7 +26,21 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Index()
         {
 
-            string query = @"
+
+            var addresses = await GetDailyData("[IpAddresses]");
+            var views = await _context.IpAddresses.Take(100)
+            .Select(ip => new { ip.Address, ip.Path, ip.CreatedAt, ip.UserId, ip.Zip })
+            .OrderByDescending(m => m.CreatedAt).ToListAsync();
+            var posts = await GetDailyData("[Posts]"); ;
+            ViewBag.Addresses = addresses;
+            ViewBag.Views = views;
+            ViewBag.Posts = posts;
+            return View(await _context.Users.ToListAsync());
+        }
+
+        public async Task<List<DailyViewModel>> GetDailyData(string table)
+        {
+            string query = $@"
 
             WITH Hours12 AS (
                 SELECT 0 AS Hour UNION ALL
@@ -45,7 +59,7 @@ namespace WebApplication1.Controllers
                 SELECT 
                     DATEPART(HOUR, CreatedAt)   AS Hour,
                     COUNT(*) AS Num
-                FROM [IpAddresses]
+                FROM {table}
                 WHERE CreatedAt  >= CAST(GETDATE() AS DATE)
                 AND CreatedAt  <  DATEADD(DAY, 1, CAST(GETDATE() AS DATE))
                 GROUP BY DATEPART(HOUR, CreatedAt)
@@ -59,13 +73,8 @@ namespace WebApplication1.Controllers
             ORDER BY A.Hour;
             ";
 
-            var addresses = await _context.Database.SqlQueryRaw<IpDailyViewModel>(query).ToListAsync();
-            var  views = await _context.IpAddresses.Take(100)
-            .Select(ip => new { ip.Address, ip.Path, ip.CreatedAt, ip.UserId , ip.Zip})
-            .OrderByDescending(m => m.CreatedAt).ToListAsync();
-            ViewBag.Addresses = addresses;
-            ViewBag.Views = views;
-            return View(await _context.Users.ToListAsync());
+            return await _context.Database.SqlQueryRaw<DailyViewModel>(query).ToListAsync();
+
         }
 
 

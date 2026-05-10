@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.ViewModels
 {
-    public class IpDailyViewModel
+    public class DailyViewModel
     {
         public int Hour { get; set; } 
 
