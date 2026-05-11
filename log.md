@@ -1,10 +1,19 @@
 # Logs
 
-### 5-9-26
+
+### 5-10-26
 
 #### helpful links
 - []()
-- []()
+- [.net dbcontext join by user id](https://www.google.com/search?q=.net+dbcontext+join+by+user+id&oq=.net+dbcontext+join+by+user+id&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRigATIHCAYQIRifBTIHCAcQIRifBTIHCAgQIRifBdIBCTE4NjAxajBqN6gCCLACAfEFMCnGzLRme0E&sourceid=chrome&ie=UTF-8)
+- [.net context.SaveChangesAsync() not updating table](https://www.google.com/search?q=.net+context.SaveChangesAsync%28%29+not+updating+table&oq=.net+context.SaveChangesAsync%28%29+not+updating+table&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRiPAtIBCDg1MzFqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
+- [.net how to do raw a query](https://www.google.com/search?q=.net+how+to+do+raw+a+query&oq=.net+how+to+do+raw+a+query&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQABjvBTIKCAIQABiiBBiJBTIHCAMQABjvBTIKCAQQABiiBBiJBdIBCTE2NjQ5ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8s)
+- [c# verbatim string with sql query raw with data](https://www.google.com/search?q=c%23+verbatim+string+with+sql+query+raw+with+data&biw=1707&bih=898&sca_esv=a31fc0baee88228c&sxsrf=ANbL-n4gYBUegzAYwjOqYR99FZ24y-7icQ%3A1778388130807&ei=ogwAavv_MM-OwbkP39u8kQo&ved=0ahUKEwj72LyG9K2UAxVPRzABHd8tL6IQ4dUDCBM&uact=5&oq=c%23+verbatim+string+with+sql+query+raw+with+data&gs_lp=Egxnd3Mtd2l6LXNlcnAiL2MjIHZlcmJhdGltIHN0cmluZyB3aXRoIHNxbCBxdWVyeSByYXcgd2l0aCBkYXRhMgcQIRgKGKABMgcQIRgKGKABMgcQIRgKGKABMgcQIRgKGKABMgUQIRirAjIFECEYqwIyBRAhGKsCSJaNAVCYT1j2igFwAngBkAEAmAFzoAH7EKoBBDI4LjG4AQPIAQD4AQGYAh-gAvsRwgIKEAAYRxjWBBiwA8ICBBAjGCfCAgUQABiABMICBhAAGBYYHsICBRAAGO8FwgIFECEYoAHCAgUQIRifBZgDAIgGAZAGCJIHBDMwLjGgB7eiAbIHBDI4LjG4B-kRwgcIMC4yNC42LjHIB02ACAE&sclient=gws-wiz-serp)
+
+
+### 5-9-26
+
+#### helpful links
 - [.net mvc dbcontext order by desc](https://www.google.com/search?q=.net+mvc+dbcontext+order+by+desc&oq=.net+mvc+dbcontext+order+by+desc&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRirAjIHCAYQIRiPAjIHCAcQIRiPAtIBCTE0MTIzajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 - [.net mvc foreach get index](https://www.google.com/search?q=.net+mvc+foreach+get+index&oq=.net+mvc+foreach+get+index&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRirAjIHCAUQIRirAjIHCAYQIRifBTIHCAcQIRifBTIHCAgQIRifBTIHCAkQIRifBdIBCjI4NzAyNWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
 - [.net dbcontext limit](https://www.google.com/search?q=.net+dbcontext+limit&sca_esv=b5b468572594fe9e&sxsrf=ANbL-n7x7IjanTaV7pMKGf1Q2IDjfdy5pQ%3A1778364694797&ei=FrH_aYmwMM7bwN4P9dm92QM&biw=1707&bih=898&ved=0ahUKEwiJk6jfnK2UAxXOLdAFHfVsLzsQ4dUDCBE&uact=5&oq=.net+dbcontext+limit&gs_lp=Egxnd3Mtd2l6LXNlcnAiFC5uZXQgZGJjb250ZXh0IGxpbWl0MgUQIRigATIFECEYoAEyBRAhGKABSO8KUPwEWNoJcAF4AZABAJgBWaABjwOqAQE1uAEDyAEA-AEBmAIGoAKyA8ICChAAGEcY1gQYsAPCAgYQABgWGB7CAggQABiABBiiBMICCBAAGIkFGKIEwgIFEAAY7wWYAwCIBgGQBgiSBwE2oAf4ErIHATW4B6kDwgcFMC40LjLIBxKACAE&sclient=gws-wiz-serp)

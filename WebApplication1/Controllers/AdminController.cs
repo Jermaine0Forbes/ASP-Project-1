@@ -31,14 +31,19 @@ namespace WebApplication1.Controllers
             var views = await _context.IpAddresses.Take(100)
             .Select(ip => new { ip.Address, ip.Path, ip.CreatedAt, ip.UserId, ip.Zip })
             .OrderByDescending(m => m.CreatedAt).ToListAsync();
-            var posts = await GetDailyData("[Posts]"); ;
+            var dailyPosts = await GetDailyData("[Posts]"); 
+            var topPosts = await (from user in _context.Users
+            join post in _context.Posts on user.Id equals post.UserId
+            select new {post.Title, post.Views, user.UserName }).Take(100).ToListAsync();
+
             ViewBag.Addresses = addresses;
             ViewBag.Views = views;
-            ViewBag.Posts = posts;
-            return View(await _context.Users.ToListAsync());
+            ViewBag.Posts = dailyPosts;
+            ViewBag.TopPosts = topPosts;
+            return View();
         }
 
-        public async Task<List<DailyViewModel>> GetDailyData(string table)
+        public async Task<List<DailyDataViewModel>> GetDailyData(string table)
         {
             string query = $@"
 
@@ -73,7 +78,7 @@ namespace WebApplication1.Controllers
             ORDER BY A.Hour;
             ";
 
-            return await _context.Database.SqlQueryRaw<DailyViewModel>(query).ToListAsync();
+            return await _context.Database.SqlQueryRaw<DailyDataViewModel>(query).ToListAsync();
 
         }
 

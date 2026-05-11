@@ -41,6 +41,18 @@ namespace WebApplication1.Controllers
                 return NotFound();
             }
 
+            try
+            {
+                post.Views += 1;
+                await _context.SaveChangesAsync();
+                
+            }catch (Exception e)
+            {
+                 throw new Exception(e.Message);
+                
+            }
+
+
             return View(post);
         }
 
@@ -99,6 +111,7 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
+
             return View(post);
         }
 

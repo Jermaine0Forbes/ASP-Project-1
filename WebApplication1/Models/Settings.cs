@@ -12,7 +12,6 @@ public class Settings
     public string Key { get; set; } = "";
 
     [Required]
-    // [Display(Name="Message")]
     public string Value {get; set;} = "";
 
     public int IsInt {get; set;} = 0;

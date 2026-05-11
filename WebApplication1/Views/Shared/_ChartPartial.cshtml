@@ -32,7 +32,7 @@ const CHART_COLORS = {
     { year: 2016, count: 28 },
   ];
 
-  const x = @Json.Serialize(ViewBag.Addresses) || null;
+  const addrs = @Json.Serialize(ViewBag.Addresses) || null;
   const posts = @Json.Serialize(ViewBag.Posts) || null;
 
 
@@ -41,13 +41,13 @@ const CHART_COLORS = {
     {
       type: 'line',
       data: {
-        labels: x.map(row => row.label),
+        labels: addrs.map(row => row.label),
         datasets: [
           {
             label: 'Ip Traffic',
             borderColor: CHART_COLORS.purple,
             backgroundColor: transparentize(CHART_COLORS.purple, 0.5),
-            data: x.map(row => row.num),
+            data: addrs.map(row => row.num),
             tension: 0.3,
           }
         ]
