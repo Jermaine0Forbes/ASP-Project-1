@@ -26,7 +26,6 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Index()
         {
 
-
             var addresses = await GetDailyData("[IpAddresses]");
             var views = await _context.IpAddresses.Take(100)
             .Select(ip => new { ip.Address, ip.Path, ip.CreatedAt, ip.UserId, ip.Zip })

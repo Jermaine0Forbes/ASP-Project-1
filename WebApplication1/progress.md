@@ -45,7 +45,7 @@ Trying to keep track of the little things that I need to do
     - ~~create shared layout, navbar(account, dashboard, users, settings), and stylize~~
     - ~~implement ip tracking graph on dashboard~~
     - ~~implement post creation graph dashboard~~
-    - trending posts views
+    - ~~trending posts views~~
     - complete users list and edit page
     - complete settings page
     - websocket
