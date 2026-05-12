@@ -9,6 +9,7 @@ using WebApplication1.Data;
 using WebApplication1.Models;
 using Microsoft.AspNetCore.Authorization;
 using WebApplication1.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebApplication1.Controllers
 {
@@ -16,10 +17,12 @@ namespace WebApplication1.Controllers
     public class AdminController : Controller
     {
         private readonly AppDBContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public AdminController(AppDBContext context)
+        public AdminController(AppDBContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Admin
@@ -30,10 +33,10 @@ namespace WebApplication1.Controllers
             var views = await _context.IpAddresses.Take(100)
             .Select(ip => new { ip.Address, ip.Path, ip.CreatedAt, ip.UserId, ip.Zip })
             .OrderByDescending(m => m.CreatedAt).ToListAsync();
-            var dailyPosts = await GetDailyData("[Posts]"); 
+            var dailyPosts = await GetDailyData("[Posts]");
             var topPosts = await (from user in _context.Users
-            join post in _context.Posts on user.Id equals post.UserId
-            select new {post.Title, post.Views, user.UserName }).Take(100).ToListAsync();
+                                  join post in _context.Posts on user.Id equals post.UserId
+                                  select new { post.Title, post.Views, user.UserName }).Take(100).ToListAsync();
 
             ViewBag.Addresses = addresses;
             ViewBag.Views = views;
@@ -86,39 +89,51 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Users()
         {
             // var users = await _context.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).ToListAsync();
-            var users = 
+            var users =
             await (
                 from user in _context.Users
                 join userRole in _context.UserRoles on user.Id equals userRole.UserId
                 join role in _context.Roles on userRole.RoleId equals role.Id
-                select ( 
-                    new UserListViewModel{
-                    Id = user.Id, 
-                    CreatedAt = user.CreatedAt,
-                    UserName =  user.UserName, 
-                    Email = user.Email, 
-                    Roles = userRole
+                select (
+                    new UserListViewModel
+                    {
+                        Id = user.Id,
+                        CreatedAt = user.CreatedAt,
+                        UserName = user.UserName,
+                        Email = user.Email,
+                        Roles = role.Name
                     })
 
             ).ToListAsync();
 
-
-            //             var users = 
-            // await (
-            //     _context.Users.Join( users in _context.Users, userRoles => userRoles.UserId, users => users.Id,
-                
-            //         ( users, userRoles) => new UserListViewModel{
-            //         Id = users.Id, 
-            //         CreatedAt = users.CreatedAt,
-            //         UserName =  users.UserName, 
-            //         Email = users.Email, 
-            //         Roles = userRoles.Role 
-            //         })
-
-            // ).ToListAsync();
-
             ViewBag.UserList = users;
             return View(users);
+        }
+
+        public async Task<IActionResult> UserEdit(string id)
+        {
+            if (id == null || !UserExists(id))
+            {
+                return NotFound();
+            }
+
+            var user = await _context.Users
+             .FirstOrDefaultAsync(m => m.Id == id);
+
+            var role = string.Join(",",await _userManager.GetRolesAsync(user!));
+
+            var roles = await _context.Roles
+            .Select( r => new SelectListItem { Value = r.Name , Text = r.Name, 
+            Selected = r.Name !=null && r.Name.Contains(role)
+            }).ToListAsync();
+            var data = new UserEditViewModel()
+            {
+              User = user,
+              Roles = roles,
+              Role = role,  
+            };
+            ViewBag.Categories = roles;
+            return View(data);
         }
 
 

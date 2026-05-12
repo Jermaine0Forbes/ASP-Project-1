@@ -39,10 +39,8 @@ public static class SeedData
                 //     await roleManager.CreateAsync(new IdentityRole(role));
                 // }
 
-                // if (await context.Roles.FindAsync(role) == null)
                 if (!await roleManager.RoleExistsAsync(role))
                 {
-                    // await context.Roles.AddAsync(new Role(role));
                     await roleManager.CreateAsync(new Role {Name = role});
                 }
             }
@@ -58,7 +56,7 @@ public static class SeedData
 
             var fakeUsers = new Faker<User>()
             .RuleFor(u => u.UserName, f => f.Internet.UserName())
-            .RuleFor(u => u.Email, f => f.Internet.Email())
+            .RuleFor(u => u.Email, (f, u) => u.UserName+"@gmail.com")
             .RuleFor(u => u.PasswordHash, f => f.Internet.Password())
             .RuleFor(u => u.CreatedAt, f => currentDateTime)
             .RuleFor(u => u.OtpExpirationDate, f => currentDateTime);

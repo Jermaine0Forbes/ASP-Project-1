@@ -27,7 +27,7 @@
                     </th>
 
                     <td>
-                        Roles
+                        @Html.DisplayNameFor(model => model.Roles)
                     </td>
  
                     <th></th>
@@ -52,14 +52,14 @@
 
 
                         <td>
-                            @Html.DisplayFor(modelItem => string.Join(",",item.Roles.Select( r => r.Name)))
+                            @Html.DisplayFor(modelItem => item.Roles)
                         </td>
 
 
                         <td>
                             <td>
-                                <a asp-controller="User" asp-action="Edit" asp-route-id="@item.Id">View</a> |
-                                <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                <a asp-controller="Admin" asp-action="UserEdit" asp-route-id="@item.Id">View</a> |
+                                <a asp-controller="Admin" asp-action="UserDelete" asp-route-id="@item.Id">Delete</a>
                             </td>
                         </tr>
                     }
