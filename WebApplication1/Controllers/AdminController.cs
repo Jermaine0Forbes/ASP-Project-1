@@ -10,6 +10,7 @@ using WebApplication1.Models;
 using Microsoft.AspNetCore.Authorization;
 using WebApplication1.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using WebApplication1.Services;
 
 namespace WebApplication1.Controllers
 {
@@ -18,11 +19,13 @@ namespace WebApplication1.Controllers
     {
         private readonly AppDBContext _context;
         private readonly UserManager<User> _userManager;
+        private readonly EmailService _email;
 
-        public AdminController(AppDBContext context, UserManager<User> userManager)
+        public AdminController(AppDBContext context, UserManager<User> userManager, EmailService email)
         {
             _context = context;
             _userManager = userManager;
+            _email = email;
         }
 
         // GET: Admin
@@ -121,17 +124,21 @@ namespace WebApplication1.Controllers
             var user = await _context.Users
              .FirstOrDefaultAsync(m => m.Id == id);
 
-            var role = string.Join(",",await _userManager.GetRolesAsync(user!));
+            var role = string.Join(",", await _userManager.GetRolesAsync(user!));
 
             var roles = await _context.Roles
-            .Select( r => new SelectListItem { Value = r.Name , Text = r.Name, 
-            Selected = r.Name !=null && r.Name.Contains(role)
+            .Select(r => new SelectListItem
+            {
+                Value = r.Name,
+                Text = r.Name,
+                Selected = r.Name != null && r.Name.Contains(role)
             }).ToListAsync();
+
             var data = new UserEditViewModel()
             {
-              User = user,
-              Roles = roles,
-              Role = role,  
+                User = user,
+                Roles = roles,
+                Role = role,
             };
             ViewBag.Categories = roles;
             return View(data);
@@ -139,40 +146,40 @@ namespace WebApplication1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult>  UserEdit(UserEditViewModel model)
+        public async Task<IActionResult> UserEdit(UserEditViewModel model)
         {
             if (ModelState.IsValid)
             {
-               var id = model.User?.Id; 
-               var exists = UserExists(id ?? "");
-               if(id == null || !exists) { return NotFound();}
+                var id = model.User?.Id;
+                var exists = UserExists(id ?? "");
+                if (id == null || !exists) { return NotFound(); }
 
-               var user = await _userManager.FindByIdAsync(id);
-               var role = await _context.Roles.Where( r => r.Name == model.Role).FirstOrDefaultAsync();
+                var user = await _userManager.FindByIdAsync(id);
+                var role = await _context.Roles.Where(r => r.Name == model.Role).FirstOrDefaultAsync();
 
-               if(user == null || role == null) { throw new Exception("Cannot find user or role when attempting to edit");}
-               var oldrole = await _context.UserRoles.Where( ur => ur.UserId == user.Id).FirstAsync();
+                if (user == null || role == null) { throw new Exception("Cannot find user or role when attempting to edit"); }
+                var oldrole = await _context.UserRoles.Where(ur => ur.UserId == user.Id).FirstAsync();
 
 
-               user.UserName = model.User !=null ? model.User.UserName :  user.UserName;
-               user.Email =   model.User !=null ? model.User.Email :  user.Email;
-               user.PhoneNumber =  model.User !=null ? model.User.PhoneNumber :  user.PhoneNumber;
-               user.TwoFactorEnabled =  model.User !=null ? model.User.TwoFactorEnabled :  user.TwoFactorEnabled;
-               user.EmailConfirmed =  model.User !=null ? model.User.EmailConfirmed :  user.EmailConfirmed;
-               user.LockoutEnabled =  model.User !=null ? model.User.LockoutEnabled : user.LockoutEnabled;
+                user.UserName = model.User != null ? model.User.UserName : user.UserName;
+                user.Email = model.User != null ? model.User.Email : user.Email;
+                user.PhoneNumber = model.User != null ? model.User.PhoneNumber : user.PhoneNumber;
+                user.TwoFactorEnabled = model.User != null ? model.User.TwoFactorEnabled : user.TwoFactorEnabled;
+                user.EmailConfirmed = model.User != null ? model.User.EmailConfirmed : user.EmailConfirmed;
+                user.LockoutEnabled = model.User != null ? model.User.LockoutEnabled : user.LockoutEnabled;
 
-               var newrole = new UserRole()
-               {
-                   User = user,
-                   Role = role, 
-               };
+                var newrole = new UserRole()
+                {
+                    User = user,
+                    Role = role,
+                };
 
-               _context.Update(user);
-            //    await _context.UserRoles.AddAsync(newrole);
-               _context.Remove(oldrole);
-               _context.Add(newrole);
+                _context.Update(user);
+                //    await _context.UserRoles.AddAsync(newrole);
+                _context.Remove(oldrole);
+                _context.Add(newrole);
 
-              await  _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
             }
             else
@@ -181,6 +188,92 @@ namespace WebApplication1.Controllers
             }
 
             return RedirectToAction("UserEdit");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UserCreate()
+        {
+            var roles = await _context.Roles
+            .Select(r => new SelectListItem
+            {
+                Value = r.Name,
+                Text = r.Name,
+
+            }).ToListAsync();
+            ViewBag.Roles = roles;
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> UserCreate(UserCreateViewModel model)
+        {
+
+
+            if (ModelState.IsValid)
+            {
+
+                var (theUser, theRole) = model;
+                DateTime currentDateTime = DateTime.Now;
+                DateTime futureDateTime = DateTime.Now.AddDays(5);
+                User user = new()
+                {
+                    Email = theUser.Email,
+                    UserName = theUser.UserName ?? "",
+                    PhoneNumber = theUser.PhoneNumber ?? "",
+                    CreatedAt = currentDateTime,
+                    OtpExpirationDate = futureDateTime,
+                };
+
+                var role = await _context.Roles.Where(r => r.Name == theRole).FirstOrDefaultAsync() ?? throw new Exception("Role hasn't been chosen or doesn't exist");
+                var doesNameExist = await _userManager.FindByNameAsync(user.UserName!);
+
+                if (doesNameExist != null)
+                {
+                    ModelState.AddModelError("", "the user name is not unique");
+                    return View(model);
+                }
+
+                if(theUser.PasswordHash == null) { throw new Exception("Password is empty");}
+                if(theRole == null) {}
+
+                var result = await _userManager.CreateAsync(user, theUser.PasswordHash);
+                string? token = null;
+
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, role.Name!);
+                    // 1. Generate Email Confirmation Token
+                    token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                    // 2. Create confirmation link
+                    var confirmationLink = Url.Action("VerifyingEmail", "Account",
+                        new { userId = user.Id, token = token }, Request.Scheme);
+
+                    var cem = new ConfirmationEmailModel()
+                    {
+                        UserName = user.UserName,
+                        Title = "Confirmation Email",
+                        Url = confirmationLink ?? "",
+                    };
+
+                    if(user.Email == null){throw new Exception("Email is empty");}
+
+                    _email.Send(cem, "ConfirmationEmail", user.Email);
+
+                }
+                else
+                {
+                    throw new Exception("User was not created");
+                }
+
+
+            }
+            else
+            {
+                ModelState.AddModelError("invalid", "a specific form value is invalid");
+            }
+            return RedirectToAction("Users");
         }
 
 
