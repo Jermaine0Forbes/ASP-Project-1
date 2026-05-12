@@ -148,17 +148,29 @@ namespace WebApplication1.Controllers
                if(id == null || !exists) { return NotFound();}
 
                var user = await _userManager.FindByIdAsync(id);
-               var role = await _context.Roles.FindAsync();
-               
-               user.UserName = model.User.UserName;
-               user.Email = model.User.Email;
-               user.PhoneNumber = model.User.PhoneNumber;
-               user.TwoFactorEnabled = model.User.TwoFactorEnabled;
-               user.EmailConfirmed = model.User.EmailConfirmed;
-               user.LockoutEnabled = model.User.LockoutEnabled;
+               var role = await _context.Roles.Where( r => r.Name == model.Role).FirstOrDefaultAsync();
+
+               if(user == null || role == null) { throw new Exception("Cannot find user or role when attempting to edit");}
+               var oldrole = await _context.UserRoles.Where( ur => ur.UserId == user.Id).FirstAsync();
+
+
+               user.UserName = model.User !=null ? model.User.UserName :  user.UserName;
+               user.Email =   model.User !=null ? model.User.Email :  user.Email;
+               user.PhoneNumber =  model.User !=null ? model.User.PhoneNumber :  user.PhoneNumber;
+               user.TwoFactorEnabled =  model.User !=null ? model.User.TwoFactorEnabled :  user.TwoFactorEnabled;
+               user.EmailConfirmed =  model.User !=null ? model.User.EmailConfirmed :  user.EmailConfirmed;
+               user.LockoutEnabled =  model.User !=null ? model.User.LockoutEnabled : user.LockoutEnabled;
+
+               var newrole = new UserRole()
+               {
+                   User = user,
+                   Role = role, 
+               };
 
                _context.Update(user);
-
+            //    await _context.UserRoles.AddAsync(newrole);
+               _context.Remove(oldrole);
+               _context.Add(newrole);
 
               await  _context.SaveChangesAsync();
 
@@ -168,7 +180,7 @@ namespace WebApplication1.Controllers
                 ModelState.AddModelError("invalid", "a specific form value is invalid");
             }
 
-            return View();
+            return RedirectToAction("UserEdit");
         }
 
 

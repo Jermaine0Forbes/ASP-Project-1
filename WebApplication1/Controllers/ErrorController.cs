@@ -8,7 +8,7 @@ namespace WebApplication1.Controllers
         [Route("Error/{statusCode}")]
         public IActionResult Index(int statusCode)
         {
-            var  msg = TempData["ErrorMsg"] ?? null;
+            var msg = TempData["ErrorMsg"] ?? null;
             switch (statusCode)
             {
                 case 403:
@@ -16,6 +16,9 @@ namespace WebApplication1.Controllers
                     break;
                 case 404:
                     ViewBag.ErrorMessage = "Sorry, the page could not be found.";
+                    break;
+                case 405:
+                    ViewBag.ErrorMessage = "Sorry, the method could not be performed because it does not exist";
                     break;
                 case 500:
                     ViewBag.ErrorMessage = "An internal server error occurred.";
