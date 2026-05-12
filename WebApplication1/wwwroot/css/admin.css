@@ -60,6 +60,10 @@ nav#sidebar{
   height:100vh;
 }
 
+nav a.active{
+  font-weight:bold;
+}
+
 /**************
 Profile
 **************/

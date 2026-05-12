@@ -6,7 +6,6 @@ using System;
 using System.Linq;
 using Bogus;
 using NuGet.Protocol;
-using System.Text.Json;
 
 namespace WebApplication1.Models;
 
@@ -28,16 +27,23 @@ public static class SeedData
         try
         {
             var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
-            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<Role>>();
             string[] roles = ["User", "Manager", "Admin"];
 
 
 
             foreach (var role in roles)
             {
+                // if (!await roleManager.RoleExistsAsync(role))
+                // {
+                //     await roleManager.CreateAsync(new IdentityRole(role));
+                // }
+
+                // if (await context.Roles.FindAsync(role) == null)
                 if (!await roleManager.RoleExistsAsync(role))
                 {
-                    await roleManager.CreateAsync(new IdentityRole(role));
+                    // await context.Roles.AddAsync(new Role(role));
+                    await roleManager.CreateAsync(new Role {Name = role});
                 }
             }
 

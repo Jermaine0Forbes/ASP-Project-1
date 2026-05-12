@@ -9,21 +9,31 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Data
 {
-    public class AppDBContext : IdentityDbContext<User>
+    public class AppDBContext : IdentityDbContext<User, Role, string, IdentityUserClaim<string>, UserRole, IdentityUserLogin<string>,IdentityRoleClaim<string>, IdentityUserToken<string>>
     {
         public AppDBContext(DbContextOptions<AppDBContext> options)
             : base(options)
         {
         }
 
-        protected override void  OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            // builder.Entity<User>()
-            // .HasMany(u => u.Posts)
-            // .WithOne(p => p.User)
-            // .HasForeignKey(p => p.User != null ? p.User.Id : null);
+            builder.Entity<UserRole>(userRole =>
+            {
+                userRole.HasKey(ur => new { ur.UserId, ur.RoleId });
+
+                userRole.HasOne(ur => ur.Role)
+                    .WithMany(r => r.UserRoles)
+                    .HasForeignKey(ur => ur.RoleId)
+                    .IsRequired();
+
+                userRole.HasOne(ur => ur.User)
+                    .WithMany(u => u.UserRoles)
+                    .HasForeignKey(ur => ur.UserId)
+                    .IsRequired();
+            });
 
         }
 

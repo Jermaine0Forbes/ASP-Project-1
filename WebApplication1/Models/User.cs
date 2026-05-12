@@ -23,5 +23,8 @@ public class User : IdentityUser
 
     public ICollection<Post> Posts {get; set;} = [];
 
+    [Display(Name="Roles")]
+    public virtual ICollection<UserRole> UserRoles {get; set;} = [];
+
 
 }

@@ -85,7 +85,40 @@ namespace WebApplication1.Controllers
         // GET: Admin/Users
         public async Task<IActionResult> Users()
         {
-            return View(await _context.Users.ToListAsync());
+            // var users = await _context.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role).ToListAsync();
+            var users = 
+            await (
+                from user in _context.Users
+                join userRole in _context.UserRoles on user.Id equals userRole.UserId
+                join role in _context.Roles on userRole.RoleId equals role.Id
+                select ( 
+                    new UserListViewModel{
+                    Id = user.Id, 
+                    CreatedAt = user.CreatedAt,
+                    UserName =  user.UserName, 
+                    Email = user.Email, 
+                    Roles = userRole
+                    })
+
+            ).ToListAsync();
+
+
+            //             var users = 
+            // await (
+            //     _context.Users.Join( users in _context.Users, userRoles => userRoles.UserId, users => users.Id,
+                
+            //         ( users, userRoles) => new UserListViewModel{
+            //         Id = users.Id, 
+            //         CreatedAt = users.CreatedAt,
+            //         UserName =  users.UserName, 
+            //         Email = users.Email, 
+            //         Roles = userRoles.Role 
+            //         })
+
+            // ).ToListAsync();
+
+            ViewBag.UserList = users;
+            return View(users);
         }
 
 

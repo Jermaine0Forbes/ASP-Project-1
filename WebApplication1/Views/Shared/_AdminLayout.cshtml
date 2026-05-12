@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using WebApplication1.Helpers
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
@@ -29,20 +30,20 @@
                             <span class="navbar-brand" id="admin-name"> @UserManager.GetUserName(User)</span>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Account">
+                            <a class="nav-link text-dark @Html.IsActive("Admin", "Account")" asp-area="" asp-controller="Admin" asp-action="Account">
                                 Account
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin"
+                            <a class="nav-link text-dark @Html.IsActive("Admin", "Index")" asp-area="" asp-controller="Admin"
                                asp-action="Index">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin"
+                            <a class="nav-link text-dark @Html.IsActive("Admin", "Users")" asp-area="" asp-controller="Admin"
                                asp-action="Users">Users</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin"
+                            <a class="nav-link text-dark @Html.IsActive("Admin", "Settings")" asp-area="" asp-controller="Admin"
                                asp-action="Settings">Settings</a>
                         </li>
                     </ul>

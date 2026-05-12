@@ -63,7 +63,8 @@ builder.Services.AddDefaultIdentity<User>(options =>
 
     options.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
 })
-.AddRoles<IdentityRole>()
+.AddRoles<Role>()
+// .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<AppDBContext>()
 .AddDefaultTokenProviders();
 
