@@ -113,6 +113,7 @@ Id's
     max-width:100px;
      overflow-x:hidden;
     text-overflow: ellipsis;
+    white-space:nowrap;
 }
 #ip-table thead {
     width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */

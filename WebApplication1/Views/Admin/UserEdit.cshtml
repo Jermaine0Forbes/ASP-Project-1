@@ -22,7 +22,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="User.CreatedAt" class="control-label"></label>
-                <input asp-for="User.CreatedAt" class="form-control" />
+                <input disabled asp-for="User.CreatedAt" class="form-control" />
                 <span asp-validation-for="User.CreatedAt" class="text-danger"></span>
             </div>
 
@@ -35,7 +35,7 @@
 
             <div class="form-group">
                 <label asp-for="Role" class="control-label"></label>
-                <select class="form-control" asp-for="Roles" asp-items="@ViewBag.Categories" >
+                <select class="form-control" asp-for="Role" asp-items="@ViewBag.Categories" >
                 </select>
                 <span asp-validation-for="Role" class="text-danger"></span>
             </div>
@@ -49,7 +49,7 @@
 
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="User.EmailConfirmed" /> @Html.DisplayNameFor(model => model.User.EmailConfirmed)
+                    <input class="form-check-input" asp-for="User.EmailConfirmed" /> @Html.DisplayNameFor(model => model.User !=null && model.User.EmailConfirmed)
                 </label>
             </div>
 
@@ -61,22 +61,17 @@
 
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="User.TwoFactorEnabled" /> @Html.DisplayNameFor(model => model.User.TwoFactorEnabled)
+                    <input class="form-check-input" asp-for="User.TwoFactorEnabled" /> @Html.DisplayNameFor(model => model.User !=null && model.User.TwoFactorEnabled)
                 </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="User.LockoutEnd"  class="control-label"></label>
-                <input asp-for="User.LockoutEnd" class="form-control" />
-                <span asp-validation-for="User.LockoutEnd" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="User.LockoutEnabled" /> @Html.DisplayNameFor(model => model.User.LockoutEnabled)
+                    <input class="form-check-input" asp-for="User.LockoutEnabled" /> @Html.DisplayNameFor(model => model.User !=null && model.User.LockoutEnabled)
                 </label>
             </div>
             <div class="form-group">
                 <label asp-for="User.AccessFailedCount" class="control-label"></label>
-                <input asp-for="User.AccessFailedCount" class="form-control" />
+                <input disabled asp-for="User.AccessFailedCount" class="form-control" />
                 <span asp-validation-for="User.AccessFailedCount" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -87,7 +82,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Users">Back to List</a>
 </div>
 
 </body>

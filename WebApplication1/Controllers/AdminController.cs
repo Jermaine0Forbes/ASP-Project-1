@@ -110,6 +110,7 @@ namespace WebApplication1.Controllers
             return View(users);
         }
 
+        [HttpGet]
         public async Task<IActionResult> UserEdit(string id)
         {
             if (id == null || !UserExists(id))
@@ -134,6 +135,40 @@ namespace WebApplication1.Controllers
             };
             ViewBag.Categories = roles;
             return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult>  UserEdit(UserEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+               var id = model.User?.Id; 
+               var exists = UserExists(id ?? "");
+               if(id == null || !exists) { return NotFound();}
+
+               var user = await _userManager.FindByIdAsync(id);
+               var role = await _context.Roles.FindAsync();
+               
+               user.UserName = model.User.UserName;
+               user.Email = model.User.Email;
+               user.PhoneNumber = model.User.PhoneNumber;
+               user.TwoFactorEnabled = model.User.TwoFactorEnabled;
+               user.EmailConfirmed = model.User.EmailConfirmed;
+               user.LockoutEnabled = model.User.LockoutEnabled;
+
+               _context.Update(user);
+
+
+              await  _context.SaveChangesAsync();
+
+            }
+            else
+            {
+                ModelState.AddModelError("invalid", "a specific form value is invalid");
+            }
+
+            return View();
         }
 
 
