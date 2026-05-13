@@ -21,12 +21,14 @@ namespace WebApplication1.Controllers
         private readonly AppDBContext _context;
         private readonly UserManager<User> _userManager;
         private readonly EmailService _email;
+        private readonly AzureService _azure;
 
-        public AdminController(AppDBContext context, UserManager<User> userManager, EmailService email)
+        public AdminController(AppDBContext context, UserManager<User> userManager, EmailService email, AzureService azure)
         {
             _context = context;
             _userManager = userManager;
             _email = email;
+            _azure = azure;
         }
 
         // GET: Admin
@@ -311,14 +313,24 @@ namespace WebApplication1.Controllers
                 return View(svm);
             }
             return RedirectToAction("Settings");
-            // return View(model);
         }
 
-
+        [HttpGet]
         // GET: Admin/Account
         public async Task<IActionResult> Account()
         {
-            return View(await _context.Users.ToListAsync());
+            var user = await _userManager.GetUserAsync(User) ?? throw new Exception("User cannot be found");
+            var image = user?.Image != null ? await _azure.GetBlob(user.Image) : null;
+            var posts = await _context.Posts.Where(p =>  p.UserId.Equals(user!.Id)).ToListAsync();
+
+
+            var apvm = new AccountProfileViewModel()
+            {
+                User = user,
+                Image = image,
+                Posts = posts
+            };
+            return View();
         }
 
 

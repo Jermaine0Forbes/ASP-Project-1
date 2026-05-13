@@ -28,7 +28,7 @@ public class Post
 
     public int Views {get; set;} = 0;
 
-    public string? UserId {get; set;}
+    public string UserId {get; set;} = "";
     public User? User {get; set;}
 
 

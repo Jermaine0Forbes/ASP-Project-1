@@ -1,13 +1,17 @@
 # Logs
 
-
-### 5-12-26
+### 5-13-26
 
 #### helpful links
 - []()
 - []()
-- []()
-- []()
+- [.net how to check if list is empty](https://www.google.com/search?q=.net+how+to+check+if+list+is+empty&oq=.net+how+to+check+if+list+is+empty&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yCAgCEAAYFhgeMggIAxAAGBYYHjIHCAQQABjvBTIHCAUQABjvBTIHCAYQABjvBdIBCTI0MzgzajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [.Html.DisplayNameFor Dereference of a possibly null reference.](https://www.google.com/search?q=.Html.DisplayNameFor+Dereference+of+a+possibly+null+reference.&sca_esv=5241bf3e92dd5130&sxsrf=ANbL-n4Ss0AlwBe-GhVyM1AxoVU46w38Kg%3A1778642020984&ei=ZOwDatvqO4uSwbkPu6Kb6AI&biw=1707&bih=898&ved=0ahUKEwjbrN_upbWUAxULSTABHTvRBi0Q4dUDCBE&uact=5&oq=.Html.DisplayNameFor+Dereference+of+a+possibly+null+reference.&gs_lp=Egxnd3Mtd2l6LXNlcnAiPi5IdG1sLkRpc3BsYXlOYW1lRm9yIERlcmVmZXJlbmNlIG9mIGEgcG9zc2libHkgbnVsbCByZWZlcmVuY2UuSK4VUIMKWIMKcAF4AZABAJgBVKABVKoBATG4AQPIAQD4AQL4AQGYAgGgAhfCAgoQABhHGNYEGLADmAMAiAYBkAYIkgcBMaAHWLIHALgHAMIHAzMtMcgHDoAIAQ&sclient=gws-wiz-serp)
+
+
+### 5-12-26
+
+#### helpful links
 - [.net how to display a different name for a model that's being inherited](https://www.google.com/search?q=.net+how+to+display+a+different+name+for+a+model+that%27s+being+inherited&oq=.net+how+to+display+a+different+name+for+a+model+that%27s+being+inherited&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTI3NzI2ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 - [.net can you destructure an object](https://www.google.com/search?q=.net+can+you+destructure+an+object&oq=.net+can+you+destructure+an+object&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRirAjIHCAMQIRifBTIHCAQQIRifBTIHCAUQIRiPAjIHCAYQIRiPAtIBCTEwNTU5ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 - [.net how to destructure an object and rename it](https://www.google.com/search?q=.net+how+to+destructure+an+object+and+rename+it&oq=.net+how+to+destructure+an+object+and+rename+it&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRirAjIHCAUQIRifBTIHCAYQIRiPAjIHCAcQIRiPAtIBCTEzODUyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)

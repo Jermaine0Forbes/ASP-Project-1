@@ -47,7 +47,7 @@ Trying to keep track of the little things that I need to do
     - ~~implement post creation graph dashboard~~
     - ~~trending posts views~~
     - ~~complete users list and edit page~~
-    - complete settings page
+    - ~~complete settings page~~
     - complete account page
     - websocket
 - create a claim
