@@ -12,6 +12,7 @@ using WebApplication1.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using WebApplication1.Services;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using NuGet.Common;
 
 namespace WebApplication1.Controllers
 {
@@ -23,12 +24,21 @@ namespace WebApplication1.Controllers
         private readonly EmailService _email;
         private readonly AzureService _azure;
 
-        public AdminController(AppDBContext context, UserManager<User> userManager, EmailService email, AzureService azure)
+        private readonly ILogger<AdminController> _logger;
+
+        public AdminController(
+            AppDBContext context, 
+            UserManager<User> userManager, 
+            EmailService email, 
+            AzureService azure, 
+            ILogger<AdminController> logger
+            )
         {
             _context = context;
             _userManager = userManager;
             _email = email;
             _azure = azure;
+            _logger = logger;
         }
 
         // GET: Admin
@@ -351,11 +361,43 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-              var user =  model.User ?? throw new Exception("User is null");
+                try
+                {
+                    
+                    var user =  model.User ?? throw new Exception("User is null");
+                    var currentUser = await _userManager.GetUserAsync(User) ?? throw new Exception("Cannot find current user");
+                    
+                    if(currentUser.UserName != user.UserName)
+                    {
+                        var doesNameExist = await _userManager.FindByNameAsync(user.UserName!);
+                        if(doesNameExist !=null) throw new Exception("Username already exists");
+                        
+                    }
+
+                    currentUser.UserName = user.UserName;
+                    currentUser.Email = user.Email;
+                    currentUser.EmailConfirmed = user.EmailConfirmed;
+                    currentUser.PhoneNumber = user.PhoneNumber;
+                    currentUser.UpdatedAt = DateTime.Now;
+                    _context.Update(currentUser);
+                    await _context.SaveChangesAsync();
+
+                } catch( Exception e)
+                {
+                    
+                ModelState.AddModelError("", e.Message);
+                _logger.LogWarning("Admin Account Error: {0}", e.Message);
+                var aprvm = await GetAccountInfo();
+
+                return View(aprvm);
+
+                }
+
             }
             else
             {
-                ModelState.AddModelError("first", "validation errors");
+                ModelState.AddModelError("", "validation errors");
+                _logger.LogWarning("Admin Account validation errors");
                 var aprvm = await GetAccountInfo();
 
                 return View(aprvm);
