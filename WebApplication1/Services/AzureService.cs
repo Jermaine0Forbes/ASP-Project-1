@@ -2,6 +2,7 @@ using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Azure.Storage.Sas;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using WebApplication1.Configurations;
 
 
@@ -24,6 +25,12 @@ namespace WebApplication1.Services
             bsc = new BlobServiceClient(connectionString);
 
             return bsc != null;
+        }
+
+
+        public bool HasConnectionStr()
+        {
+            return _settings.Storage.IsNullOrEmpty();
         }
 
         public void SetBlobContainerName(string name)

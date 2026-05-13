@@ -1,9 +1,97 @@
-@model IEnumerable<WebApplication1.Models.User>
+@model WebApplication1.ViewModels.AccountProfileViewModel
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.Extensions.Configuration
+@inject UserManager<User> UserManager
+@inject IConfiguration Configuration
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
 
 @{
     Layout = "_AdminLayout";
 }
 
-<h1>Account</h1>
+<h1>Account: @(user?.UserName)</h1>
 
-<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+<section id="profile">
+    @if(ViewBag.Message != null)
+    {
+        <p>@ViewBag.Message</p>
+    }
+    <div class="card p-3 ">
+        <div class="row">
+            <div class="col-sm-3">
+                <div id="card-img-empty">
+                    @if(Configuration["AzureOptions:Storage"] != null && Model.Image != null )
+                    {
+                        <img src="@(Model.Image)"  width="100%" />
+                    }
+                    else if (user?.Image != null)
+                    {
+                        <img src="~/uploads/@UserManager.GetUserId(User)/@user.Image"  width="100%" />
+                    }
+
+                </div>
+
+            </div>
+            <div class="col-sm-3">
+                <form asp-controller="Account" asp-action="Upload" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file"/>
+                    <input type="hidden" name="userId" value="@UserManager.GetUserId(User)"/>
+                    <button type="submit">Upload Image</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    @if(Model.Posts != null && Model.Posts.Any())
+    {
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameForInnerType((Post item) => item.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameForInnerType((Post item) => item.CreatedAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameForInnerType((Post item) => item.UpdatedAt)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Posts)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+        
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdatedAt)
+                        </td>
+                        <td>
+                            <a asp-controller="Post" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-controller="Post" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-controller="Post" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+
+
+</section>
+
+
+
+
+<a class="btn btn-primary" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>

@@ -320,17 +320,17 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Account()
         {
             var user = await _userManager.GetUserAsync(User) ?? throw new Exception("User cannot be found");
-            var image = user?.Image != null ? await _azure.GetBlob(user.Image) : null;
+            var image = user?.Image != null && _azure.HasConnectionStr() ? await _azure.GetBlob(user.Image) : null;
             var posts = await _context.Posts.Where(p =>  p.UserId.Equals(user!.Id)).ToListAsync();
 
 
             var apvm = new AccountProfileViewModel()
             {
-                User = user,
+                User = user!,
                 Image = image,
                 Posts = posts
             };
-            return View();
+            return View(apvm);
         }
 
 

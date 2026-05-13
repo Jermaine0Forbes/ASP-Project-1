@@ -5,6 +5,9 @@
 #### helpful links
 - []()
 - []()
+- []()
+- [.net how to get property name to displayed in html.displaynamefor if property is a list](https://www.google.com/search?q=.net+how+to+get+property+name+to+displayed+in+html.displaynamefor+if+property+is+a+list&sca_esv=749643057e46af53&biw=1707&bih=898&sxsrf=ANbL-n6xMhvCSVs9OZdUQ_9aWWfd4XWakg%3A1778688501220&ei=9aEEatSTDffnwbkP5quzoQ0&ved=0ahUKEwiU4p-C07aUAxX3czABHebVLNQQ4dUDCBE&uact=5&oq=.net+how+to+get+property+name+to+displayed+in+html.displaynamefor+if+property+is+a+list&gs_lp=Egxnd3Mtd2l6LXNlcnAiVy5uZXQgaG93IHRvIGdldCBwcm9wZXJ0eSBuYW1lIHRvIGRpc3BsYXllZCBpbiBodG1sLmRpc3BsYXluYW1lZm9yIGlmIHByb3BlcnR5IGlzIGEgbGlzdEjWDFC9CliGC3ABeACQAQCYAU6gAZABqgEBMrgBA8gBAPgBAZgCAKACAJgDAIgGAZIHAKAHtwWyBwC4BwDCBwDIBwCACAE&sclient=gws-wiz-serp)
+- [Simplify DisplayName Calls In Razor Views](https://khalidabuhakmeh.com/simplify-displayname-calls-in-razor)
 - [.net how to check if list is empty](https://www.google.com/search?q=.net+how+to+check+if+list+is+empty&oq=.net+how+to+check+if+list+is+empty&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yCAgCEAAYFhgeMggIAxAAGBYYHjIHCAQQABjvBTIHCAUQABjvBTIHCAYQABjvBdIBCTI0MzgzajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 - [.Html.DisplayNameFor Dereference of a possibly null reference.](https://www.google.com/search?q=.Html.DisplayNameFor+Dereference+of+a+possibly+null+reference.&sca_esv=5241bf3e92dd5130&sxsrf=ANbL-n4Ss0AlwBe-GhVyM1AxoVU46w38Kg%3A1778642020984&ei=ZOwDatvqO4uSwbkPu6Kb6AI&biw=1707&bih=898&ved=0ahUKEwjbrN_upbWUAxULSTABHTvRBi0Q4dUDCBE&uact=5&oq=.Html.DisplayNameFor+Dereference+of+a+possibly+null+reference.&gs_lp=Egxnd3Mtd2l6LXNlcnAiPi5IdG1sLkRpc3BsYXlOYW1lRm9yIERlcmVmZXJlbmNlIG9mIGEgcG9zc2libHkgbnVsbCByZWZlcmVuY2UuSK4VUIMKWIMKcAF4AZABAJgBVKABVKoBATG4AQPIAQD4AQL4AQGYAgGgAhfCAgoQABhHGNYEGLADmAMAiAYBkAYIkgcBMaAHWLIHALgHAMIHAzMtMcgHDoAIAQ&sclient=gws-wiz-serp)
 
