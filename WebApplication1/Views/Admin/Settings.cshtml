@@ -9,7 +9,7 @@
 
 <section>
     <div class="row">
-        <form asp-action="SettingsCreate">
+        <form asp-action="Settings">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
                 <div class="form-group col">
@@ -31,7 +31,7 @@
                     <span asp-validation-for="Setting.IsInt" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group my-5">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -43,10 +43,10 @@
             @foreach (var item in Model.Settings)
             {
                 <div class="row">
-                    <div class="col"><input disabled value="@item.Key" /></div>
-                    <div class="col"><input disabled value="@item.Value" /></div>
+                    <div class="form-group col"><input class="form-control" type="text" disabled value="@item.Key" /></div>
+                    <div class="form-group col"><input class="form-control" type="text" disabled value="@item.Value" /></div>
                 </div>
-                <hr />
+                <hr class="my-3" />
             }
 
         }

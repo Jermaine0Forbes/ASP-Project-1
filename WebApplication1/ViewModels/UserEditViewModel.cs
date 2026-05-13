@@ -8,7 +8,7 @@ namespace WebApplication1.ViewModels
     {
 
          public string? Role { get; set; }
-         public User? User{ get; set; }
+         public User User{ get; set; } = new();
         
         public List<SelectListItem>? Roles { get; set; }
 

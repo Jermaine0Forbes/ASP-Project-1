@@ -70,7 +70,7 @@
                         {
                             <tr>
                                 <td>@item.UserName</td>
-                                <td>@item.Title</td>
+                                <td><a asp-action="Details" asp-controller="Post" asp-route-id="@item.Id">@item.Title</a></td>
                                 <td>@item.Views</td>
                             </tr>
                         }

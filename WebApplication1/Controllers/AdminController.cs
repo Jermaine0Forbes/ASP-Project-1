@@ -40,7 +40,7 @@ namespace WebApplication1.Controllers
             var dailyPosts = await GetDailyData("[Posts]");
             var topPosts = await (from user in _context.Users
                                   join post in _context.Posts on user.Id equals post.UserId
-                                  select new { post.Title, post.Views, user.UserName }).Take(100).ToListAsync();
+                                  select new { post.Id, post.Title, post.Views, user.UserName }).Take(100).OrderByDescending(p => p.Views).ToListAsync();
 
             ViewBag.Addresses = addresses;
             ViewBag.Views = views;
@@ -123,8 +123,7 @@ namespace WebApplication1.Controllers
             }
 
             var user = await _context.Users
-             .FirstOrDefaultAsync(m => m.Id == id);
-
+             .FirstOrDefaultAsync(m => m.Id == id) ?? throw new Exception("User was not found");
             var role = string.Join(",", await _userManager.GetRolesAsync(user!));
 
             var roles = await _context.Roles
@@ -235,8 +234,8 @@ namespace WebApplication1.Controllers
                     return View(model);
                 }
 
-                if(theUser.PasswordHash == null) { throw new Exception("Password is empty");}
-                if(theRole == null) {}
+                if (theUser.PasswordHash == null) { throw new Exception("Password is empty"); }
+                if (theRole == null) { }
 
                 var result = await _userManager.CreateAsync(user, theUser.PasswordHash);
                 string? token = null;
@@ -258,7 +257,7 @@ namespace WebApplication1.Controllers
                         Url = confirmationLink ?? "",
                     };
 
-                    if(user.Email == null){throw new Exception("Email is empty");}
+                    if (user.Email == null) { throw new Exception("Email is empty"); }
 
                     _email.Send(cem, "ConfirmationEmail", user.Email);
 
@@ -277,7 +276,7 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Users");
         }
 
-
+        [HttpGet]
         // GET: Admin/Settings
         public async Task<IActionResult> Settings()
         {
@@ -292,15 +291,27 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<IActionResult> Settings(SettingsViewModel model)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                var (set, sets) = model;
+                if (model.Setting == null) throw new Exception("Settings model is null");
+
+                model.Setting.CreatedAt = DateTime.Now;
+                await _context.AddAsync(model.Setting);
+
+                await _context.SaveChangesAsync();
             }
             else
             {
                 ModelState.AddModelError("", "Something went wrong");
+                var svm = new SettingsViewModel()
+                {
+                    Setting = null,
+                    Settings = await _context.Settings.ToListAsync()
+                };
+                return View(svm);
             }
-            return View();
+            return RedirectToAction("Settings");
+            // return View(model);
         }
 
 
