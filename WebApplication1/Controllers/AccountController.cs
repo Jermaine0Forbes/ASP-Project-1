@@ -11,6 +11,7 @@ using WebApplication1.Services;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace WebApplication1.Controllers
 {
@@ -389,7 +390,7 @@ namespace WebApplication1.Controllers
                 if (_azure.IsBlobConnected())
                 {
 
-                    user.Image = await _azure.UploadBlob(file);
+                    user.Image = await _azure.UploadBlob(file, userId);
 
                 }
                 else
@@ -432,7 +433,12 @@ namespace WebApplication1.Controllers
             }
             else
             {
-                ViewBag.Message = "The file cannot be uploaded";
+                ModelState.AddModelError("","The file cannot be uploaded");
+            }
+
+            if(User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Account", "Admin");
             }
             return RedirectToAction("Profile", "Account");
         }

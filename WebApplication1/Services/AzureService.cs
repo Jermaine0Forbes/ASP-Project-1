@@ -30,17 +30,20 @@ namespace WebApplication1.Services
 
         public bool HasConnectionStr()
         {
-            return _settings.Storage.IsNullOrEmpty();
+            return !_settings.Storage.IsNullOrEmpty();
         }
 
         public void SetBlobContainerName(string name)
         {
+            // blobContainerName = Path.Combine(blobContainerName,name);
             blobContainerName = name;
         }
 
 
-        public async Task<string> UploadBlob(IFormFile file)
+        public async Task<string> UploadBlob(IFormFile file, string userId = "")
         {
+            if(!userId.IsNullOrEmpty()) SetBlobContainerName(userId);
+            
             var containerClient = bsc?.GetBlobContainerClient(blobContainerName) ?? throw new Exception("Blob service is not connected");
 
             // Ensure container exists
@@ -58,8 +61,9 @@ namespace WebApplication1.Services
 
         }
 
-        public async Task<string> GetBlob(string fileName)
+        public async Task<string> GetBlob(string fileName, string userId = "")
         {
+            if(!userId.IsNullOrEmpty()) SetBlobContainerName(userId);
 
             if (!IsBlobConnected())
             {

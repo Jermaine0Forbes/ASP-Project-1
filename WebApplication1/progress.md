@@ -48,7 +48,7 @@ Trying to keep track of the little things that I need to do
     - ~~trending posts views~~
     - ~~complete users list and edit page~~
     - ~~complete settings page~~
-    - complete account page
+    - ~~complete account page~~
     - websocket
 - create a claim
 - create a policy
