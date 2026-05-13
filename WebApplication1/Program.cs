@@ -171,6 +171,7 @@ app.UseAuthorization();
 app.UseRateLimiter();
 app.UseSerilogRequestLogging();
 app.UseStatusCodePagesWithReExecute("/Error/{0}");
+app.UseWebSockets();
 
 
 app.MapStaticAssets();

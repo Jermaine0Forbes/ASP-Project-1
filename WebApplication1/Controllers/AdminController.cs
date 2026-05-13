@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Identity;
 using WebApplication1.Services;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using NuGet.Common;
+using System.Net.WebSockets;
+using System.Text.Json;
 
 namespace WebApplication1.Controllers
 {
@@ -27,10 +29,10 @@ namespace WebApplication1.Controllers
         private readonly ILogger<AdminController> _logger;
 
         public AdminController(
-            AppDBContext context, 
-            UserManager<User> userManager, 
-            EmailService email, 
-            AzureService azure, 
+            AppDBContext context,
+            UserManager<User> userManager,
+            EmailService email,
+            AzureService azure,
             ILogger<AdminController> logger
             )
         {
@@ -100,7 +102,45 @@ namespace WebApplication1.Controllers
 
         }
 
+        [HttpGet("/ws")]
+        public async Task GetIpDataSocket()
+        {
+            if (HttpContext.WebSockets.IsWebSocketRequest)
+            {
+                using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
+                var addresses = await GetDailyData("[IpAddresses]");
+                await Echo(webSocket, addresses); // Custom method to handle the socket loop
+            }
+            else
+            {
+                HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+            }
+        }
 
+        public async Task Echo(WebSocket websocket, List<DailyDataViewModel> list)
+        {
+            // var buffer = new byte[1024 * 4];
+            var buffer = JsonSerializer.SerializeToUtf8Bytes(list);
+            var receiveResult = await websocket.ReceiveAsync(
+                new ArraySegment<byte>(buffer), CancellationToken.None);
+
+            while (!receiveResult.CloseStatus.HasValue)
+            {
+                await websocket.SendAsync(
+                    new ArraySegment<byte>(buffer, 0, receiveResult.Count),
+                    receiveResult.MessageType,
+                    receiveResult.EndOfMessage,
+                    CancellationToken.None);
+
+                receiveResult = await websocket.ReceiveAsync(
+                    new ArraySegment<byte>(buffer), CancellationToken.None);
+            }
+
+            await websocket.CloseAsync(
+                receiveResult.CloseStatus.Value,
+                receiveResult.CloseStatusDescription,
+                CancellationToken.None);
+        }
         // GET: Admin/Users
         public async Task<IActionResult> Users()
         {
@@ -363,15 +403,15 @@ namespace WebApplication1.Controllers
             {
                 try
                 {
-                    
-                    var user =  model.User ?? throw new Exception("User is null");
+
+                    var user = model.User ?? throw new Exception("User is null");
                     var currentUser = await _userManager.GetUserAsync(User) ?? throw new Exception("Cannot find current user");
-                    
-                    if(currentUser.UserName != user.UserName)
+
+                    if (currentUser.UserName != user.UserName)
                     {
                         var doesNameExist = await _userManager.FindByNameAsync(user.UserName!);
-                        if(doesNameExist !=null) throw new Exception("Username already exists");
-                        
+                        if (doesNameExist != null) throw new Exception("Username already exists");
+
                     }
 
                     currentUser.UserName = user.UserName;
@@ -382,14 +422,15 @@ namespace WebApplication1.Controllers
                     _context.Update(currentUser);
                     await _context.SaveChangesAsync();
 
-                } catch( Exception e)
+                }
+                catch (Exception e)
                 {
-                    
-                ModelState.AddModelError("", e.Message);
-                _logger.LogWarning("Admin Account Error: {0}", e.Message);
-                var aprvm = await GetAccountInfo();
 
-                return View(aprvm);
+                    ModelState.AddModelError("", e.Message);
+                    _logger.LogWarning("Admin Account Error: {0}", e.Message);
+                    var aprvm = await GetAccountInfo();
+
+                    return View(aprvm);
 
                 }
 

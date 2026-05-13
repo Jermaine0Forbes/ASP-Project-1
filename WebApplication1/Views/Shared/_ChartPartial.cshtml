@@ -7,6 +7,18 @@
 <script>
 (async function() {
 
+  console.log(window.location.host)
+  const socket = new WebSocket("ws://localhost:5284/ws");
+
+socket.onopen = (event) => {
+    console.log("Connection opened");
+    socket.send("Hello Server!");
+};
+
+socket.onmessage = (event) => {
+    console.log("Message from server: ", event.data);
+};
+
 const CHART_COLORS = {
   red: 'rgb(255, 99, 132)',
   orange: 'rgb(255, 159, 64)',
