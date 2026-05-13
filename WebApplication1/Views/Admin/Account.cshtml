@@ -5,46 +5,112 @@
 @inject IConfiguration Configuration
 @{
     var user = await UserManager.GetUserAsync(User);
-}
-
-@{
     Layout = "_AdminLayout";
 }
 
 <h1>Account: @(user?.UserName)</h1>
 
 <section id="profile">
-    @if(ViewBag.Message != null)
-    {
-        <p>@ViewBag.Message</p>
-    }
-    <div class="card p-3 ">
-        <div class="row">
-            <div class="col-sm-3">
-                <div id="card-img-empty">
-                    @if(Configuration["AzureOptions:Storage"] != null && Model.Image != null )
-                    {
-                        <img src="@(Model.Image)"  width="100%" />
-                    }
-                    else if (user?.Image != null)
-                    {
-                        <img src="~/uploads/@UserManager.GetUserId(User)/@user.Image"  width="100%" />
-                    }
 
-                </div>
+    <div class="row ml-3">
+        <div class=" card col-sm-3 border-secondary">
+            <div id="card-img-empty" class="card-img-top">
+                @if (Configuration["AzureOptions:Storage"] != null && Model.Image != null)
+                {
+                    <img src="@(Model.Image)" width="100%" />
+                }
+                else if (user?.Image != null)
+                {
+                    <img src="~/uploads/@UserManager.GetUserId(User)/@user.Image" width="100%" />
+                }
 
             </div>
-            <div class="col-sm-3">
+            <div class="card-body">
                 <form asp-controller="Account" asp-action="Upload" method="post" enctype="multipart/form-data">
-                    <input type="file" name="file"/>
-                    <input type="hidden" name="userId" value="@UserManager.GetUserId(User)"/>
+                    <input type="file" name="file" />
+                    <input type="hidden" name="userId" value="@UserManager.GetUserId(User)" />
                     <button type="submit">Upload Image</button>
                 </form>
             </div>
         </div>
     </div>
+    <div class="card p-3 my-3">
+        <form asp-action="Account">
 
-    @if(Model.Posts != null && Model.Posts.Any())
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="User.CreatedAt" class="control-label"></label>
+                <input disabled asp-for="User.CreatedAt" class="form-control" />
+                <span asp-validation-for="User.CreatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.UpdatedAt" class="control-label"></label>
+                <input disabled asp-for="User.UpdatedAt" class="form-control" />
+                <span asp-validation-for="User.UpdatedAt" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="User.Id" />
+            <div class="form-group">
+                <label asp-for="User.UserName" class="control-label"></label>
+                <input asp-for="User.UserName" class="form-control" />
+                <span asp-validation-for="User.UserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="role" class="control-label">Role</label>
+                <input name="role" disabled value="Admin" class="form-control" />
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="User.Email" class="control-label"></label>
+                <input asp-for="User.Email" class="form-control" />
+                <span asp-validation-for="User.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="User.EmailConfirmed" />
+                    @Html.DisplayNameFor(model => model.User.EmailConfirmed)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="User.PhoneNumber" class="control-label"></label>
+                <input asp-for="User.PhoneNumber" class="form-control" />
+                <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input disabled class="form-check-input" asp-for="User.TwoFactorEnabled" />
+                    @Html.DisplayNameFor(model =>
+                                                           model.User.TwoFactorEnabled)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.LockoutEnd" class="control-label"></label>
+                <input disabled asp-for="User.LockoutEnd" class="form-control" />
+                <span asp-validation-for="User.LockoutEnd" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input disabled class="form-check-input" asp-for="User.LockoutEnabled" />
+                    @Html.DisplayNameFor(model =>
+                                                            model.User.LockoutEnabled)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.AccessFailedCount" class="control-label"></label>
+                <input disabled asp-for="User.AccessFailedCount" class="form-control" />
+                <span asp-validation-for="User.AccessFailedCount" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+    @if (Model.Posts != null && Model.Posts.Any())
     {
 
         <table class="table">

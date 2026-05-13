@@ -315,13 +315,26 @@ namespace WebApplication1.Controllers
             return RedirectToAction("Settings");
         }
 
+        public async Task<AccountProfileViewModel> GetAccountInfo()
+        {
+            var user = await _userManager.GetUserAsync(User) ?? throw new Exception("User cannot be found");
+            var image = user?.Image != null && _azure.HasConnectionStr() ? await _azure.GetBlob(user.Image) : null;
+            var posts = await _context.Posts.Where(p => p.UserId.Equals(user!.Id)).ToListAsync();
+            return new AccountProfileViewModel()
+            {
+                User = user!,
+                Image = image,
+                Posts = posts
+            };
+        }
+
         [HttpGet]
         // GET: Admin/Account
         public async Task<IActionResult> Account()
         {
             var user = await _userManager.GetUserAsync(User) ?? throw new Exception("User cannot be found");
             var image = user?.Image != null && _azure.HasConnectionStr() ? await _azure.GetBlob(user.Image) : null;
-            var posts = await _context.Posts.Where(p =>  p.UserId.Equals(user!.Id)).ToListAsync();
+            var posts = await _context.Posts.Where(p => p.UserId.Equals(user!.Id)).ToListAsync();
 
 
             var apvm = new AccountProfileViewModel()
@@ -333,6 +346,23 @@ namespace WebApplication1.Controllers
             return View(apvm);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Account(AccountProfileViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+              var user =  model.User ?? throw new Exception("User is null");
+            }
+            else
+            {
+                ModelState.AddModelError("first", "validation errors");
+                var aprvm = await GetAccountInfo();
+
+                return View(aprvm);
+            }
+
+            return RedirectToAction("Account");
+        }
 
         private bool UserExists(string id)
         {
