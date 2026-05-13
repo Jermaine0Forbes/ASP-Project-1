@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using WebApplication1.Models;
 
 namespace WebApplication1.ViewModels
@@ -13,8 +12,8 @@ namespace WebApplication1.ViewModels
 
          public void Deconstruct(out User theUser, out string theRole)
         {
-            theUser = User;
-            theRole = Role;
+            theUser = User ?? throw new Exception("User is null");
+            theRole = Role ?? throw new Exception("Role is null");
         }
         
 

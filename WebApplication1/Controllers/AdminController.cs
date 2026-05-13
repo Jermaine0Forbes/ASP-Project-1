@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using WebApplication1.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using WebApplication1.Services;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace WebApplication1.Controllers
 {
@@ -280,7 +281,26 @@ namespace WebApplication1.Controllers
         // GET: Admin/Settings
         public async Task<IActionResult> Settings()
         {
-            return View(await _context.Users.ToListAsync());
+            var svm = new SettingsViewModel()
+            {
+                Setting = null,
+                Settings = await _context.Settings.ToListAsync()
+            };
+            return View(svm);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Settings(SettingsViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                var (set, sets) = model;
+            }
+            else
+            {
+                ModelState.AddModelError("", "Something went wrong");
+            }
+            return View();
         }
 
 
