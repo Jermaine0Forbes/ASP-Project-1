@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using NuGet.Common;
 using System.Net.WebSockets;
 using System.Text.Json;
+using System.Text;
 
 namespace WebApplication1.Controllers
 {
@@ -28,12 +29,15 @@ namespace WebApplication1.Controllers
 
         private readonly ILogger<AdminController> _logger;
 
+        private readonly WebSocketService _ws;
+
         public AdminController(
             AppDBContext context,
             UserManager<User> userManager,
             EmailService email,
             AzureService azure,
-            ILogger<AdminController> logger
+            ILogger<AdminController> logger,
+            WebSocketService socket
             )
         {
             _context = context;
@@ -41,6 +45,7 @@ namespace WebApplication1.Controllers
             _email = email;
             _azure = azure;
             _logger = logger;
+            _ws = socket;
         }
 
         // GET: Admin
@@ -102,7 +107,47 @@ namespace WebApplication1.Controllers
 
         }
 
+
         [HttpGet("/ws")]
+        public async Task GetVisitorsDataSocket()
+        {
+            if (!HttpContext.WebSockets.IsWebSocketRequest)
+            {
+                HttpContext.Response.StatusCode = 400;
+                return;
+            }
+
+            using var socket = await HttpContext.WebSockets.AcceptWebSocketAsync();
+
+            // Push data to this socket whenever data changes
+            async Task Push(string json)
+            {
+                if (socket.State != WebSocketState.Open) return;
+                var bytes = Encoding.UTF8.GetBytes(json);
+                await socket.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
+            }
+
+            _ws.OnVisitorUpdate += Push;
+
+            try
+            {
+                // Keep the connection open until the client disconnects
+                var buffer = new byte[1024];
+                while (socket.State == WebSocketState.Open)
+                {
+                    var result = await socket.ReceiveAsync(buffer, CancellationToken.None);
+                    if (result.MessageType == WebSocketMessageType.Close)
+                        await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing", CancellationToken.None);
+                }
+            }
+            finally
+            {
+                _ws.OnVisitorUpdate -= Push;
+            }
+        }
+
+
+        [HttpGet("/wss")]
         public async Task GetIpDataSocket()
         {
             if (HttpContext.WebSockets.IsWebSocketRequest)
@@ -121,12 +166,12 @@ namespace WebApplication1.Controllers
         {
             // var buffer = new byte[1024 * 4];
             var buffer = JsonSerializer.SerializeToUtf8Bytes(list);
-                await websocket.SendAsync(
-                    new ArraySegment<byte>(buffer),
-                        WebSocketMessageType.Text,    // Use Binary if sending raw binary data
-                        true,                          // Indicates this is the end of the message
-                        CancellationToken.None);
-            
+            await websocket.SendAsync(
+                new ArraySegment<byte>(buffer),
+                    WebSocketMessageType.Text,    // Use Binary if sending raw binary data
+                    true,                          // Indicates this is the end of the message
+                    CancellationToken.None);
+
             var receiveResult = await websocket.ReceiveAsync(
                 new ArraySegment<byte>(buffer), CancellationToken.None);
 

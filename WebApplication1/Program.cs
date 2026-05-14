@@ -15,6 +15,7 @@ using Serilog;
 using Serilog.AspNetCore;
 using Serilog.Events;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppDBContext") ?? throw new InvalidOperationException("Connection string 'AppDBContext' not found.");
@@ -54,6 +55,7 @@ builder.Host.UseSerilog((context, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration)
         .Enrich.FromLogContext() // Important for DiagnosticContext
                                  // .WriteTo.Console()
+            
          .WriteTo.File("Logs/request-.log", rollingInterval: RollingInterval.Day)
 );
 
@@ -131,6 +133,8 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("IsOwner", policy =>
         policy.Requirements.Add(new OwnerAuthorizationRequirement()));
 });
+builder.Services.AddSingleton<WebSocketService>();
+builder.Services.AddHostedService(sp => sp.GetRequiredService<WebSocketService>());
 
 builder.Services.AddSystemd();
 
@@ -161,8 +165,6 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
 
-app.UseMiddleware<ErrorLoggingMiddleware>();
-app.UseMiddleware<IpAddressMiddleware>();
 
 app.UseHttpsRedirection();
 app.UseRouting();
@@ -172,6 +174,8 @@ app.UseRateLimiter();
 app.UseSerilogRequestLogging();
 app.UseStatusCodePagesWithReExecute("/Error/{0}");
 app.UseWebSockets();
+app.UseMiddleware<ErrorLoggingMiddleware>();
+app.UseMiddleware<IpAddressMiddleware>();
 
 
 app.MapStaticAssets();
