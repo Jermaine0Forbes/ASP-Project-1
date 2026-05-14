@@ -52,7 +52,7 @@ namespace WebApplication1.Controllers
         public async Task<IActionResult> Index()
         {
 
-            var addresses = await GetDailyData("[IpAddresses]");
+            // var addresses = await GetDailyData("[IpAddresses]");
             var views = await _context.IpAddresses.Take(100)
             .Select(ip => new { ip.Address, ip.Path, ip.CreatedAt, ip.UserId, ip.Zip })
             .OrderByDescending(m => m.CreatedAt).ToListAsync();
@@ -61,7 +61,7 @@ namespace WebApplication1.Controllers
                                   join post in _context.Posts on user.Id equals post.UserId
                                   select new { post.Id, post.Title, post.Views, user.UserName }).Take(100).OrderByDescending(p => p.Views).ToListAsync();
 
-            ViewBag.Addresses = addresses;
+            // ViewBag.Addresses = addresses;
             ViewBag.Views = views;
             ViewBag.Posts = dailyPosts;
             ViewBag.TopPosts = topPosts;

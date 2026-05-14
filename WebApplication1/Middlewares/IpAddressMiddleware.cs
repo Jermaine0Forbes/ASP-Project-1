@@ -65,7 +65,6 @@ namespace WebApplication1.Middlewares
                 // Add the IP to response headers
                 context.Response.Headers.Append("X-Client-IP", remoteIp);
                 var authenticated = context?.User?.Identity?.IsAuthenticated ?? false;
-                Console.WriteLine(context?.User?.Identity?.Name);
                 var userId = authenticated ? context?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value : "";
                 var path = context?.Request.Path ?? null;
 

@@ -7,9 +7,38 @@
 <script>
 (async function() {
 
-  console.log()
   const host = window.location.host;
   const socket = new WebSocket(`ws://${host}/ws`);
+
+function createChart(data, options)
+{
+    new Chart(
+      document.getElementById(options.Id),
+      {
+        type: 'line',
+        data: {
+          labels: data.map(row => row.Label),
+          datasets: [
+            {
+              label: 'Ip Traffic',
+              borderColor: CHART_COLORS.purple,
+              backgroundColor: transparentize(CHART_COLORS[options.color], 0.5),
+              data: data.map(row => row.Num),
+              tension: 0.3,
+            }
+          ]
+        },
+        options: {
+          responsive:true,
+          scales:{
+              y:{title:{display:true, text: "Views", font:{size: 16}}},
+              x:{title:{display:true, text: "Today", font:{size: 16}}},
+
+          },
+        }
+      }
+    );
+}
 
 socket.onopen = (event) => {
     console.log("Connection opened");
@@ -18,7 +47,10 @@ socket.onopen = (event) => {
 
 socket.onmessage = (event) => {
     console.log("Message from server: ");
-    console.log(event.data);
+    console.log("event")
+    console.log(event)
+    console.log(JSON.parse(event.data));
+    console.log(Array.isArray(event.data))
     socket.send("Hello Server!");
 };
 
@@ -47,36 +79,43 @@ const CHART_COLORS = {
     { year: 2016, count: 28 },
   ];
 
-  const addrs = @Json.Serialize(ViewBag.Addresses) || null;
+  const addrs =  null;
+  @* const addrs = @Json.Serialize(ViewBag.Addresses) || null; *@
+  @* const posts = null; *@
   const posts = @Json.Serialize(ViewBag.Posts) || null;
 
-
-  const c = new Chart(
-    document.getElementById('ip-tracker'),
-    {
-      type: 'line',
-      data: {
-        labels: addrs.map(row => row.label),
-        datasets: [
-          {
-            label: 'Ip Traffic',
-            borderColor: CHART_COLORS.purple,
-            backgroundColor: transparentize(CHART_COLORS.purple, 0.5),
-            data: addrs.map(row => row.num),
-            tension: 0.3,
-          }
-        ]
-      },
-      options: {
-        responsive:true,
-        scales:{
-            y:{title:{display:true, text: "Views", font:{size: 16}}},
-            x:{title:{display:true, text: "Today", font:{size: 16}}},
-
+  if(addrs)
+  {
+    const c = new Chart(
+      document.getElementById('ip-tracker'),
+      {
+        type: 'line',
+        data: {
+          labels: addrs.map(row => row.label),
+          datasets: [
+            {
+              label: 'Ip Traffic',
+              borderColor: CHART_COLORS.purple,
+              backgroundColor: transparentize(CHART_COLORS.purple, 0.5),
+              data: addrs.map(row => row.num),
+              tension: 0.3,
+            }
+          ]
         },
+        options: {
+          responsive:true,
+          scales:{
+              y:{title:{display:true, text: "Views", font:{size: 16}}},
+              x:{title:{display:true, text: "Today", font:{size: 16}}},
+
+          },
+        }
       }
-    }
-  );
+    );
+
+
+  }
+
 
   if(posts){
        new Chart(
