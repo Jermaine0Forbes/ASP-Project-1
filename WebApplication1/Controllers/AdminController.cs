@@ -121,6 +121,12 @@ namespace WebApplication1.Controllers
         {
             // var buffer = new byte[1024 * 4];
             var buffer = JsonSerializer.SerializeToUtf8Bytes(list);
+                await websocket.SendAsync(
+                    new ArraySegment<byte>(buffer),
+                        WebSocketMessageType.Text,    // Use Binary if sending raw binary data
+                        true,                          // Indicates this is the end of the message
+                        CancellationToken.None);
+            
             var receiveResult = await websocket.ReceiveAsync(
                 new ArraySegment<byte>(buffer), CancellationToken.None);
 

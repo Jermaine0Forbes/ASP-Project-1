@@ -7,16 +7,19 @@
 <script>
 (async function() {
 
-  console.log(window.location.host)
-  const socket = new WebSocket("ws://localhost:5284/ws");
+  console.log()
+  const host = window.location.host;
+  const socket = new WebSocket(`ws://${host}/ws`);
 
 socket.onopen = (event) => {
     console.log("Connection opened");
-    socket.send("Hello Server!");
+    
 };
 
 socket.onmessage = (event) => {
-    console.log("Message from server: ", event.data);
+    console.log("Message from server: ");
+    console.log(event.data);
+    socket.send("Hello Server!");
 };
 
 const CHART_COLORS = {
