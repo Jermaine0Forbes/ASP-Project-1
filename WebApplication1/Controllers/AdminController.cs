@@ -53,16 +53,16 @@ namespace WebApplication1.Controllers
         {
 
             // var addresses = await GetDailyData("[IpAddresses]");
-            var views = await _context.IpAddresses.Take(100)
-            .Select(ip => new { ip.Address, ip.Path, ip.CreatedAt, ip.UserId, ip.Zip })
-            .OrderByDescending(m => m.CreatedAt).ToListAsync();
+            // var views = await _context.IpAddresses.Take(100)
+            // .Select(ip => new { ip.Address, ip.Path, ip.CreatedAt, ip.UserId, ip.Zip })
+            // .OrderByDescending(m => m.CreatedAt).ToListAsync();
             var dailyPosts = await GetDailyData("[Posts]");
             var topPosts = await (from user in _context.Users
                                   join post in _context.Posts on user.Id equals post.UserId
                                   select new { post.Id, post.Title, post.Views, user.UserName }).Take(100).OrderByDescending(p => p.Views).ToListAsync();
 
             // ViewBag.Addresses = addresses;
-            ViewBag.Views = views;
+            // ViewBag.Views = views;
             ViewBag.Posts = dailyPosts;
             ViewBag.TopPosts = topPosts;
             return View();
@@ -117,7 +117,9 @@ namespace WebApplication1.Controllers
                 return;
             }
 
+
             using var socket = await HttpContext.WebSockets.AcceptWebSocketAsync();
+
 
             // Push data to this socket whenever data changes
             async Task Push(string json)
@@ -127,7 +129,13 @@ namespace WebApplication1.Controllers
                 await socket.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
             }
 
-            _ws.OnVisitorUpdate += Push;
+                    _ws.OnVisitorUpdate += Push;
+
+                    _ws.OnViewsUpdate += Push;
+
+
+
+
 
             try
             {
@@ -143,6 +151,7 @@ namespace WebApplication1.Controllers
             finally
             {
                 _ws.OnVisitorUpdate -= Push;
+                _ws.OnViewsUpdate -= Push;
             }
         }
 

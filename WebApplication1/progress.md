@@ -38,7 +38,7 @@ Trying to keep track of the little things that I need to do
 - ~~create OTP expiration column in user~~
 - ~~upload a file to azure~~
 - ~~create azure service file~~
-- create admin dashboard
+- ~~create admin dashboard~~
     - ~~create admin controller~~
     - ~~create index, users, and setting pages~~
     - ~~create settings model and migration~~
@@ -49,7 +49,7 @@ Trying to keep track of the little things that I need to do
     - ~~complete users list and edit page~~
     - ~~complete settings page~~
     - ~~complete account page~~
-    - websocket
+    - ~~websocket~~
 - create a claim
 - create a policy
 - add payment gateway like stripe

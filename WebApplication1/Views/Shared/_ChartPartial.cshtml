@@ -9,18 +9,24 @@
 
   const host = window.location.host;
   const socket = new WebSocket(`ws://${host}/ws`);
+  let chartCreated = null;
+  let tableCreated = null;
+
+  window.addEventListener("beforeunload", () => {
+    socket.close(1000)
+  })
 
 function createChart(data, options)
 {
-    new Chart(
-      document.getElementById(options.Id),
+   return  new Chart(
+      document.getElementById(options.id),
       {
-        type: 'line',
+        type: options.type,
         data: {
           labels: data.map(row => row.Label),
           datasets: [
             {
-              label: 'Ip Traffic',
+              label: options.label,
               borderColor: CHART_COLORS.purple,
               backgroundColor: transparentize(CHART_COLORS[options.color], 0.5),
               data: data.map(row => row.Num),
@@ -31,8 +37,8 @@ function createChart(data, options)
         options: {
           responsive:true,
           scales:{
-              y:{title:{display:true, text: "Views", font:{size: 16}}},
-              x:{title:{display:true, text: "Today", font:{size: 16}}},
+              y:{title:{display:true, text: options.yTitle, font:{size: 16}}},
+              x:{title:{display:true, text: options.xTitle, font:{size: 16}}},
 
           },
         }
@@ -42,16 +48,55 @@ function createChart(data, options)
 
 socket.onopen = (event) => {
     console.log("Connection opened");
-    
 };
 
 socket.onmessage = (event) => {
     console.log("Message from server: ");
     console.log("event")
     console.log(event)
-    console.log(JSON.parse(event.data));
-    console.log(Array.isArray(event.data))
-    socket.send("Hello Server!");
+    const {type, data}  = JSON.parse(event.data);
+    const opts = {
+      type: "line",
+      color: "purple",
+      label: "Traffic", 
+      id: "ip-tracker", 
+      yTitle: "Views", 
+      xTitle: "Today"
+    };
+
+    if(type == "visitors")
+    {
+      if(!chartCreated)
+      {
+        chartCreated = createChart(data, opts);
+      }else{
+        chartCreated.data.datasets[0].data = data.map(d => d.Num);
+        chartCreated.update();
+      }
+
+    }
+
+    if(type == "views")
+    {
+      const table = document.getElementById("table-views")
+      if(!tableCreated)
+      {
+       document.getElementById("ip-table").classList.toggle("d-none");
+       tableCreated = true;
+      }
+      const rowArr = data.map( d => `
+        <tr>
+          <td>${d.UserId != "" ? d.UserId : "Unauthenticated"}</td>
+          <td>${d.Path}</td>
+          <td>${d.Address}</td>
+          <td>${d.Zip}</td>
+      </tr>
+       `);
+       const rows = rowArr.join("");
+       table.innerHTML = rows;
+      console.log(data)
+    }
+   
 };
 
 const CHART_COLORS = {

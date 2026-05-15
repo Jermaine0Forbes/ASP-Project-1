@@ -1,6 +1,6 @@
 using System.Text.Json;
 using WebApplication1.Data;
-using WebApplication1.ViewModels;
+using WebApplication1.DTO;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Services;
@@ -9,7 +9,7 @@ public class WebSocketService(IServiceProvider serviceProvider) : BackgroundServ
 {
     public event Func<string, Task>? OnVisitorUpdate;
     public event Func<string, Task>? OnEmailSent;
-    // public event Func<string, Task>? OnUserChanged;
+    public event Func<string, Task>? OnViewsUpdate;
 
     private readonly IServiceProvider _sp = serviceProvider;
 
@@ -17,23 +17,68 @@ public class WebSocketService(IServiceProvider serviceProvider) : BackgroundServ
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            await Task.Delay(2000, stoppingToken);
+            await Task.Delay(5000, stoppingToken);
 
-            var visitors = await GetVisitorData();
-
-            var inventory = JsonSerializer.Serialize(new
+            try
             {
-                type = "inventory",
-                itemId = 456,
-                stock = 10
-            });
 
-            if (OnVisitorUpdate is not null)
-                await OnVisitorUpdate(visitors);
+                var inventory = JsonSerializer.Serialize(new
+                {
+                    type = "inventory",
+                    itemId = 456,
+                    stock = 10
+                });
 
-            if (OnEmailSent is not null)
-                await OnEmailSent(inventory);
+                if (OnVisitorUpdate != null)
+                {
+                    var visitors = await GetVisitorData() ?? throw new Exception("visitors returned null");
+                    
+                    await OnVisitorUpdate(visitors);
+                }
+
+                if (OnViewsUpdate != null)
+                {
+                    
+                    var views = await GetViewsData() ?? throw new Exception("views returned null");
+                    await OnViewsUpdate(views);
+                }
+
+                if (OnEmailSent is not null)
+                    await OnEmailSent(inventory);
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                throw new Exception(e.Message);
+            }
+            
         }
+    }
+
+
+    private async Task<string> GetViewsData()
+    {
+        using var scope = _sp.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<AppDBContext>();
+         var query = @"
+              SELECT TOP 100 
+            Id,
+            Address,
+            UserId,
+            Path,
+            Zip
+            From IpAddresses
+            Order By CreatedAt Desc;
+         ";
+        var views = await context.Database.SqlQueryRaw<RecentViewsDTO>(query).ToListAsync();
+
+
+        return JsonSerializer.Serialize(new
+        {
+            type = "views",
+            data = views
+        });
     }
 
 
@@ -75,8 +120,12 @@ public class WebSocketService(IServiceProvider serviceProvider) : BackgroundServ
         using var scope = _sp.CreateScope();
         var context = scope.ServiceProvider.GetRequiredService<AppDBContext>();
 
-        var visitors = await context.Database.SqlQueryRaw<DailyDataViewModel>(query).ToListAsync();
-        return JsonSerializer.Serialize(visitors);
+        var visitors = await context.Database.SqlQueryRaw<DailyTrafficDTO>(query).ToListAsync();
+        return JsonSerializer.Serialize(new
+        {
+            type = "visitors",
+            data = visitors
+        });
 
     }
 
