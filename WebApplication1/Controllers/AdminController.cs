@@ -133,10 +133,6 @@ namespace WebApplication1.Controllers
 
                     _ws.OnViewsUpdate += Push;
 
-
-
-
-
             try
             {
                 // Keep the connection open until the client disconnects

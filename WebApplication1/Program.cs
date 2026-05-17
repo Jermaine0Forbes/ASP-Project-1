@@ -174,17 +174,28 @@ app.UseRateLimiter();
 app.UseSerilogRequestLogging();
 app.UseStatusCodePagesWithReExecute("/Error/{0}");
 app.UseWebSockets();
-app.UseMiddleware<ErrorLoggingMiddleware>();
 app.UseMiddleware<IpAddressMiddleware>();
+app.UseMiddleware<ErrorLoggingMiddleware>();
 
 
 app.MapStaticAssets();
 
+
+if (app.Environment.IsDevelopment())
+{
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-// .WithStaticAssets().RequireRateLimiting("LoginPolicy");
+}
+else
+{
+    app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}")
+    .WithStaticAssets().RequireRateLimiting("LoginPolicy");
+}
+
 
 
 app.Run();
