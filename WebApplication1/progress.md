@@ -50,8 +50,8 @@ Trying to keep track of the little things that I need to do
     - ~~complete settings page~~
     - ~~complete account page~~
     - ~~websocket~~
-- create a claim
-- create a policy
+- create role claims
+- create role policies
 - add payment gateway like stripe
 - add events or background workers for email
 - research twilio sendgrid
