@@ -1,10 +1,17 @@
 # Logs
 
-### 5-15-26
+
+### 5-19-26
 
 #### helpful links
 - []()
 - []()
+- [.net how to exclude certain values in a list](https://www.google.com/search?q=.net+how+to+exclude+certain+values+in+a+list&oq=.net+how+to+exclude+certain+values+in+a+list&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRirAjIHCAYQIRifBTIHCAcQIRiPAjIHCAgQIRiPAtIBCTE1NjA0ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [.net how to get a list of class properties](https://www.google.com/search?q=.net+how+to+get+a+list+of+class+properties&oq=.net+how+to+get+a+list+of+class+properties&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRifBTIHCAUQIRifBdIBCTEzMzcyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+
+### 5-15-26
+
+#### helpful links
 - [Sqlcmd: Error: Microsoft ODBC Driver 18 for SQL Server : SSL Provider: [error:0A000086:SSL routines::certificate verify failed:self-signed certificate].](https://www.google.com/search?q=Sqlcmd%3A+Error%3A+Microsoft+ODBC+Driver+18+for+SQL+Server+%3A+SSL+Provider%3A+%5Berror%3A0A000086%3ASSL+routines%3A%3Acertificate+verify+failed%3Aself-signed+certificate%5D.&oq=Sqlcmd%3A+Error%3A+Microsoft+ODBC+Driver+18+for+SQL+Server+%3A+SSL+Provider%3A+%5Berror%3A0A000086%3ASSL+routines%3A%3Acertificate+verify+failed%3Aself-signed+certificate%5D.&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQRRg60gELMTA3NTQzMmowajeoAgCwAgA&sourceid=chrome&ie=UTF-8)
 - [Configure repositories for installing and upgrading SQL Server on Linux](https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-change-repo?view=sql-server-ver17&tabs=ubuntu)
 - [Install the Microsoft ODBC driver for SQL Server (Linux)](https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-ver17&tabs=ubuntu18-install%2Calpine17-install%2Cdebian8-install%2Credhat7-13-install%2Crhel7-offline)

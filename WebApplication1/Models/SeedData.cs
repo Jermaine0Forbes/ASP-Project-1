@@ -41,7 +41,7 @@ public static class SeedData
 
                 if (!await roleManager.RoleExistsAsync(role))
                 {
-                    await roleManager.CreateAsync(new Role {Name = role});
+                    await roleManager.CreateAsync( new Role(role));
                 }
             }
 
@@ -59,7 +59,7 @@ public static class SeedData
             .RuleFor(u => u.Email, (f, u) => u.UserName+"@gmail.com")
             .RuleFor(u => u.PasswordHash, f => f.Internet.Password())
             .RuleFor(u => u.CreatedAt, f => currentDateTime)
-            .RuleFor(u => u.OtpExpirationDate, f => currentDateTime);
+            .RuleFor(u => u.OtpExpirationDate, f => DateTime.Now.AddDays(5));
             // .FinishWith((f, u) =>
             // {
             //     context.Posts.Add(new Post
@@ -104,7 +104,6 @@ public static class SeedData
                     r = SeedData.GetRole();
                     await userManager.AddToRoleAsync(u, r);
                     context.Posts.Add(SeedData.GetPost(u, posts));
-                    // await context.SaveChangesAsync();
 
                 }
                 else
@@ -128,7 +127,8 @@ public static class SeedData
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            Console.WriteLine(e.Message);
+            throw new Exception(e.Message);
         }
 
 

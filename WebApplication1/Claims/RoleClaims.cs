@@ -1,5 +1,5 @@
 using WebApplication1.Interfaces;
-
+using System.Reflection;
 namespace WebApplication1.Claims;
 
 public static class RoleClaims
@@ -23,6 +23,8 @@ public static class RoleClaims
 
 public  class AdminPermission : IRolePermission
 {
+    private static List<string> Exclude = [];
+    private static List<string> Permissions = Permission.GetAllPermissions();
     public string Can(string permission)
     {
         return permission switch
@@ -37,6 +39,8 @@ public  class AdminPermission : IRolePermission
 
 public  class ManagerPermission : IRolePermission
 {
+    private static List<string> Exclude = new List<string> {"CanFlagUser"};
+    private static List<string> Permissions = Permission.GetAllPermissions().Except(Exclude).ToList();
     public string Can(string permission)
     {
         return permission switch
@@ -54,5 +58,10 @@ public static class Permission
     public static string CanAddUser = "CanAddUser";
     public static string CanDeleteUser = "CanDeleteUser";
     public static string CanFlagUser = "CanFlagUser";
+
+    public static List<string> GetAllPermissions()
+    {
+        return [.. typeof(Permission).GetProperties().Select(p => p.Name)];
+    }
     
 }
