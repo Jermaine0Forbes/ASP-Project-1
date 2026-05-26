@@ -51,8 +51,23 @@ namespace WebApplication1.Controllers
 
                 var user = await userManager.FindByNameAsync(model.UserName) ?? throw new Exception("Cannot find User");
 
-                if (user != null && (user.OtpExpirationDate == null || user.OtpExpirationDate < DateTime.Now))
+
+
+                var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
+
+                if (!result.Succeeded || user == null)
                 {
+                    ModelState.AddModelError("", "username or password is incorrect.");
+                    return View(model);
+                }
+                if (result.IsNotAllowed)
+                {
+                    Console.WriteLine("is not allowed");
+                }
+
+                if (user.OtpExpirationDate == null || user.OtpExpirationDate < DateTime.Now)
+                {
+                    await signInManager.SignOutAsync();
                     var token = await userManager.GenerateTwoFactorTokenAsync(user, TokenOptions.DefaultEmailProvider);
                     var dem = new DefaultEmailModel()
                     {
@@ -66,20 +81,6 @@ namespace WebApplication1.Controllers
                     TempData["UserId"] = user.Id ?? "";
                     return RedirectToAction("VerifyOtp");
                 }
-
-
-                var result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
-
-                if (!result.Succeeded)
-                {
-                    ModelState.AddModelError("", "username or password is incorrect.");
-                    return View(model);
-                }
-                if (result.IsNotAllowed)
-                {
-                    Console.WriteLine("is not allowed");
-                }
-
 
                 var roles = await GetRoles(user!);
                 if (roles.Contains("Admin"))

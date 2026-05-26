@@ -66,7 +66,6 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
 })
 .AddRoles<Role>()
-// .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<AppDBContext>()
 .AddDefaultTokenProviders();
 
@@ -96,7 +95,6 @@ builder.Services.AddRateLimiter(options =>
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = IdentityConstants.ApplicationScheme;
-    // 
     // options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 }).AddGoogle(options =>

@@ -1,11 +1,27 @@
 # Logs
 
-
-### 5-19-26
+### 5-24-26
 
 #### helpful links
 - []()
 - []()
+- []()
+- []()
+
+
+
+### 5-19-26
+
+#### helpful links
+- [An exception occurred in the database while saving changes for context type 'WebApplication1.Data.AppDBContext'. System.ArgumentException: Format of the initialization string does not conform to specification starting at index 44.](https://www.google.com/search?q=An+exception+occurred+in+the+database+while+saving+changes+for+context+type+%27WebApplication1.Data.AppDBContext%27.+System.ArgumentException%3A+Format+of+the+initialization+string+does+not+conform+to+specification+starting+at+index+44.&oq=An+exception+occurred+in+the+database+while+saving+changes+for+context+type+%27WebApplication1.Data.AppDBContext%27.+System.ArgumentException%3A+Format+of+the+initialization+string+does+not+conform+to+specification+starting+at+index+44.&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCjc1NTI5NWowajeoAgCwAgA&sourceid=chrome&ie=UTF-8#cobssid=s)
+- [when I publish a .net app through the cli, is it referencing resources outside of the published folder](https://www.google.com/search?q=when+I+publish+a+.net+app+through+the+cli%2C+is+it+referencing+resources+outside+of+the+published+folder&sca_esv=5bbe9f5d2f922049&biw=1707&bih=898&sxsrf=ANbL-n6q1ZkNm5a0u1G2-4WuFHX3r8cBBg%3A1779149531052&ei=26oLarz-AvTAp84Pw5q1MA&ved=0ahUKEwj817O-iMSUAxV04MkDHUNNDQYQ4dUDCBI&uact=5&oq=when+I+publish+a+.net+app+through+the+cli%2C+is+it+referencing+resources+outside+of+the+published+folder&gs_lp=Egxnd3Mtd2l6LXNlcnAiZndoZW4gSSBwdWJsaXNoIGEgLm5ldCBhcHAgdGhyb3VnaCB0aGUgY2xpLCBpcyBpdCByZWZlcmVuY2luZyByZXNvdXJjZXMgb3V0c2lkZSBvZiB0aGUgcHVibGlzaGVkIGZvbGRlckjHhwNQAFichgNwCXgAkAEAmAF3oAG5PqoBBDk4Ljm4AQPIAQD4AQGYAkigAqktwgIEECMYJ8ICCxAAGIAEGIoFGJECwgIKEAAYgAQYigUYQ8ICEBAAGIAEGIoFGEMYsQMYgwHCAhAQLhiABBiKBRhDGMcBGNEDwgIWEC4YgAQYigUYQxixAxiDARjHARjRA8ICDRAjGPAFGIAEGIoFGCfCAg4QABiABBiKBRixAxiDAcICBRAAGIAEwgILEAAYgAQYsQMYgwHCAhEQLhiABBixAxiDARjHARivAcICCBAuGIAEGLEDwgIOEC4YgAQYigUYsQMYgwHCAgUQLhiABMICIBAuGIAEGLEDGIMBGMcBGK8BGJcFGNwEGN4EGOAE2AEBwgIHEAAYgAQYCsICFBAuGIAEGJcFGNwEGN4EGOAE2AEBwgIGEAAYFhgewgIIEAAYFhgeGArCAgsQABiABBiKBRiGA8ICBRAAGO8FwgIFECEYoAHCAgUQIRirAsICCBAAGIkFGKIEwgIFECEYnwWYAwC6BgYIARABGBSSBwU1Ni4xNqAH3N0CsgcFNDkuMTa4B5AtwgcHNC40NC4yNMgHqQGACAE&sclient=gws-wiz-serp)
+- [.net can a static method be async](https://www.google.com/search?q=.net+can+a+static+method+be+async&oq=.net+can+a+static+method+be+async&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBTIHCAgQIRiPAjIHCAkQIRiPAtIBCTEzNjIzajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [.net can you show me an example how to implement a service into a static class](https://www.google.com/search?q=.net+can+you+show+me+an+example+how+to+implement+a+service+into+a+static+class&sca_esv=4a9605e6d6c0e2d3&sxsrf=ANbL-n5e2_UI1_oz4cKjFG5DhDTFhT_3Pg%3A1779247222565&ei=digNapmiIvL-ptQP7uqMoQM&ved=0ahUKEwiZtay19MaUAxVyv4kEHW41IzQQ4dUDCBI&uact=5&oq=.net+can+you+show+me+an+example+how+to+implement+a+service+into+a+static+class&gs_lp=Egxnd3Mtd2l6LXNlcnAiTi5uZXQgY2FuIHlvdSBzaG93IG1lIGFuIGV4YW1wbGUgaG93IHRvIGltcGxlbWVudCBhIHNlcnZpY2UgaW50byBhIHN0YXRpYyBjbGFzc0iniwFQhglY4YgBcAp4AJABAJgBcqABxDKqAQU3MS4xMLgBA8gBAPgBAZgCRqACrSzCAgoQABhHGNYEGLADwgIGEAAYFhgewgIIEAAYFhgeGArCAgsQABiABBiKBRiGA8ICBRAAGO8FwgIIEAAYgAQYogTCAggQABiJBRiiBMICBBAjGCfCAgUQIRigAcICBRAhGKsCwgIFECEYnwXCAgcQIRgKGKABwgIHECEYqwIYCpgDAIgGAZAGCJIHBTU0LjE2oAfz3gOyBwU0NS4xNrgHhizCBwcwLjUxLjE5yAe4AYAIAQ&sclient=gws-wiz-serp)
+
+
+### 5-19-26
+
+#### helpful links
 - [.net how to exclude certain values in a list](https://www.google.com/search?q=.net+how+to+exclude+certain+values+in+a+list&oq=.net+how+to+exclude+certain+values+in+a+list&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRirAjIHCAYQIRifBTIHCAcQIRiPAjIHCAgQIRiPAtIBCTE1NjA0ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 - [.net how to get a list of class properties](https://www.google.com/search?q=.net+how+to+get+a+list+of+class+properties&oq=.net+how+to+get+a+list+of+class+properties&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRifBTIHCAUQIRifBdIBCTEzMzcyajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 
