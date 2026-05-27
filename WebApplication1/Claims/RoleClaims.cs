@@ -8,7 +8,7 @@ namespace WebApplication1.Claims;
 public static class RoleClaims
 {
 
-    public static IRolePermission GetRolePermissions(string role)
+    public static RolePermission GetRolePermissions(string role)
     {
         return role.ToLower() switch
         {
@@ -19,11 +19,12 @@ public static class RoleClaims
 
     }
 
-    public static async Task AddClaims(IRolePermission role, RoleManager<Role> roleM)
+    public static async Task AddClaims( string roleName, RoleManager<Role> roleM)
     {
-        var r = await roleM.FindByIdAsync(role.RoleName) ?? throw new Exception($"Cannot find {role.RoleName} role");
+        var rp = RoleClaims.GetRolePermissions(roleName);
+        var r = await roleM.FindByIdAsync(rp.GetName()) ?? throw new Exception($"Cannot find {rp.GetName()} role");
         var claims = await roleM.GetClaimsAsync(r);
-        foreach (var permission in role.Permissions)
+        foreach (var permission in rp.GetPermissions())
         {
             if (!claims.Any(x =>
                 x.Type == "Permission" &&
@@ -69,7 +70,7 @@ public class ManagerPermission : RolePermission
     public static new readonly string RoleName = "Manager";
     private static List<string> Exclude = new List<string> { "CanFlagUser" };
     private static List<string> Permissions = Permission.GetAllPermissions().Except(Exclude).ToList();
-    public string Can(string permission)
+    public new string Can(string permission)
     {
         return permission switch
         {
@@ -116,12 +117,12 @@ public class RolePermission : IRolePermission
             _ => throw new Exception($"{permission} , does not exist")
         };
     }
-    public static string GetName()
+    public string GetName()
     {
         return RoleName;
     }
 
-    public static List<string> GetPermissions()
+    public  List<string> GetPermissions()
     {
         return Permissions;
     }

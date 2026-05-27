@@ -1,13 +1,12 @@
 # Logs
 
-### 5-24-26
+### 5-26-26
 
 #### helpful links
-- []()
-- []()
-- []()
-- []()
-
+- [.net systemd connection string format](https://www.google.com/search?q=.net+systemd+connection+string+format&oq=.net+systemd+connection+string+format&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRirAtIBCDk2NDFqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
+- [dotnet ef database different commands](https://www.google.com/search?q=dotnet+ef+database+different+commands&sca_esv=1a891a53cd7f5d3b&biw=1707&bih=898&sxsrf=ANbL-n5o3iWuf4Apd_6L_oRe4UV0aEWlqQ%3A1779583387859&ei=m0kSapWaNKy4wN4PsYu_2QM&ved=0ahUKEwjV07nd2NCUAxUsHNAFHbHFLzsQ4dUDCBA&uact=5&oq=dotnet+ef+database+different+commands&gs_lp=Egxnd3Mtd2l6LXNlcnAiJWRvdG5ldCBlZiBkYXRhYmFzZSBkaWZmZXJlbnQgY29tbWFuZHMyBhAAGBYYHjILEAAYgAQYigUYhgMyCxAAGIAEGIoFGIYDMggQABiABBiiBDIIEAAYgAQYogQyBRAAGO8FMgUQABjvBUivKVCnDliSKHABeAGQAQCYAWOgAY4LqgECMTi4AQPIAQD4AQGYAhOgAuoLwgIKEAAYRxjWBBiwA8ICBRAAGIAEwgIFECEYoAHCAgUQIRirAsICBRAhGJ8FwgIIEAAYiQUYogSYAwCIBgGQBgiSBwQxNy4yoAf_ZLIHBDE2LjK4B-YLwgcGMC4xMS44yAc2gAgB&sclient=gws-wiz-serp)
+- [.net partial class example](https://www.google.com/search?q=.net+partial+class+example&oq=.net+partial+class+example&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIICAEQABgWGB4yDQgCEAAYhgMYgAQYigUyBwgDEAAY7wUyCggEEAAYogQYiQUyCggFEAAYogQYiQXSAQg3NDE5ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- ['IRolePermission.GetPermissions()' must declare a body because it is not marked abstract, extern, or partial](https://www.google.com/search?q=%27IRolePermission.GetPermissions%28%29%27+must+declare+a+body+because+it+is+not+marked+abstract%2C+extern%2C+or+partial&oq=%27IRolePermission.GetPermissions%28%29%27+must+declare+a+body+because+it+is+not+marked+abstract%2C+extern%2C+or+partial&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBDDExMTE2NDc4ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
 
 
 ### 5-19-26
