@@ -57,7 +57,8 @@ public static class SeedData
             .RuleFor(u => u.Email, (f, u) => u.UserName+"@gmail.com")
             .RuleFor(u => u.PasswordHash, f => f.Internet.Password())
             .RuleFor(u => u.CreatedAt, f => currentDateTime)
-            .RuleFor(u => u.OtpExpirationDate, f => DateTime.Now.AddDays(5));
+            .RuleFor(u => u.OtpExpirationDate, f => f.Date.Soon());
+            // .RuleFor(u => u.OtpExpirationDate, f => DateTime.Now.AddDays(5));
             // .FinishWith((f, u) =>
             // {
             //     context.Posts.Add(new Post
@@ -125,6 +126,7 @@ public static class SeedData
         catch (Exception e)
         {
             Console.WriteLine(e.Message);
+            await transaction.RollbackAsync();
             throw new Exception(e.Message);
         }
 

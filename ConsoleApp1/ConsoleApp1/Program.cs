@@ -4,7 +4,26 @@
 // using ConsoleApp1.Abstract;
 using ConsoleApp1.TwoPointers;
 
+public class Car
+{
+   protected readonly string Name = "Car";
 
+    public string GetName()
+    {
+        return Name;
+    }
+}
+
+public class Volvo : Car
+{
+    public new string Name = "Volvo";
+
+   public Volvo()
+    {
+        base.Name = Name;
+    }
+
+}
 
 
 class Program
@@ -18,10 +37,14 @@ class Program
         // var s = new MinSubArray();
         // s.MinSubArrayLen(target, nums);
 
-        int target = 1;
-        int[] nums = [10,20,30,40, 50, 60, 70, 80,90];
-        var s = new ThreeSumClosest();
-        s.ThreeSum1(nums, target);
+        // int target = 1;
+        // int[] nums = [10,20,30,40, 50, 60, 70, 80,90];
+        // var s = new ThreeSumClosest();
+        // s.ThreeSum1(nums, target);
+
+        var v = new Volvo();
+
+       Console.WriteLine(v.GetName());
     }
 }
 

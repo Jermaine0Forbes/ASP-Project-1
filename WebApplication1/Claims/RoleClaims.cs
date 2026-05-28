@@ -50,9 +50,13 @@ public static class RoleClaims
 
 public class UserPermission : RolePermission
 {
-    public static new readonly string RoleName = "User";
-    private static List<string> Exclude = [];
-    private static List<string> Permissions = [];
+    public UserPermission()
+    {
+        var exclude = Permission.GetAllPermissions().ToList();
+        base.RoleName = "User";
+        base.Exclude = exclude;
+        base.Permissions = Permission.GetAllPermissions().Except(exclude).ToList();
+    }
 
 
 }
@@ -60,28 +64,28 @@ public class UserPermission : RolePermission
 
 public class AdminPermission : RolePermission
 {
-    public static new readonly string RoleName = "Admin";
-    private static List<string> Exclude = [];
-    private static List<string> Permissions = Permission.GetAllPermissions();
-    public new string Can(string permission)
+
+    public AdminPermission()
     {
-        return permission switch
-        {
-            "delete user" => "CanDeleteUser",
-
-            _ => throw new Exception($"{permission} , does not exist")
-        };
+        var exclude = new List<string> {};
+        base.RoleName = "Admin";
+        base.Exclude = exclude;
+        base.Permissions = Permission.GetAllPermissions().Except(exclude).ToList();
     }
-
 
 }
 
 
 public class ManagerPermission : RolePermission
 {
-    public static override readonly string RoleName = "Manager";
-    private static List<string> Exclude = new List<string> { "CanFlagUser" };
-    private static List<string> Permissions = Permission.GetAllPermissions().Except(Exclude).ToList();
+
+    public ManagerPermission()
+    {
+        var exclude = new List<string> { "CanFlagUser" };
+        base.RoleName = "Manager";
+        base.Exclude = exclude;
+        base.Permissions = Permission.GetAllPermissions().Except(exclude).ToList();
+    }
     public new string Can(string permission)
     {
         return permission switch
@@ -95,12 +99,11 @@ public class ManagerPermission : RolePermission
 
 }
 
-public class RolePermission : IRolePermission
+public class RolePermission 
 {
-    [Required]
-    public static  string RoleName {get; set;}
-    private static List<string> Exclude =[];
-    private static List<string> Permissions = [];
+    protected  string RoleName  = "";
+    protected List<string> Exclude =[];
+    protected List<string> Permissions = [.. Permission.GetAllPermissions()];
 
     public string Can(string permission)
     {
