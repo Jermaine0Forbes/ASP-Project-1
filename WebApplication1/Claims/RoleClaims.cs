@@ -3,6 +3,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Identity;
 using WebApplication1.Models;
 using System.Security.Claims;
+using System.ComponentModel.DataAnnotations;
 namespace WebApplication1.Claims;
 
 public static class RoleClaims
@@ -14,6 +15,7 @@ public static class RoleClaims
         {
             "admin" => new AdminPermission(),
             "manager" => new ManagerPermission(),
+            "user" => new UserPermission(),
             _ => throw new Exception($"{role} permission does not exist")
         };
 
@@ -22,7 +24,7 @@ public static class RoleClaims
     public static async Task AddClaims( string roleName, RoleManager<Role> roleM)
     {
         var rp = RoleClaims.GetRolePermissions(roleName);
-        var r = await roleM.FindByIdAsync(rp.GetName()) ?? throw new Exception($"Cannot find {rp.GetName()} role");
+        var r = await roleM.FindByNameAsync(rp.GetName()) ?? throw new Exception($"Cannot find {rp.GetName()} role");
         var claims = await roleM.GetClaimsAsync(r);
         foreach (var permission in rp.GetPermissions())
         {
@@ -41,6 +43,16 @@ public static class RoleClaims
         }
     }
 
+
+
+}
+
+
+public class UserPermission : RolePermission
+{
+    public static new readonly string RoleName = "User";
+    private static List<string> Exclude = [];
+    private static List<string> Permissions = [];
 
 
 }
@@ -67,7 +79,7 @@ public class AdminPermission : RolePermission
 
 public class ManagerPermission : RolePermission
 {
-    public static new readonly string RoleName = "Manager";
+    public static override readonly string RoleName = "Manager";
     private static List<string> Exclude = new List<string> { "CanFlagUser" };
     private static List<string> Permissions = Permission.GetAllPermissions().Except(Exclude).ToList();
     public new string Can(string permission)
@@ -80,31 +92,13 @@ public class ManagerPermission : RolePermission
         };
     }
 
-    public static async Task AddClaims(RoleManager<Role> roleM)
-    {
-        var r = await roleM.FindByIdAsync(RoleName) ?? throw new Exception($"Cannot find {RoleName} role");
-        var claims = await roleM.GetClaimsAsync(r);
-        foreach (var permission in Permissions)
-        {
-            if (!claims.Any(x =>
-                x.Type == "Permission" &&
-                x.Value == permission)
-            )
-            {
-                await roleM.AddClaimAsync(
-                    r,
-                    new Claim(
-                        "Permission",
-                        permission));
-            }
 
-        }
-    }
 }
 
 public class RolePermission : IRolePermission
 {
-    public static readonly string RoleName = "";
+    [Required]
+    public static  string RoleName {get; set;}
     private static List<string> Exclude =[];
     private static List<string> Permissions = [];
 

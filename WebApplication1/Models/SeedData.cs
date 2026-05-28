@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using WebApplication1.Data;
+using WebApplication1.Claims;
 using System;
 using System.Linq;
 using Bogus;
@@ -38,6 +39,7 @@ public static class SeedData
                 if (!await roleManager.RoleExistsAsync(role))
                 {
                     await roleManager.CreateAsync( new Role(role));
+                    await RoleClaims.AddClaims(role, roleManager);
                 }
             }
 

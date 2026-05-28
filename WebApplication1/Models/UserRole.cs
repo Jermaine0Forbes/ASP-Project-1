@@ -24,6 +24,7 @@ public class Role: IdentityRole<string>
         Name = name;
     }
 
+    [Required]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public override string Id { get; set; }
     public virtual ICollection<UserRole> UserRoles {get; set;} = [];
