@@ -3,27 +3,10 @@
 // Console.WriteLine("The current time is "+ DateTime.Now);
 // using ConsoleApp1.Abstract;
 using ConsoleApp1.TwoPointers;
+using ConsoleApp1.Examples;
+using System.Security;
 
-public class Car
-{
-   protected readonly string Name = "Car";
 
-    public string GetName()
-    {
-        return Name;
-    }
-}
-
-public class Volvo : Car
-{
-    public new string Name = "Volvo";
-
-   public Volvo()
-    {
-        base.Name = Name;
-    }
-
-}
 
 
 class Program
@@ -42,9 +25,10 @@ class Program
         // var s = new ThreeSumClosest();
         // s.ThreeSum1(nums, target);
 
-        var v = new Volvo();
+        Permission.GetAllPermissions();
+        var j = new Jungle();
 
-       Console.WriteLine(v.GetName());
+        j.GetProps();
     }
 }
 

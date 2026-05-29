@@ -57,8 +57,7 @@ public static class SeedData
             .RuleFor(u => u.Email, (f, u) => u.UserName+"@gmail.com")
             .RuleFor(u => u.PasswordHash, f => f.Internet.Password())
             .RuleFor(u => u.CreatedAt, f => currentDateTime)
-            .RuleFor(u => u.OtpExpirationDate, f => f.Date.Soon());
-            // .RuleFor(u => u.OtpExpirationDate, f => DateTime.Now.AddDays(5));
+            .RuleFor(u => u.OtpExpirationDate, f => DateTime.Now.AddDays(5));
             // .FinishWith((f, u) =>
             // {
             //     context.Posts.Add(new Post
@@ -87,7 +86,6 @@ public static class SeedData
             //    return;
 
 
-            var r = SeedData.GetRole();
             foreach (var user in users)
             {
                 var u = new User
@@ -95,13 +93,15 @@ public static class SeedData
                     UserName = user.UserName,
                     Email = user.Email,
                     CreatedAt = user.CreatedAt,
+                    OtpExpirationDate = user.OtpExpirationDate,
                 };
                 var result = await userManager.CreateAsync(u, "Password123!");
                 if (result.Succeeded)
                 {
-                    r = SeedData.GetRole();
-                    await userManager.AddToRoleAsync(u, r);
-                    context.Posts.Add(SeedData.GetPost(u, posts));
+                   var r = SeedData.GetRole();
+                   var x = await userManager.FindByNameAsync(u.UserName!) ?? throw new Exception("Cannot find username");
+                    await userManager.AddToRoleAsync(x, r);
+                    context.Posts.Add(SeedData.GetPost(x, posts));
 
                 }
                 else

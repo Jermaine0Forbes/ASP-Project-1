@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using WebApplication1.Models;
 using System.Security.Claims;
 using System.ComponentModel.DataAnnotations;
+using NuGet.Protocol;
 namespace WebApplication1.Claims;
 
 public static class RoleClaims
@@ -26,8 +27,14 @@ public static class RoleClaims
         var rp = RoleClaims.GetRolePermissions(roleName);
         var r = await roleM.FindByNameAsync(rp.GetName()) ?? throw new Exception($"Cannot find {rp.GetName()} role");
         var claims = await roleM.GetClaimsAsync(r);
+        Console.WriteLine("claims");
+        Console.WriteLine(claims.ToJson());
+        Console.WriteLine($"{rp.GetName()}: permisssions");
+        Console.WriteLine(rp.GetPermissions().ToJson());
+        // if(!rp.GetPermissions().Any()) throw new Exception("no permissions");
         foreach (var permission in rp.GetPermissions())
         {
+            Console.WriteLine($"permission {permission}");
             if (!claims.Any(x =>
                 x.Type == "Permission" &&
                 x.Value == permission)
@@ -134,7 +141,10 @@ public static class Permission
 
     public static List<string> GetAllPermissions()
     {
-        return [.. typeof(Permission).GetProperties().Select(p => p.Name)];
+        var x = typeof(Permission).GetProperties().Select(p => p.Name).ToList();
+        Console.WriteLine("get all permissions");
+        Console.WriteLine(x.ToJson);
+        return x;
     }
 
 }
