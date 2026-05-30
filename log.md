@@ -1,5 +1,17 @@
 # Logs
 
+
+### 5-29-26
+
+#### helpful links
+- []()
+- []()
+- []()
+- [.net how get all the property names of a class](https://www.google.com/search?q=.net+how+get+all+the+property+names+of+a+class&oq=.net+how+get+all+the+property+names+of+a+class&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRirAjIHCAYQIRirAtIBCTE0MzA4ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [.net how to stringify a list](https://www.google.com/search?q=.net+how+to+stringify+a+list&oq=.net+how+to+stringify+a+list&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRirAjIHCAQQIRifBTIHCAUQIRifBTIHCAYQIRifBTIHCAcQIRifBTIHCAgQIRifBTIHCAkQIRifBdIBCDY4MDVqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8)
+- [.net The name 'BindingFlags' does not exist in the current context](https://www.google.com/search?q=.net+The+name+%27BindingFlags%27+does+not+exist+in+the+current+context&oq=.net+The+name+%27BindingFlags%27+does+not+exist+in+the+current+context&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRiPAjIHCAIQIRiPAtIBCTE0Mjg4ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8)
+- [.net why can you only get a list of properties from a class if they're auto-implemented](https://www.google.com/search?q=.net+why+can+you+only+get+a+list+of+properties+from+a+class+if+they%27re+auto-implemented&biw=1707&bih=898&sca_esv=0303516963dc1d11&sxsrf=ANbL-n5LAFF_tIe_rih3maac_w1oKFYfOw%3A1780096972158&ei=zB8aar6wCZicwbkPprifoQc&ved=0ahUKEwi-xsP90d-UAxUYTjABHSbcJ3QQ4dUDCBA&uact=5&oq=.net+why+can+you+only+get+a+list+of+properties+from+a+class+if+they%27re+auto-implemented&gs_lp=Egxnd3Mtd2l6LXNlcnAiVy5uZXQgd2h5IGNhbiB5b3Ugb25seSBnZXQgYSBsaXN0IG9mIHByb3BlcnRpZXMgZnJvbSBhIGNsYXNzIGlmIHRoZXkncmUgYXV0by1pbXBsZW1lbnRlZEjyxwFQ0QZY6sYBcAx4AZABAJgBxwGgAeA4qgEFNjIuMjW4AQPIAQD4AQGYAkOgAqAuwgIKEAAYRxjWBBiwA8ICBBAjGCfCAgUQABiABMICBhAAGBYYHsICCxAAGIAEGIoFGIYDwgIFEAAY7wXCAggQABiJBRiiBMICCBAAGIAEGKIEwgIFECEYoAHCAgUQIRirAsICBRAhGJ8FwgIHECEYChigAZgDAIgGAZAGCJIHBzM3LjI5LjGgB8PbArIHBzI5LjI5LjG4B4QuwgcHMC41NC4xM8gHjgGACAE&sclient=gws-wiz-serp)
+
 ### 5-26-26
 
 #### helpful links

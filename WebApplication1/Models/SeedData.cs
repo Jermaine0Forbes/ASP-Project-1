@@ -55,7 +55,7 @@ public static class SeedData
             var fakeUsers = new Faker<User>()
             .RuleFor(u => u.UserName, f => f.Internet.UserName())
             .RuleFor(u => u.Email, (f, u) => u.UserName+"@gmail.com")
-            .RuleFor(u => u.PasswordHash, f => f.Internet.Password())
+            .RuleFor(u => u.PasswordHash, f => "Password123!")
             .RuleFor(u => u.CreatedAt, f => currentDateTime)
             .RuleFor(u => u.OtpExpirationDate, f => DateTime.Now.AddDays(5));
             // .FinishWith((f, u) =>
@@ -88,20 +88,18 @@ public static class SeedData
 
             foreach (var user in users)
             {
-                var u = new User
-                {
-                    UserName = user.UserName,
-                    Email = user.Email,
-                    CreatedAt = user.CreatedAt,
-                    OtpExpirationDate = user.OtpExpirationDate,
-                };
-                var result = await userManager.CreateAsync(u, "Password123!");
+
+                var result = await userManager.CreateAsync(user, "Password123!");
                 if (result.Succeeded)
                 {
                    var r = SeedData.GetRole();
-                   var x = await userManager.FindByNameAsync(u.UserName!) ?? throw new Exception("Cannot find username");
-                    await userManager.AddToRoleAsync(x, r);
-                    context.Posts.Add(SeedData.GetPost(x, posts));
+                //    var x = await userManager.FindByNameAsync(user.UserName!) ?? throw new Exception("Cannot find username");
+                   if( !await userManager.IsInRoleAsync(user, r ))
+                    {
+                    await userManager.AddToRoleAsync(user, r);
+                        
+                    }
+                    context.Posts.Add(SeedData.GetPost(user, posts));
 
                 }
                 else
@@ -114,6 +112,8 @@ public static class SeedData
             }
 
             await context.SaveChangesAsync();
+
+            
 
 
             // 3. Disable IDENTITY_INSERT

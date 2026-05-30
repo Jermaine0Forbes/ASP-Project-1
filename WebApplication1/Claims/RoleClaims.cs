@@ -29,7 +29,7 @@ public static class RoleClaims
         var claims = await roleM.GetClaimsAsync(r);
         Console.WriteLine("claims");
         Console.WriteLine(claims.ToJson());
-        Console.WriteLine($"{rp.GetName()}: permisssions");
+        Console.WriteLine($"{rp.GetName()}: permissions");
         Console.WriteLine(rp.GetPermissions().ToJson());
         // if(!rp.GetPermissions().Any()) throw new Exception("no permissions");
         foreach (var permission in rp.GetPermissions())
@@ -141,9 +141,8 @@ public static class Permission
 
     public static List<string> GetAllPermissions()
     {
-        var x = typeof(Permission).GetProperties().Select(p => p.Name).ToList();
-        Console.WriteLine("get all permissions");
-        Console.WriteLine(x.ToJson);
+        var x = typeof(Permission).GetFields().Select(p => p.Name).ToList();
+        // Console.WriteLine("get all permissions");
         return x;
     }
 

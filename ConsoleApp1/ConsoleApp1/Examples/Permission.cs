@@ -13,18 +13,18 @@ public  static class Permission
 
     public static List<string> GetAllPermissions()
     {
+        // var x = typeof(Permission)
+        // .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
+        // ;
+
         var x = typeof(Permission)
-        .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
+        .GetFields().Select(p => p.Name).ToList();
         ;
-        Console.WriteLine(x.Any());
-        foreach( var y in x)
-        {
-            Console.WriteLine($"{y.Name}");
-        }
+
         Console.WriteLine("get all permissions");
-        Console.WriteLine(x.ToArray().Any());
-        // Console.WriteLine(string.Join(",",x.ToArray()));
-        return x.Select(p => p.Name).ToList();
+        // Console.WriteLine(x.ToArray().Any());
+        Console.WriteLine(string.Join(",",x));
+        return x;
     }
 
 }
@@ -44,12 +44,11 @@ public class Jungle
         // .Select(p => p.Name).ToList();
         var j = new Jungle();
         var x = j.GetType()
-        .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
+        .GetProperties(BindingFlags.Default | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static)
         .Select(p => p.Name).ToList();
         Console.WriteLine("get props");
         // Console.WriteLine( JsonSerializer.Serialize(j.GetType().GetProperties()));
         Console.WriteLine(string.Join(",", x));
-        Console.WriteLine(string.Join(",", new List<string> {"x", "z", "y"}));
         return x;
     }
 
