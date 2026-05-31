@@ -27,14 +27,14 @@ public static class RoleClaims
         var rp = RoleClaims.GetRolePermissions(roleName);
         var r = await roleM.FindByNameAsync(rp.GetName()) ?? throw new Exception($"Cannot find {rp.GetName()} role");
         var claims = await roleM.GetClaimsAsync(r);
-        Console.WriteLine("claims");
-        Console.WriteLine(claims.ToJson());
-        Console.WriteLine($"{rp.GetName()}: permissions");
-        Console.WriteLine(rp.GetPermissions().ToJson());
+        // Console.WriteLine("claims");
+        // Console.WriteLine(claims.ToJson());
+        // Console.WriteLine($"{rp.GetName()}: permissions");
+        // Console.WriteLine(rp.GetPermissions().ToJson());
         // if(!rp.GetPermissions().Any()) throw new Exception("no permissions");
         foreach (var permission in rp.GetPermissions())
         {
-            Console.WriteLine($"permission {permission}");
+            // Console.WriteLine($"permission {permission}");
             if (!claims.Any(x =>
                 x.Type == "Permission" &&
                 x.Value == permission)

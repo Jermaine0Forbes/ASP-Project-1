@@ -25,7 +25,12 @@ builder.Services.Configure<AzureSettings>(builder.Configuration.GetSection("Azur
 builder.Services.AddDbContext<AppDBContext>(options =>
 {
     options.UseSqlServer(connectionString);
-    //   .LogTo(Console.WriteLine, LogLevel.Information);
+    // if (builder.Environment.IsDevelopment())
+    // {
+    //       var logStream = File.AppendText("efcore.log");
+    //     options.EnableSensitiveDataLogging();
+    //     options.LogTo(logStream.WriteLine, LogLevel.Debug ); // Requires logging destination
+    // }
 
 });
 Log.Logger = new LoggerConfiguration()

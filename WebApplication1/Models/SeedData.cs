@@ -22,15 +22,15 @@ public static class SeedData
 
         using var transaction = context.Database.BeginTransaction();
 
-            // 1. Enable IDENTITY_INSERT for the 'Posts' table
-            context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Posts ON");
+        // 1. Enable IDENTITY_INSERT for the 'Posts' table
+        // context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Posts ON");
 
         try
         {
+
             var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
             var roleManager = serviceProvider.GetRequiredService<RoleManager<Role>>();
             string[] roles = ["User", "Manager", "Admin"];
-
 
 
             foreach (var role in roles)
@@ -38,7 +38,7 @@ public static class SeedData
 
                 if (!await roleManager.RoleExistsAsync(role))
                 {
-                    await roleManager.CreateAsync( new Role(role));
+                    await roleManager.CreateAsync(new Role(role));
                     await RoleClaims.AddClaims(role, roleManager);
                 }
             }
@@ -54,9 +54,9 @@ public static class SeedData
 
             var fakeUsers = new Faker<User>()
             .RuleFor(u => u.UserName, f => f.Internet.UserName())
-            .RuleFor(u => u.Email, (f, u) => u.UserName+"@gmail.com")
-            .RuleFor(u => u.PasswordHash, f => "Password123!")
+            .RuleFor(u => u.Email, (f, u) => u.UserName + "@gmail.com")
             .RuleFor(u => u.CreatedAt, f => currentDateTime)
+            .RuleFor(u => u.EmailConfirmed, f => true)
             .RuleFor(u => u.OtpExpirationDate, f => DateTime.Now.AddDays(5));
             // .FinishWith((f, u) =>
             // {
@@ -81,10 +81,6 @@ public static class SeedData
             // context.Users.AddRange(users);
             // context.SaveChanges();
 
-            //    Console.WriteLine(JsonSerializer.Serialize(posts));
-
-            //    return;
-
 
             foreach (var user in users)
             {
@@ -92,14 +88,13 @@ public static class SeedData
                 var result = await userManager.CreateAsync(user, "Password123!");
                 if (result.Succeeded)
                 {
-                   var r = SeedData.GetRole();
-                //    var x = await userManager.FindByNameAsync(user.UserName!) ?? throw new Exception("Cannot find username");
-                   if( !await userManager.IsInRoleAsync(user, r ))
+                    var r = SeedData.GetRole();
+                    if (!await userManager.IsInRoleAsync(user, r))
                     {
-                    await userManager.AddToRoleAsync(user, r);
-                        
+                        await userManager.AddToRoleAsync(user, r);
+
                     }
-                    context.Posts.Add(SeedData.GetPost(user, posts));
+                    await context.Posts.AddAsync(SeedData.GetPost(user, posts));
 
                 }
                 else
@@ -113,12 +108,8 @@ public static class SeedData
 
             await context.SaveChangesAsync();
 
-            
-
-
             // 3. Disable IDENTITY_INSERT
-            context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Posts OFF");
-
+            // context.Database.ExecuteSqlRaw("SET IDENTITY_INSERT dbo.Posts OFF");
 
             transaction.Commit();
 
@@ -129,7 +120,6 @@ public static class SeedData
             await transaction.RollbackAsync();
             throw new Exception(e.Message);
         }
-
 
     }
 
@@ -158,11 +148,11 @@ public static class SeedData
 
         return new Post
         {
-            Title = u.UserName  + " Post : " + post.Title ,
+            Title = u.UserName + " Post : " + post.Title,
             Body = post.Body,
             CreatedAt = u.CreatedAt,
-            // UserId = u.Id,
-            User = u,
+            UserId = u.Id,
+            // User = u,
         };
     }
 

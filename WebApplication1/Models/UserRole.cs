@@ -23,9 +23,8 @@ public class Role: IdentityRole<string>
         Console.WriteLine($"{name} role is created");
         Name = name;
     }
-
     [Required]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public override string Id { get; set; }
+    public  override string Id { get; set; } = Guid.NewGuid().ToString();
     public virtual ICollection<UserRole> UserRoles {get; set;} = [];
 }

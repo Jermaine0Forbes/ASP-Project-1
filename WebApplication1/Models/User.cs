@@ -18,8 +18,8 @@ public class User : IdentityUser
     [Display(Name="Profile Image")]
     public String? Image {get; set;}
 
-    [Display(Name ="Password")]
-    public new string? PasswordHash {get; set;} 
+    // [Display(Name ="Password")]
+    // public new string? PasswordHash {get; set;} 
 
     [DataType(DataType.Date)]
     public DateTime? OtpExpirationDate {get; set;}
