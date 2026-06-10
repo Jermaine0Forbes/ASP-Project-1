@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "r3vzoO9EntM=",
+  "dgSpecHash": "D95zPD/NOg8=",
   "success": true,
-  "projectFilePath": "c:\\wamp\\www\\asp\\WebApp2\\WebApp2.csproj",
+  "projectFilePath": "C:\\wamp\\www\\asp\\WebApp2\\WebApp2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Jermaine Forbes\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Jermaine Forbes\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\10.0.5\\microsoft.aspnetcore.diagnostics.entityframeworkcore.10.0.5.nupkg.sha512",
