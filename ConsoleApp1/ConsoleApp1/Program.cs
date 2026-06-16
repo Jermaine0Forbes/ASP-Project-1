@@ -25,10 +25,12 @@ class Program
         // var s = new ThreeSumClosest();
         // s.ThreeSum1(nums, target);
 
-        Permission.GetAllPermissions();
-        var j = new Jungle();
+        // Permission.GetAllPermissions();
+        // var j = new Jungle();
 
-        j.GetProps();
+        // j.GetProps();
+        var ro = new RemoveOccurences();
+        ro.Run(new List<int> {0,1,3,0,2,2,4,2}, 2);
     }
 }
 
