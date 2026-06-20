@@ -1,3 +1,5 @@
+using System.Text.Json;
+
 namespace ConsoleApp1.Abstract
 {
     public class Solution
@@ -10,7 +12,7 @@ namespace ConsoleApp1.Abstract
 
         public void Output<T>(T value)
         {
-            Console.WriteLine(value);
+            Console.WriteLine(JsonSerializer.Serialize(value));
         }
 
 

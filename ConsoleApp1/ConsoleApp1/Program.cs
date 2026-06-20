@@ -29,8 +29,13 @@ class Program
         // var j = new Jungle();
 
         // j.GetProps();
-        var ro = new RemoveOccurences();
-        ro.Run(new List<int> {0,1,3,0,2,2,4,2}, 2);
+
+        // var ro = new RemoveOccurences();
+        // ro.Run(new List<int> {0,1,3,0,2,2,4,2}, 2);
+
+        var ts = new ThreeSum();
+        int[] nums = [-1,0,1,2,-1,-4];
+        ts.Main(nums);
     }
 }
 

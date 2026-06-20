@@ -3,6 +3,7 @@
 
 - create a database connection to the sql server
 
+1. First off download these packages if you have not done so already
 ```
 dotnet add package Microsoft.AspNetCore.Identity.UI
 dotnet add package Microsoft.EntityFrameworkCore.Design
@@ -12,9 +13,27 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.EntityFrameworkCore.Tools
 
 ```
-- create a Post model class (Id, Title, Views, Likes, UserId, CreatedAt)
+2. We're going to create database in sql server. So in the `appsettings.json` create a connection string that will have the database name like so
+
+` "AppDBContext": "Server=(localdb)\\mssqllocaldb;Database=WebApp;Trusted_Connection=True;MultipleActiveResultSets=true"`
+
+3. Run `dotnet build` to check if there are any errors. If there not, then run `dotnet ef database update` to at least create the database
+
+**Discovery**
+You can create a new database in your local computer by just changing the name in the connection string. I did not know and I'm probably going to forget about it later on.
+
+In anycase, the next step is to create the post that will have the views and the likes attached to the post
+
+- create a Post model class (Id, Title, Body, Views, Likes, UserId, CreatedAt)
+4. Create a Users and Posts class that can be added to the AppDBContext file
 - attach the Post class to the AppDBContext class
 - create a migration file
+5. Create a migration file that will create the user's and post table. You can create a migration file with the cli like so 
+
+`dotnet ef migrations Add insertName`
+
+6. Update the database
 - create seeding class that will generate a number users and a post attached to them
 - run the application to create the fake data
--
+- use websockets to increase the views of the post whenever someone visits it
+- use websockets to allow the changing of likes of a post
