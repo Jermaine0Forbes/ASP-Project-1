@@ -12,8 +12,8 @@ using WebApp2.Data;
 namespace WebApp2.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20260620185034_CreatePosts")]
-    partial class CreatePosts
+    [Migration("20260621013237_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

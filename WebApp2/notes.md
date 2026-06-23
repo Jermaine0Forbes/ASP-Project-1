@@ -32,8 +32,18 @@ In anycase, the next step is to create the post that will have the views and the
 
 `dotnet ef migrations Add insertName`
 
+**If you're having migration issues**
+
+If you are having a migration issue where you're having errors messages like this `  C:\wamp\www\asp\WebApp2\Data\Trash\ApplicationDbContextModelSnapshot.cs(13,33): error CS0111: Type 'AppDBContextModelSnapshot' already defines a member called 'BuildModel' with the same parameter types` then you should first drop your database `dotnet ef database drop --force`. And the second thing you need to do is delete all the contents in your migration folder `rm -rf ./Migrations`
+
 6. Update the database
+
+`dotnet ef database update`
+
+
 - create seeding class that will generate a number users and a post attached to them
+
+7. 
 - run the application to create the fake data
 - use websockets to increase the views of the post whenever someone visits it
 - use websockets to allow the changing of likes of a post
