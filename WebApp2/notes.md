@@ -43,7 +43,18 @@ If you are having a migration issue where you're having errors messages like thi
 
 - create seeding class that will generate a number users and a post attached to them
 
-7. 
+7. First install bogus 
+`dotnet add package Bogus`
+
+8. Create a Seeder file in the `Data` directory
+
+9. With the bogus package, create a number of users and make sure each user has a post that is assigned to them
+
+10. Go to the program file and allow the seeder class to be initialized below the bottom of the code that builds the app. Also, make sure you have your identity roles enabled as well
+
+11. 
+
+
 - run the application to create the fake data
 - use websockets to increase the views of the post whenever someone visits it
 - use websockets to allow the changing of likes of a post

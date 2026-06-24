@@ -263,11 +263,9 @@ C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\linux-armel\native\libe_sqlit
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\linux-mips64\native\libe_sqlite3.so
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
-C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\linux-musl-riscv64\native\libe_sqlite3.so
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\linux-musl-s390x\native\libe_sqlite3.so
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
-C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\linux-riscv64\native\libe_sqlite3.so
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\linux-s390x\native\libe_sqlite3.so
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\linux-x64\native\libe_sqlite3.so
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\linux-x86\native\libe_sqlite3.so
@@ -275,7 +273,6 @@ C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\maccatalyst-arm64\native\libe
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\osx-arm64\native\libe_sqlite3.dylib
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\osx-x64\native\libe_sqlite3.dylib
-C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\win-arm\native\e_sqlite3.dll
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\win-x86\native\e_sqlite3.dll
@@ -433,3 +430,13 @@ C:\wamp\www\asp\WebApp2\obj\Debug\net10.0\refint\WebApp2.dll
 C:\wamp\www\asp\WebApp2\obj\Debug\net10.0\WebApp2.pdb
 C:\wamp\www\asp\WebApp2\obj\Debug\net10.0\WebApp2.genruntimeconfig.cache
 C:\wamp\www\asp\WebApp2\obj\Debug\net10.0\ref\WebApp2.dll
+C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\Bogus.dll
+C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\android-arm\native\libe_sqlite3.so
+C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\android-arm64\native\libe_sqlite3.so
+C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\android-x64\native\libe_sqlite3.so
+C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\android-x86\native\libe_sqlite3.so
+C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\ios-arm\native\e_sqlite3.a
+C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\ios-arm64\native\e_sqlite3.a
+C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\iossimulator-arm64\native\e_sqlite3.a
+C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\iossimulator-x64\native\e_sqlite3.a
+C:\wamp\www\asp\WebApp2\bin\Debug\net10.0\runtimes\iossimulator-x86\native\e_sqlite3.a
