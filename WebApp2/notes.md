@@ -51,10 +51,53 @@ If you are having a migration issue where you're having errors messages like thi
 9. With the bogus package, create a number of users and make sure each user has a post that is assigned to them
 
 10. Go to the program file and allow the seeder class to be initialized below the bottom of the code that builds the app. Also, make sure you have your identity roles enabled as well
+**Note**: if you create a User model that inherits the IdentityUser, you need to make sure that in the Progam.cs its being used in the AddDefaultIdentity method like so
 
-11. 
+```cs
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppDBContext>();
+builder.Services.AddControllersWithViews();
+```
 
+Also in `~/Views/Shared/_LoginPartial.cshtml` you need update the class in the SiginManager and UserManager services like so
+
+```cs
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+```
+11. run the command `dotnet run` so that the seeder will run
+
+12. Create a controller for the posts with the codegenerator command in the cli
+`dotnet aspnet-codegenerator controller -name PostController -m WebApp2.Models.Post -dc AppDBContext -outDir Controllers`
+ this will not only create a controller, but it will also create the views that would be connected to controller endpoints. To explain a little bit of flags names there is `-name` which is the name of the controller, every controller need to have Controller at the end of the name.  The `-m` is the name of the model, it's recommended to have the full namespace to find the model  like `WebApp2.Models.Post`. The `-dc` is the name of the DBContext class. The `-outDir` is defining what directory should the controller file be placed in 
 
 - run the application to create the fake data
+13.  Run `dotnet run` in order for the Seeder to run and then check your database to see if the data has been generated
+
+
+14. Let's go to the default layout at `~/Views/_Layout.cshtml` and add a new link that will allow you to view all the posts
+```html
+<ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="Index">Posts</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+            asp-action="Privacy">Privacy</a>
+    </li>
+</ul>
+```
+
+15. Go to `~/Views/Post/Index` we should comment out the `Layout` keyword so that it will automatically inherit the established one. And then modify the table so that only the title, views, likes, and a link to view the page is shown.
+
+16. Go to `~/Views/Post/Edit`, and comment out the `Layout` as well.  Then leave only title, body, views, and likes
+
+17. Now this is where we start enabling websockets with
+
 - use websockets to increase the views of the post whenever someone visits it
 - use websockets to allow the changing of likes of a post

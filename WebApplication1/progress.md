@@ -141,7 +141,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet add package Microsoft.AspNetCore.RateLimiting
 
 
-dotnet aspnet-codegenerator controller -name AdminController -m User -dc AppDBContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name AdminController -m WebApplication1.Models.User -dc AppDBContext -outDir Controllers
 
 # packages to do logging
 dotnet add package Serilog
