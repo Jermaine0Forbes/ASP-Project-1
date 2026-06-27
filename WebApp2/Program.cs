@@ -36,7 +36,7 @@ using (var scope = app.Services.CreateScope())
 
     await Seeder.Initialize(services);
 }
-
+app.UseWebSockets();
 app.UseHttpsRedirection();
 app.UseRouting();
 

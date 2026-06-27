@@ -97,7 +97,23 @@ Also in `~/Views/Shared/_LoginPartial.cshtml` you need update the class in the S
 
 16. Go to `~/Views/Post/Edit`, and comment out the `Layout` as well.  Then leave only title, body, views, and likes
 
-17. Now this is where we start enabling websockets with
+17. Now with the Index and Edit pages, we have the basic properties that needed to be shown for this tutorial. Feel free to stylize the pages if you want them to look more presentable. An additional thing we are going to include is a code snippet from bootstrap(Since .net mvc uses the bootstrap library), that will be the buttons that will either up or down vote a post. Here is the code that you should put in between the **likes** value
+
+```html
+    <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <button type="button" class="btn btn-outline-primary plus">+</button>
+        <button type="button" class="btn btn-outline-primary minus">-</button>
+    </div>
+```
+
+18. Ok now here is the part where we start implementing websockets to send and receive data seamlessly. First we need to enable Websockets in our `Program` file, and do it before routing is being implemented like so 
+
+```cs
+// Enable WebSockets middleware BEFORE MVC routing
+app.UseWebSockets(); 
+
+app.UseRouting();
+```
 
 - use websockets to increase the views of the post whenever someone visits it
 - use websockets to allow the changing of likes of a post
