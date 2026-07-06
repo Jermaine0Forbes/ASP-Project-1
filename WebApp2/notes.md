@@ -115,5 +115,7 @@ app.UseWebSockets();
 app.UseRouting();
 ```
 
+19. Next we want to create an endpoint that will allow receive and send information back to the websocket. So in the `PostController` we want to create a method called ViewSocket. This method will update the view count of a post and send the updated view count back to the post. We will need to add the HttpGet attribute and add the `/ws  ` so that when we send a message to the endpoint we can receive it.
+
 - use websockets to increase the views of the post whenever someone visits it
 - use websockets to allow the changing of likes of a post
