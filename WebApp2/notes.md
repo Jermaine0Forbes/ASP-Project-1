@@ -115,7 +115,62 @@ app.UseWebSockets();
 app.UseRouting();
 ```
 
-19. Next we want to create an endpoint that will allow receive and send information back to the websocket. So in the `PostController` we want to create a method called ViewSocket. This method will update the view count of a post and send the updated view count back to the post. We will need to add the HttpGet attribute and add the `/ws  ` so that when we send a message to the endpoint we can receive it.
+19. Next we want to create an endpoint that will allow receive and send information back to the websocket. So in the `PostController` we want to create a method called ViewSocket. This method will update the view count of a post and send the updated view count back to the post. We will need to add the **HttpGet** attribute and add the `/ws  ` so that when we send a message to the endpoint we can receive it. Like so 
+
+```cs
+        [HttpGet("/ws")]
+        public async Task ViewSocket()
+        {
+            
+        }
+
+```
+
+20. Let's create a simple message that we can receive when we connect our websocket  through javascript. 
+
+
+```cs
+
+        [HttpGet("/ws")]
+        public async Task ViewSocket()
+        {
+            if (HttpContext.WebSockets.IsWebSocketRequest)
+            {
+                using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
+                var bytes = Encoding.UTF8.GetBytes("hello world");
+                await webSocket.SendAsync(
+                    bytes, // the data that is being sent over in bytes
+                    WebSocketMessageType.Text,  // the type of message
+                    true, // if this the end of the message
+                    CancellationToken.None // a token that determines if an operation should be cancelled
+                    );
+            }
+            else
+            {
+                HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+            }
+        }
+
+```
+
+21. Let's open up a connection to the websocket within `~/Views/Post/Index/` page and see if we receive a message by console logging the "hello world" data we're sending to it.
+
+```html
+<script>
+    (async function () {
+        const host = window.location.host;
+        const socket = new WebSocket(`ws://${host}/ws`);
+        socket.onmessage = (event) => {
+
+            console.log(event)
+        }
+    })()
+</script>
+
+```
+
+22. If done correctly, we would see the message event when look into the console of our browser. Now, we should also add this code to `~/Views/Post/Details` and we now want to attempt to update the view count when a person visits the post page. So we're going to use the websocket eventlistener `onopen` and the method `send` to send data back to the endpoint and then update the view count
+
 
 - use websockets to increase the views of the post whenever someone visits it
 - use websockets to allow the changing of likes of a post

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.WebSockets;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -24,6 +26,26 @@ namespace WebApp2.Controllers
         {
             var appDBContext = _context.Posts.Include(p => p.User);
             return View(await appDBContext.ToListAsync());
+        }
+
+        [HttpGet("/ws")]
+        public async Task ViewSocket()
+        {
+            if (HttpContext.WebSockets.IsWebSocketRequest)
+            {
+                using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
+                var bytes = Encoding.UTF8.GetBytes("hello world");
+                await webSocket.SendAsync(
+                    bytes, // the data that is being sent over in bytes
+                    WebSocketMessageType.Text,  // the type of message
+                    true, // if this the end of the message
+                    CancellationToken.None // a token that determines if an operation should be cancelled
+                    );
+            }
+            else
+            {
+                HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+            }
         }
 
         // GET: Post/Details/5
