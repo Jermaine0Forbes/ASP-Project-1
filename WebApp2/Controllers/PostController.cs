@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -41,6 +42,49 @@ namespace WebApp2.Controllers
                     true, // if this the end of the message
                     CancellationToken.None // a token that determines if an operation should be cancelled
                     );
+
+                try
+                {
+                     var buffer = new byte[1024];
+                    while (webSocket.State == WebSocketState.Open)
+                    {
+                        var result = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
+                        if (result.MessageType == WebSocketMessageType.Close)
+                        {
+                            await webSocket
+                            .CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing", CancellationToken.None);
+                            
+                        }
+
+                        if(result.MessageType == WebSocketMessageType.Text)
+                        {
+                            var json = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                            var message = JsonSerializer.Deserialize<PostSocketModel>(json);
+
+                            switch (message?.Status)
+                            {
+                                case "viewed":
+
+                                break;
+
+                                case "upvoted":
+
+                                break;
+
+                                case "downvoted":
+                                break;
+
+                                default:
+                                 throw new Exception("websocket message cannot be identified");
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
             }
             else
             {

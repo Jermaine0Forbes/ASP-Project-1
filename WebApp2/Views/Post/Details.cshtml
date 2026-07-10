@@ -54,6 +54,22 @@
         <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
         <a asp-action="Index">Back to List</a>
     </div>
+
+
+    <script>
+    (async function () {
+        const host = window.location.host;
+        const socket = new WebSocket(`ws://${host}/ws`);
+        socket.onmessage = (event) => {
+
+            console.log(event)
+        }
+
+        socket.onopen() = (event) => {
+            socket.send(JSON.stringify({Status: "viewed", Id: @Model?.Id }));
+        }
+    })()
+</script>
 </body>
 
 </html>
