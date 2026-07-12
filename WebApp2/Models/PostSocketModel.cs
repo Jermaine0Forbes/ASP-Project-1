@@ -9,5 +9,5 @@ public class PostSocketModel
 
     public string Status {get; set;} = "";
 
-    public int Votes {get; set;} = 0;
+    public int Value {get; set;} = 0;
 }

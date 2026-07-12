@@ -232,8 +232,41 @@ app.UseRouting();
 ```
 
 23. We added a lot of code here and I want to explain what's happening line by line
-    - First we added try and catch block that will catch any errors or issues with the websocket status
-    - When the websocket is open,
+    - First we added a try and catch block that will catch any errors or issues with the websocket status
+    - When the websocket is open, it will wait to receive any response from the front end. If the result of the message type is to close, then the websocket will close the connection
+    - Now if the message type is text and then we get the string and deserialize from json object to a model called PostSocketModel that contains three properties (Id, Status, and Value)
+    - There's an if statement that checks if the Status is equivalent to `viewed`. If it is then it will try to find the post based on the id, then update the Views property by 1, save the changes, creates a json string of data, and sends it back .
+    - So now in the frontend we can receive the message
+
+24. On the frontend of `~/Views/Post/Details` we are going to send the data to `ViewSocket` endpoint so that it can increment the view count and we can also update the view count on the page as well. Here is the simple code to do these actions
+
+```html
+
+    <script>
+    (async function () {
+        const host = window.location.host;
+        const socket = new WebSocket(`ws://${host}/ws`);
+        socket.onmessage = (event) => {
+            const {Status, Value} = JSON.parse(event.data);
+
+            console.log(event)
+            // If the event's Status is 'viewed' then it will update the view counter
+             if(Status == "viewed")
+             {
+                document.getElementById('views').innerText = Value;
+             }
+        }
+
+        socket.onopen = (event) => {
+            // sends data to ViewSocket so that it can update the view count
+            socket.send(JSON.stringify({Status: "viewed", Id: @Model?.Id }));
+        }
+    })()
+</script>
+
+```
+
+25.
 
 
 - use websockets to increase the views of the post whenever someone visits it
