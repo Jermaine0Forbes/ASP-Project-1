@@ -169,7 +169,71 @@ app.UseRouting();
 
 ```
 
-22. If done correctly, we would see the message event when look into the console of our browser. Now, we should also add this code to `~/Views/Post/Details` and we now want to attempt to update the view count when a person visits the post page. So we're going to use the websocket eventlistener `onopen` and the method `send` to send data back to the endpoint and then update the view count
+22. If done correctly, we would see the message event when look into the console of our browser. Now, we should also add this code to `~/Views/Post/Details` and we now want to attempt to update the view count when a person visits the post page. So we're going to use the websocket eventlistener `onopen` and the method `send` to send data back to the endpoint and then update the view count. Well do this by first going to `ViewSocket` and updating the endpoint by including this code
+
+```cs
+            if (HttpContext.WebSockets.IsWebSocketRequest)
+            {
+                using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
+                var bytes = Encoding.UTF8.GetBytes("hello world");
+
+
+                try
+                {
+                    var buffer = new byte[1024];
+                    while (webSocket.State == WebSocketState.Open)
+                    {
+                        var result = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
+                        if (result.MessageType == WebSocketMessageType.Close)
+                        {
+                            await webSocket
+                            .CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing", CancellationToken.None);
+
+                        }
+
+                        if (result.MessageType == WebSocketMessageType.Text)
+                        {
+                            var json = Encoding.UTF8.GetString(buffer, 0, result.Count);
+                            var message = JsonSerializer.Deserialize<PostSocketModel>(json);
+                            var id = message?.Id;
+                            string data = "";
+                            if (message?.Status == "viewed")
+                            {
+                                var post = await _context.Posts.FindAsync(id) ?? throw new Exception("post not found");
+                                post.Views += 1;
+                                _context.Update(post);
+                                await _context.SaveChangesAsync();
+                                data = JsonSerializer.Serialize(new
+                                {
+                                    Status = "viewed",
+                                    Id = id,
+                                    Value = post.Views
+                                });
+                                bytes = Encoding.UTF8.GetBytes(data);
+                                await webSocket.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
+
+
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+            }
+            else
+            {
+                HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+            }
+
+
+```
+
+23. We added a lot of code here and I want to explain what's happening line by line
+    - First we added try and catch block that will catch any errors or issues with the websocket status
+    - When the websocket is open,
 
 
 - use websockets to increase the views of the post whenever someone visits it

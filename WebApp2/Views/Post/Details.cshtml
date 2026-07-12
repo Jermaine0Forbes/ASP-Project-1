@@ -34,7 +34,7 @@
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Views)
             </dt>
-            <dd class="col-sm-10">
+            <dd class="col-sm-10" id="views">
                 @Html.DisplayFor(model => model.Views)
             </dd>
             <dt class="col-sm-2">
@@ -61,11 +61,16 @@
         const host = window.location.host;
         const socket = new WebSocket(`ws://${host}/ws`);
         socket.onmessage = (event) => {
+            const {Status, Value} = JSON.parse(event.data);
 
             console.log(event)
+             if(Status == "viewed")
+             {
+                document.getElementById('views').innerText = Value;
+             }
         }
 
-        socket.onopen() = (event) => {
+        socket.onopen = (event) => {
             socket.send(JSON.stringify({Status: "viewed", Id: @Model?.Id }));
         }
     })()

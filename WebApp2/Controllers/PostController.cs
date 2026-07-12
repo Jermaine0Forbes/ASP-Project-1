@@ -36,16 +36,16 @@ namespace WebApp2.Controllers
             {
                 using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
                 var bytes = Encoding.UTF8.GetBytes("hello world");
-                await webSocket.SendAsync(
-                    bytes, // the data that is being sent over in bytes
-                    WebSocketMessageType.Text,  // the type of message
-                    true, // if this the end of the message
-                    CancellationToken.None // a token that determines if an operation should be cancelled
-                    );
+                // await webSocket.SendAsync(
+                //     bytes, // the data that is being sent over in bytes
+                //     WebSocketMessageType.Text,  // the type of message
+                //     true, // if this the end of the message
+                //     CancellationToken.None // a token that determines if an operation should be cancelled
+                //     );
 
                 try
                 {
-                     var buffer = new byte[1024];
+                    var buffer = new byte[1024];
                     while (webSocket.State == WebSocketState.Open)
                     {
                         var result = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
@@ -53,29 +53,31 @@ namespace WebApp2.Controllers
                         {
                             await webSocket
                             .CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing", CancellationToken.None);
-                            
+
                         }
 
-                        if(result.MessageType == WebSocketMessageType.Text)
+                        if (result.MessageType == WebSocketMessageType.Text)
                         {
                             var json = Encoding.UTF8.GetString(buffer, 0, result.Count);
                             var message = JsonSerializer.Deserialize<PostSocketModel>(json);
-
-                            switch (message?.Status)
+                            var id = message?.Id;
+                            string data = "";
+                            if (message?.Status == "viewed")
                             {
-                                case "viewed":
+                                var post = await _context.Posts.FindAsync(id) ?? throw new Exception("post not found");
+                                post.Views += 1;
+                                _context.Update(post);
+                                await _context.SaveChangesAsync();
+                                data = JsonSerializer.Serialize(new
+                                {
+                                    Status = "viewed",
+                                    Id = id,
+                                    Value = post.Views
+                                });
+                                bytes = Encoding.UTF8.GetBytes(data);
+                                await webSocket.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
 
-                                break;
 
-                                case "upvoted":
-
-                                break;
-
-                                case "downvoted":
-                                break;
-
-                                default:
-                                 throw new Exception("websocket message cannot be identified");
                             }
                         }
                     }

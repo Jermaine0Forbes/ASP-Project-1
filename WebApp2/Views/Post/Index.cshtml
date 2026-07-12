@@ -23,15 +23,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Title)
                 </th>
-                @* <th>
-                @Html.DisplayNameFor(model => model.Body)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedAt)
-            </th> *@
                 <th>
                     @Html.DisplayNameFor(model => model.Views)
                 </th>
@@ -39,41 +30,26 @@
                     @Html.DisplayNameFor(model => model.Likes)
 
                 </th>
-                @* <th>
-                @Html.DisplayNameFor(model => model.User)
-            </th> *@
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+                <tr id="post-@item.Id">
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
-                    @* <td>
-                @Html.DisplayFor(modelItem => item.Body)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedAt)
-            </td> *@
-                    <td>
+                    <td class="views">
                         @Html.DisplayFor(modelItem => item.Views)
                     </td>
-                    <td>
+                    <td class="likes">
                         @Html.DisplayFor(modelItem => item.Likes)
                         <div class="btn-group" role="group" aria-label="Basic outlined example">
                             <button type="button" class="btn btn-outline-primary plus">+</button>
                             <button type="button" class="btn btn-outline-primary minus">-</button>
                         </div>
                     </td>
-                    @* <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td> *@
                     <td>
                         <a asp-action="Details" asp-route-id="@item.Id">Details</a>
                     </td>
@@ -92,6 +68,16 @@
         socket.onmessage = (event) => {
 
             console.log(event)
+        }
+
+        socket.onmessage = (event) => {
+            const {Status, Id, Value} = JSON.parse(event.data);
+
+            console.log(event)
+             if(Status == "viewed")
+             { console.log("foo")
+                document.getElementById('post-'+Id).getElementsByClassName("views")[0].innerText= Value;
+             }
         }
 
 
