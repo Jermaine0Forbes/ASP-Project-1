@@ -10,16 +10,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApp2.Data;
 using WebApp2.Models;
+using WebApp2.Brokers;
+using WebApp2.Managers;
 
 namespace WebApp2.Controllers
 {
     public class PostController : Controller
     {
         private readonly AppDBContext _context;
+        private readonly WebSocketsManager _manager;
 
-        public PostController(AppDBContext context)
+        private readonly DataNotificationBroker _broker;
+
+        public PostController(AppDBContext context, WebSocketsManager manager, DataNotificationBroker broker)
         {
             _context = context;
+            _broker = broker;
+            _manager = manager;
         }
 
         // GET: Post
@@ -36,12 +43,24 @@ namespace WebApp2.Controllers
             {
                 using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
                 var bytes = Encoding.UTF8.GetBytes("hello world");
-                // await webSocket.SendAsync(
-                //     bytes, // the data that is being sent over in bytes
-                //     WebSocketMessageType.Text,  // the type of message
-                //     true, // if this the end of the message
-                //     CancellationToken.None // a token that determines if an operation should be cancelled
-                //     );
+
+
+                var connectionId = _manager.AddSocket(webSocket);
+
+                // Define what happens IMMEDIATELY when the broker publishes an update
+                Func<object, Task> pushHandler = async (payload) =>
+                {
+                    if (webSocket.State == WebSocketState.Open)
+                    {
+                        var json = JsonSerializer.Serialize(payload);
+                        var bytes = Encoding.UTF8.GetBytes(json);
+                        await webSocket.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Text, true, CancellationToken.None);
+                    }
+                };
+
+                // Subscribe this specific socket connection to the broker
+                _broker.OnDataChanged += pushHandler;
+
 
                 try
                 {
@@ -61,21 +80,20 @@ namespace WebApp2.Controllers
                             var json = Encoding.UTF8.GetString(buffer, 0, result.Count);
                             var message = JsonSerializer.Deserialize<PostSocketModel>(json);
                             var id = message?.Id;
-                            string data = "";
+                            // string data = "";
                             if (message?.Status == "viewed")
                             {
                                 var post = await _context.Posts.FindAsync(id) ?? throw new Exception("post not found");
                                 post.Views += 1;
                                 _context.Update(post);
                                 await _context.SaveChangesAsync();
-                                data = JsonSerializer.Serialize(new
+                               var data = new
                                 {
                                     Status = "viewed",
                                     Id = id,
                                     Value = post.Views
-                                });
-                                bytes = Encoding.UTF8.GetBytes(data);
-                                await webSocket.SendAsync(bytes, WebSocketMessageType.Text, true, CancellationToken.None);
+                                };
+                                await _broker.PublishUpdateAsync(data);
 
 
                             }
@@ -86,6 +104,12 @@ namespace WebApp2.Controllers
                 catch (Exception e)
                 {
                     throw new Exception(e.Message);
+                }
+                finally
+                {
+                    // Clean up: unsubscribe from event and remove from manager to prevent memory leaks
+                    _broker.OnDataChanged -= pushHandler;
+                    await _manager.RemoveSocket(connectionId);
                 }
             }
             else

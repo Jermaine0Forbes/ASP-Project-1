@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApp2.Data;
 using WebApp2.Models;
+using WebApp2.Brokers;
+using WebApp2.Managers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDBContext>();
+
+builder.Services.AddSingleton<DataNotificationBroker>();    
+builder.Services.AddSingleton<WebSocketsManager>();    
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
